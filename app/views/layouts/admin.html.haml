@@ -1,0 +1,28 @@
+!!!
+%html
+  %head
+    %title Panel Admin
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
+    %link{href: "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css", rel: "stylesheet"}
+    %link{href: "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css", rel: "stylesheet"}
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    %script{src: "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"}
+    = csrf_meta_tags
+  %body
+    %nav{ class: "navbar navbar-inverse" }
+      %a{ class: "navbar-brand", href: "#" }
+        Panel Admin
+
+    .container.bs-docs-container
+      .row
+        .col-md-2
+          %div{ class: "bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" }
+            %ul{ class: "nav nav-list bs-docs-sidenav"}
+              %li
+                = link_to 'Administrators', admin_administrators_path
+              %li
+                = link_to 'Users'
+              %li
+                = link_to 'Groups'
+        .col-md-10
+          = yield

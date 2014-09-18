@@ -1,0 +1,15 @@
+%ul.box-toolbar
+  %li
+    = link_to admin_administrators_path do
+      %i{ class: "fa fa-list" }
+      List
+    - if resource.persisted?
+      - if params[:action] != 'edit'
+        = link_to edit_admin_administrator_path do
+          %i{ class: "fa fa-pencil" }
+          Edit
+      - if params[:action] != 'show'
+        = link_to admin_administrator_path do
+          %i{ class: "fa fa-search" }
+          Overview
+

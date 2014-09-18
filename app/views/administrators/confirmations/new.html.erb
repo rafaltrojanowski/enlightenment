@@ -1,0 +1,33 @@
+<div class="container login-box">
+  <div class="padded">
+    <div class="login box" style="margin-top: 80px;">
+
+      <div class="box-header">
+        <span class="title"><%= t('administrators.auth.reset_confirmation_instructions', default: "Resend confirmation instructions") %></span>
+      </div>
+      <div class="box-content padded">
+
+        <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: "separate-sections" }) do |f| %>
+          <%= f.error_notification %>
+          <%= f.full_error :confirmation_token %>
+          <%= f.full_error :email %>
+
+          <div class="input-group">
+            <span class="input-group-addon" href="#">
+              <i class="icon-envelope"></i>
+            </span>
+            <%= f.email_field :email, autofocus: true, required: true, placeholder: t('administrators.auth.placeholders.email', default: "Email"), class: 'form-control'  %>
+          </div>
+          <div>
+            <button type="submit" class="btn btn-blue btn-block btn-default">
+              <%= t('administrators.auth.reset_confirmation_button', default: "Reset confirmation instructions") %>
+              <%= draw_icon "ok" %>
+            </button>
+          </div>
+        <% end %>
+
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>

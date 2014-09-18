@@ -1,0 +1,16 @@
+<!doctype html>
+%html
+  %head
+    %meta{content: "width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0", name: "viewport"}/
+    %link{href: "https://fonts.googleapis.com/css?family=Open+Sans:400,600,800", rel: "stylesheet"}/
+    %meta{charset: "utf-8"}/
+    / Always force latest IE rendering engine or request Chrome Frame
+    %meta{content: "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
+    / Use title if it's in the page YAML frontmatter
+    %title= data.page.title || "Core Admin Theme"
+    = stylesheet_link_tag "application"
+    = javascript_include_tag  "application"
+  %body
+    = partial "layouts/top_navigation"
+    .container
+      = yield

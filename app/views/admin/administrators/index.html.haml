@@ -1,0 +1,34 @@
+.box
+  .box-header
+    %span.title= t('admin.administrators.index.header', default: 'Admins')
+    %ul.box-toolbar
+      %li
+        = link_to 'New administrator', new_admin_administrator_path
+
+  .box-content
+    %table.table.table-normal
+      %thead
+        %tr
+          %th
+            = sort_link @q, :last_name, t('admin.administrators.index.table.name', default: 'Name')
+          %th(width="40px")
+            - #= t('common.actions', default: 'Actions')
+      %tbody
+        - @administrators.each do |administrator|
+          %tr
+            %td= link_to administrator, [:admin, administrator]
+            %td
+              .btn-group
+                %button.btn.btn-default.dropdown-toggle.btn-xs(data-toggle="dropdown")
+                  %i{ class: "fa fa-cog" }
+                %ul.dropdown-menu.pull-right
+                  %li
+                    = link_to [:edit, :admin, administrator] do
+                      %i{ class: "fa fa-edit" }
+                      = t('common.edit', default: 'Edit')
+                  %li
+                    = link_to  [:admin, administrator], method: :delete, data: { confirm: t('common.are_you_sure', default: "Are you sure?") } do
+                      %i{ class: "fa fa-trash" }
+                      = t('common.delete', default: 'Delete')
+  .table-footer
+    = paginate @administrators

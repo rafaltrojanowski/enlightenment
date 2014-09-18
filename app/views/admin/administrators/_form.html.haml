@@ -1,0 +1,17 @@
+.box
+  .box-header
+    %span.title
+      - if resource.persisted?
+        = resource.to_s
+      - else
+        = t('common.new_record', default: 'New record')
+    = render partial: "/admin/shared/toolbar", locals: {resource: resource}
+  .box-content
+    = simple_form_for [:admin, resource], html: { class: "form-horizontal" } do |f|
+      .padded
+        = f.input :first_name, input_html: { class: "validate[required]" }
+        = f.input :last_name, input_html: { class: "validate[required]" }
+        = f.input :email, input_html: { class: "validate[required]" }
+      .form-actions
+        %button.btn.btn-blue.btn-default{type: "submit"}
+          = t('common.save', default: "Save")

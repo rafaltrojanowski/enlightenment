@@ -1,0 +1,49 @@
+- content_for(:header_title) do
+  = resource.to_s
+.box
+  .box-header
+    %span.title= resource.to_s
+    = render partial: "/admin/shared/toolbar", locals: {resource: resource}
+  .box-content
+    %table.table.table-striped.responsive
+      %tbody
+        %tr
+          %td(width="15%")
+            = resource.class.human_attribute_name(:first_name)
+          %td= resource.first_name
+        %tr
+          %td(width="15%")
+            = resource.class.human_attribute_name(:last_name)
+          %td= resource.last_name
+        %tr
+          %td(width="15%")
+            = resource.class.human_attribute_name(:email)
+          %td= resource.email
+        - if @password.present?
+          %tr
+            %td(width="15%")
+              = resource.class.human_attribute_name(:password)
+            %td= @password
+            %br/
+            %em
+              %strong
+                = succeed ":" do
+                  = draw_icon 'warning-sign'
+                  = t('common.warning', default: 'Warning')
+              = t('admin.administrators.show.password_will_not_be_show_again')
+        %tr
+          %td(width="15%")
+            = resource.class.human_attribute_name(:current_sign_in_at)
+          %td= resource.current_sign_in_at
+        %tr
+          %td(width="15%")
+            = resource.class.human_attribute_name(:current_sign_in_ip)
+          %td= resource.current_sign_in_ip
+        %tr
+          %td(width="15%")
+            = resource.class.human_attribute_name(:last_sign_in_at)
+          %td= resource.last_sign_in_at
+        %tr
+          %td(width="15%")
+            = resource.class.human_attribute_name(:last_sign_in_ip)
+          %td= resource.last_sign_in_ip

@@ -1,0 +1,28 @@
+%h1 Welcome to Prograils App
+%h2
+%p
+  This is what it does:
+  %ol
+    %li Admin interface with autorization
+    %li Language management (domain strategy)
+    %li Basic site management
+    %li Initiated zeus and mini_test environment
+%p
+  And this is what you should do now:
+  %ul
+    %li
+      Change title from Prograils App into something more accurate
+    %li
+      Change app name / module name from PrograilsApp into SomethingApp
+      (you can safely to project wide search and replace):
+      %br/
+      %code ag -la 'PrograilsApp' | xargs perl -pi -E 's/PrograilsApp/SomethingApp/g'
+      %br/
+      %em
+        %strong Warning:
+        %a{href: 'https://github.com/ggreer/the_silver_searcher'} silver_searcher
+        is required
+%p
+  What would you like to do now?
+  %ul
+    %li= link_to "Go to admin interface", admin_root_path
