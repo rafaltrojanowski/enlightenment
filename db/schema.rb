@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140917103924) do
+ActiveRecord::Schema.define(version: 20140918142349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,15 @@ ActiveRecord::Schema.define(version: 20140917103924) do
   add_index "domains", ["domain", "site_id"], name: "index_domains_on_domain_and_site_id", unique: true, using: :btree
   add_index "domains", ["site_id"], name: "index_domains_on_site_id", using: :btree
 
+  create_table "groups", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "owner_id"
+  end
+
+  add_index "groups", ["owner_id"], name: "index_groups_on_owner_id", using: :btree
+
   create_table "language_versions", force: true do |t|
     t.string   "lang_code"
     t.boolean  "is_default", default: false
@@ -96,6 +105,16 @@ ActiveRecord::Schema.define(version: 20140917103924) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "participants", force: true do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "participants", ["group_id"], name: "index_participants_on_group_id", using: :btree
+  add_index "participants", ["user_id"], name: "index_participants_on_user_id", using: :btree
 
   create_table "sites", force: true do |t|
     t.string   "title"

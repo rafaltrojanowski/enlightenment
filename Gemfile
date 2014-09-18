@@ -24,7 +24,7 @@ gem 'kaminari'
 gem 'configurable_engine'
 gem 'friendly_id', '>= 5.0.0'
 gem 'dotenv-rails'
-
+gem 'cancancan', '~> 1.9'
 gem 'primary'
 
 group :development, :test do
@@ -55,6 +55,8 @@ group :development do
 
   gem 'quiet_assets'
   gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 end
 
 group :production do
