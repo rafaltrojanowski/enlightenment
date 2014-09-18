@@ -1,0 +1,7 @@
+= simple_form_for ContentEntity.new do |f|
+  = f.text_area :content
+  = f.submit
+
+- @content_entities.each do |res|
+  = res
+  %br
