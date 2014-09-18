@@ -50,12 +50,16 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
     builder (3.2.2)
     byebug (2.7.0)
       columnize (~> 0.3)
       debugger-linecache (~> 1.2)
+    callsite (0.0.11)
+    cancancan (1.9.2)
     capistrano (2.15.5)
       highline
       net-scp (>= 1.0.0)
@@ -86,6 +90,7 @@ GEM
     configurable_engine (0.3.2)
       rails (> 3.1.0)
     database_cleaner (1.2.0)
+    debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
     devise (3.2.4)
       bcrypt (~> 3.0)
@@ -153,6 +158,10 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    meta_request (0.3.4)
+      callsite (~> 0.0, >= 0.0.11)
+      rack-contrib (~> 1.1)
+      railties (>= 3.0.0, < 5.0.0)
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.6.0)
@@ -207,6 +216,8 @@ GEM
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
+    rack-contrib (1.1.0)
+      rack (>= 0.9.1)
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.1.5)
@@ -290,7 +301,9 @@ DEPENDENCIES
   annotate (>= 2.6.0)
   awesome_print
   better_errors
+  binding_of_caller
   bootstrap-sass (~> 3.1.1)
+  cancancan (~> 1.9)
   capistrano (~> 2.15.5)
   coffee-rails (~> 4.0.1)
   configurable_engine
@@ -307,6 +320,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   launchy
+  meta_request
   minitest-rails (>= 2.0.0.beta1)
   minitest-rails-capybara (>= 2.0.0.beta1)
   nested_form (~> 0.3.2)
