@@ -10,6 +10,8 @@ gem 'coffee-rails', '~> 4.0.1'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'ember-rails'
+gem 'ember-source', '1.5.0'
 
 gem 'haml'
 gem 'haml-rails'

@@ -1,5 +1,5 @@
 class ContentEntity < ActiveRecord::Base
-  WEB_URL_REGEXP = /\A#{URI::regexp(['http', 'https'])}\z/
+  WEB_URL_REGEXP = /\A#{URI::regexp(%w(http https))}\z/
 
   attr_accessor :content
   default_scope { includes(:contentable).order(created_at: :desc) }
