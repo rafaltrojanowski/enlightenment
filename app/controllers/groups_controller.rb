@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   def index
-    @groups = current_user.groups    
+    @groups = current_user.groups
   end
 
   def new
@@ -48,7 +48,7 @@ class GroupsController < ApplicationController
   private
 
   def set_group
-    @group = Group.find(params[:id]) 
+    @group = Group.find(params[:id])
   end
 
   def group_params
