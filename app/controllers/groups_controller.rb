@@ -5,6 +5,7 @@ class GroupsController < ApplicationController
                                    :destroy,
                                    :new_participant,
                                    :remove_participant]
+  load_and_authorize_resource only: [:show, :update, :destroy]
 
   def index
     @groups = current_user.groups
