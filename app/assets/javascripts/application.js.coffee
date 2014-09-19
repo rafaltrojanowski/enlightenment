@@ -1,4 +1,7 @@
 #= require jquery
+#= require jquery_ujs
+#= require turbolinks
+#= require_directory ./controllers/
 #= require handlebars
 #= require ember
 #= require ember-data

@@ -12,6 +12,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'ember-rails'
 gem 'ember-source', '1.5.0'
+gem 'emblem-rails' # Now any templates ending in .emblem will be compiled as Ember-Handlebars templates.
 
 gem 'haml'
 gem 'haml-rails'

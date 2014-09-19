@@ -2,6 +2,9 @@
   = f.text_area :content
   = f.submit
 
-- @content_entities.each do |res|
-  = res
-  %br
+-# - @content_entities.each do |res|
+  -# = res
+  -# %br
+
+%script{ type: 'text/x-handlebars' }
+  {{ outlet }}
