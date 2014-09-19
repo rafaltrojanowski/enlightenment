@@ -1,5 +1,10 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :set_group, only: [:show,
+                                   :edit,
+                                   :update,
+                                   :destroy,
+                                   :new_participant,
+                                   :remove_participant]
 
   def index
     @groups = current_user.groups
@@ -15,7 +20,7 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.save
         Participant.create(group_id: @group.id, user_id: current_user.id)
-        format.html { redirect_to groups_path, notice: 'Group was successfully created.' }
+        format.html { redirect_to groups_path }
       else
         format.html { render :new }
       end
@@ -25,7 +30,7 @@ class GroupsController < ApplicationController
   def update
     respond_to do |format|
       if @group.update(group_params)
-        format.html { redirect_to groups_path, notice: 'Group was successfully updated.' }
+        format.html { redirect_to groups_path }
       else
         format.html { render :edit }
       end
@@ -38,11 +43,25 @@ class GroupsController < ApplicationController
   def destroy
     @group.destroy
     respond_to do |format|
-      format.html { redirect_to groups_path, notice: 'Group was successfully destroyed.' }
+      format.html { redirect_to groups_path }
     end
   end
 
   def show
+    @participants = @group.users.where.not(id: @group.owner.id)
+    @collection = User.where.not(id: @group.users.pluck(:id)).pluck(:email)
+  end
+
+  def new_participant
+    participant_id =  User.find_by(email: group_params[:participant]).id
+    Participant.create(group_id: @group.id, user_id: participant_id)
+    redirect_to group_path(@group)
+  end
+
+  def remove_participant
+    @participant = Participant.find_by(user_id: params[:participant_id].to_i)
+    @participant.destroy
+    redirect_to group_path(@group)
   end
 
   private
@@ -52,6 +71,6 @@ class GroupsController < ApplicationController
   end
 
   def group_params
-    params.require(:group).permit(:name)
+    params.require(:group).permit(:name, :participant)
   end
 end
