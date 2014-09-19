@@ -6,8 +6,8 @@
 #= require ember
 #= require ember-data
 #= require_self
-#= require prograils_app
+#= require enlightenment_app
 
 # for more details see: http://emberjs.com/guides/application/
-window.PrograilsApp = Ember.Application.create()
+window.EnlightenmentApp = Ember.Application.create()
 
