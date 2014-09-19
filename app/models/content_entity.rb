@@ -1,6 +1,4 @@
 class ContentEntity < ActiveRecord::Base
-  WEB_URL_REGEXP = /\A#{URI::regexp(%w(http https))}\z/
-
   attr_accessor :content
   default_scope { includes(:contentable).order(created_at: :desc) }
 
@@ -13,7 +11,17 @@ class ContentEntity < ActiveRecord::Base
   private
 
   def create_entity
-    !!(content =~ WEB_URL_REGEXP) ? create_link : create_note
+    begin
+      uri = URI.parse(content)
+
+      if uri && uri.host && %(http https).include?(uri.scheme)
+        create_link
+      else
+        create_note
+      end
+    rescue
+      create_note
+    end
   end
 
   def create_link
