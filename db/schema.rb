@@ -56,16 +56,14 @@ ActiveRecord::Schema.define(version: 20140918142349) do
 
   add_index "configurables", ["name"], name: "index_configurables_on_name", using: :btree
 
-  create_table "domains", force: true do |t|
-    t.string   "domain"
-    t.integer  "site_id"
-    t.boolean  "is_default", default: false
+  create_table "content_entities", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.integer  "contentable_id"
+    t.string   "contentable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "domains", ["domain", "site_id"], name: "index_domains_on_domain_and_site_id", unique: true, using: :btree
-  add_index "domains", ["site_id"], name: "index_domains_on_site_id", using: :btree
 
   create_table "groups", force: true do |t|
     t.string   "name"
@@ -76,32 +74,17 @@ ActiveRecord::Schema.define(version: 20140918142349) do
 
   add_index "groups", ["owner_id"], name: "index_groups_on_owner_id", using: :btree
 
-  create_table "language_versions", force: true do |t|
-    t.string   "lang_code"
-    t.boolean  "is_default", default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
-  end
-
-  create_table "page_translations", force: true do |t|
+  create_table "links", force: true do |t|
+    t.string   "url"
     t.string   "title"
-    t.text     "content"
-    t.boolean  "is_active"
-    t.integer  "page_id"
-    t.integer  "language_version_id"
-    t.string   "slug"
+    t.text     "description"
+    t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "page_translations", ["language_version_id"], name: "index_page_translations_on_language_version_id", using: :btree
-  add_index "page_translations", ["page_id"], name: "index_page_translations_on_page_id", using: :btree
-  add_index "page_translations", ["slug", "language_version_id"], name: "index_page_translations_on_slug_and_language_version_id", unique: true, using: :btree
-
-  create_table "pages", force: true do |t|
-    t.string   "identifier"
-    t.boolean  "is_deletable", default: true
+  create_table "notes", force: true do |t|
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -115,19 +98,6 @@ ActiveRecord::Schema.define(version: 20140918142349) do
 
   add_index "participants", ["group_id"], name: "index_participants_on_group_id", using: :btree
   add_index "participants", ["user_id"], name: "index_participants_on_user_id", using: :btree
-
-  create_table "sites", force: true do |t|
-    t.string   "title"
-    t.integer  "language_version_id"
-    t.string   "google_analytics"
-    t.text     "meta_keywords"
-    t.text     "meta_description"
-    t.boolean  "is_default",          default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "sites", ["language_version_id"], name: "index_sites_on_language_version_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
