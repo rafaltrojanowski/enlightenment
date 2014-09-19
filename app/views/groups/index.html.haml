@@ -9,9 +9,11 @@
       = group.name
       = link_to group_path(group) do
         %i{ class: 'fa fa-dot-circle-o'}
-      = link_to group_path(group), method: :delete do
-        %i{ class: 'fa fa-trash' }
-      = link_to edit_group_path(group) do
-        %i{ class: 'fa fa-pencil'}
+      - if can? :destroy, group
+        = link_to group_path(group), method: :delete do
+          %i{ class: 'fa fa-trash' }
+      - if can? :update, group
+        = link_to edit_group_path(group) do
+          %i{ class: 'fa fa-pencil'}
 - else
   nie należysz do żadnej grupy

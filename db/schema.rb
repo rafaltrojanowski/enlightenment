@@ -56,6 +56,15 @@ ActiveRecord::Schema.define(version: 20140918142349) do
 
   add_index "configurables", ["name"], name: "index_configurables_on_name", using: :btree
 
+  create_table "content_entities", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.integer  "contentable_id"
+    t.string   "contentable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "domains", force: true do |t|
     t.string   "domain"
     t.integer  "site_id"
@@ -82,6 +91,21 @@ ActiveRecord::Schema.define(version: 20140918142349) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+  end
+
+  create_table "links", force: true do |t|
+    t.string   "url"
+    t.string   "title"
+    t.text     "description"
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notes", force: true do |t|
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "page_translations", force: true do |t|
