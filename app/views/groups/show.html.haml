@@ -1,0 +1,19 @@
+Name:
+= @group.name
+%br
+Owner:
+= @group.owner.email
+- unless @collection.empty?
+  = simple_form_for @group, url: new_participant_group_path, method: 'post' do |f|
+    = f.input :participant, label: 'new participant', as: :select, collection: @collection
+    = f.submit 'Dodaj'
+- if @participants
+  %br
+  Participants:
+  %ul
+    - @participants.each do |participant|
+      %li
+        = participant.email
+        = link_to action: 'remove_participant', participant_id: participant.id do
+          %i{ class: 'fa fa-remove'}
+= link_to 'Back', groups_path

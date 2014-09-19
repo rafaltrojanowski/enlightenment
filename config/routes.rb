@@ -11,5 +11,10 @@ Rails.application.routes.draw do
     root to: 'dashboard#index'
   end
 
-  resources :groups
+  resources :groups do
+    member do
+      post :new_participant
+      get :remove_participant
+    end
+  end
 end
