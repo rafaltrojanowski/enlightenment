@@ -64,4 +64,5 @@ end
 
 group :production do
   gem 'unicorn'
+  gem 'rails_12factor'
 end

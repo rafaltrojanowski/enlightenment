@@ -1,6 +1,9 @@
 /*
-*= require ./admin/application
+*= require bootstrap.min
+*= require /plugins/metisMenu/metisMenu.min
 *= require_tree ./admin/
+*= require sb-admin-2
+*= require font-awesome.min
 */
 
 .label-config {

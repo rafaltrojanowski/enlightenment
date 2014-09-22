@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :administrators
+  devise_for :administrators do
+    get '/administrators/sign_out' => 'devise/sessions#destroy'
+  end
   namespace :admin do
     resources :administrators
     root to: 'dashboard#index'
