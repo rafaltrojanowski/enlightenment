@@ -6,10 +6,7 @@ class Api::V1::ContentEntitiesController < ApplicationController
   end
 
   def create
-    # respond_with ContentEntity.create(content: params[:contentEntity][:_content])
-    ContentEntity.create(content: params[:contentEntity][:_content])
-
-    render json: 'ok', status: 200
+    respond_with :api, :v1, ContentEntity.create(content: params[:contentEntity][:_content])
   end
 
   def show
