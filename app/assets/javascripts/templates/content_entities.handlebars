@@ -1,4 +1,20 @@
+<div id="container">
+  <h1>Add content</h1>
+  {{view Ember.TextField valueBinding="newEntryName" action="addEntry"}}
+  {{newEntryName}}
+</div>
+
 <h1>Conent Entities List</h1>
+
+{{!--}
+
+{{#each entries}}
+<h2>Link or note.. </h2>
+<p>{{name}}</p>
+{{/each}}
+
+{{--}}
+
 {{#each content_entity in controller}}
   {{render "content_entity" content_entity}}
 {{/each}}
