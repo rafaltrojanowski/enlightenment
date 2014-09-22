@@ -46,6 +46,7 @@ class GroupsController < ApplicationController
   def show
   end
 
+
   def add_users
     user_ids = params[:group][:user_ids]
     users = User.where(id: user_ids)
@@ -57,7 +58,7 @@ class GroupsController < ApplicationController
   def delete_user
     user = User.find_by_id(params[:user_id])
 
-    @group.users.delete(user) if user # TODO can't be possible delete group owner!
+    @group.users.delete(user) if user && user != @group.owner
 
     redirect_to group_path(@group)
   end
@@ -76,5 +77,4 @@ class GroupsController < ApplicationController
     User.where('id NOT in (?)', group.user_ids).map { |u| [u.email, u.id] }
   end
   helper_method :users_for_select
-
 end
