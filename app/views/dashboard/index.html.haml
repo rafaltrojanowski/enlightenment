@@ -1,0 +1,6 @@
+= simple_form_for ContentEntity.new do |f|
+  = f.text_area :content
+  = f.submit t('common.save', default: 'Save')
+
+%script{ type: 'text/x-handlebars' }
+  {{ outlet }}

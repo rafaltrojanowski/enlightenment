@@ -4,18 +4,18 @@ Name:
 Owner:
 = @group.owner.email
 - if can? :owner, @group
-  - unless @collection.empty?
-    = simple_form_for @group, url: new_participant_group_path, method: 'post' do |f|
-      = f.input :participant, label: 'new member', collection: @collection
-      = f.submit 'Dodaj'
-- if @participants
-  %br
-  Participants:
-  %ul
-    - @participants.each do |participant|
-      %li
-        = participant.email
-        - if can? :owner, @group
-          = link_to action: 'remove_participant', participant_id: participant.id do
-            %i{ class: 'fa fa-remove'}
+
+  = simple_form_for @group, url: add_users_group_path, method: 'post' do |f|
+    = f.association :users, label: 'new participant', as: :select, collection: users_for_select(@group)
+    = f.submit 'Dodaj'
+%br
+Participants:
+%ul
+  - @group.users.each do |user|
+    %li
+      = user.email
+      - if can? :owner, @group
+        = link_to delete_user_group_path(@group, user_id: user.id) do
+          %i{ class: 'fa fa-remove'}
+
 = link_to 'Back', groups_path
