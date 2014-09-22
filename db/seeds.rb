@@ -8,7 +8,7 @@
 if Administrator.count == 0
   a = Administrator.first_or_create! do |a|
     a.email = Configurable[:email]
-    a.password = 'q1w2e3$'
+    a.password = 'q1w2e3r$'
     a.first_name = 'Admin'
     a.last_name = 'Prograils'
   end
