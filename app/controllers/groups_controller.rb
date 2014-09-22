@@ -1,10 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show,
-                                   :edit,
-                                   :update,
-                                   :destroy,
-                                   :new_participant,
-                                   :remove_participant]
+  before_action :set_group, except: [:index, :new, :create]
   load_and_authorize_resource only: [:show, :update, :destroy]
 
   def index
@@ -18,9 +13,9 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.owner = current_user
+    @group.users << current_user
     respond_to do |format|
       if @group.save
-        Participant.create(group_id: @group.id, user_id: current_user.id)
         format.html { redirect_to groups_path }
       else
         format.html { render :new }
@@ -54,14 +49,12 @@ class GroupsController < ApplicationController
   end
 
   def new_participant
-    participant_id =  User.find_by(email: group_params[:participant]).id
-    Participant.create(group_id: @group.id, user_id: participant_id)
+    @group.users << User.find_by(email: group_params[:participant])
     redirect_to group_path(@group)
   end
 
   def remove_participant
-    @participant = Participant.find_by(user_id: params[:participant_id].to_i)
-    @participant.destroy
+    @group.users.destroy(User.find(params[:participant_id]))
     redirect_to group_path(@group)
   end
 

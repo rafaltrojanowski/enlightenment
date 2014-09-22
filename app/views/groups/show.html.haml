@@ -6,7 +6,7 @@ Owner:
 - if can? :owner, @group
   - unless @collection.empty?
     = simple_form_for @group, url: new_participant_group_path, method: 'post' do |f|
-      = f.input :participant, label: 'new participant', as: :select, collection: @collection
+      = f.input :participant, label: 'new member', collection: @collection
       = f.submit 'Dodaj'
 - if @participants
   %br

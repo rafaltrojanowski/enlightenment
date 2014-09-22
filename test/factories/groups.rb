@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :group do
-    name "MyString"
+    name 'religious'
+    owner_id 1
   end
 end
