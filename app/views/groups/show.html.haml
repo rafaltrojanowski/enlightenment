@@ -6,7 +6,7 @@ Owner:
 - if can? :owner, @group
 
   = simple_form_for @group, url: add_users_group_path, method: 'post' do |f|
-    = f.association :users, label: 'new participant', as: :select, collection: users_for_select(@group)
+    = f.association :users, label: 'new member', collection: users_for_select(@group)
     = f.submit 'Dodaj'
 %br
 Participants:

@@ -58,7 +58,7 @@ class GroupsController < ApplicationController
   def delete_user
     user = User.find_by_id(params[:user_id])
 
-    @group.users.delete(user) if user # TODO can't be possible delete group owner!
+    @group.users.delete(user) if user && user != @group.owner
 
     redirect_to group_path(@group)
   end

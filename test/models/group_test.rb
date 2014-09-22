@@ -10,12 +10,6 @@ describe Group do
       group.must_equal Group.last
     end
 
-    it 'wont be valid without owner' do
-      group = Group.new(name: 'koty')
-
-      group.wont_be :valid?
-    end
-
     it 'wont be valid without name' do
       group = Group.new(owner_id: 1)
 
