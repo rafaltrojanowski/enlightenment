@@ -1,10 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show,
-                                   :edit,
-                                   :update,
-                                   :destroy,
-                                   :new_participant,
-                                   :remove_participant]
+  before_action :find_group, except: [:new, :create, :index]
 
   def index
     @groups = current_user.groups
@@ -19,7 +14,7 @@ class GroupsController < ApplicationController
     @group.owner = current_user
     respond_to do |format|
       if @group.save
-        Participant.create(group_id: @group.id, user_id: current_user.id)
+        @group.users << current_user
         format.html { redirect_to groups_path }
       else
         format.html { render :new }
@@ -48,29 +43,37 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @participants = @group.users.where.not(id: @group.owner.id)
-    @collection = User.where.not(id: @group.users.pluck(:id)).pluck(:email)
   end
 
-  def new_participant
-    participant_id =  User.find_by(email: group_params[:participant]).id
-    Participant.create(group_id: @group.id, user_id: participant_id)
+  def add_users
+    user_ids = params[:group][:user_ids]
+    users = User.where(id: user_ids)
+    @group.users << users
+
     redirect_to group_path(@group)
   end
 
-  def remove_participant
-    @participant = Participant.find_by(user_id: params[:participant_id].to_i)
-    @participant.destroy
+  def delete_user
+    user = User.find_by_id(params[:user_id])
+
+    @group.users.delete(user) if user # TODO can't be possible delete group owner!
+
     redirect_to group_path(@group)
   end
 
   private
 
-  def set_group
+  def find_group
     @group = Group.find(params[:id])
   end
 
   def group_params
     params.require(:group).permit(:name, :participant)
   end
+
+  def users_for_select(group)
+    User.where('id NOT in (?)', group.user_ids).map { |u| [u.email, u.id] }
+  end
+  helper_method :users_for_select
+
 end
