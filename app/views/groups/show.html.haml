@@ -4,9 +4,10 @@ Name:
 Owner:
 = @group.owner.email
 
-= simple_form_for @group, url: add_users_group_path, method: 'post' do |f|
-  = f.association :users, label: 'new participant', as: :select, collection: users_for_select(@group)
-  = f.submit 'Dodaj'
+- if can? :owner, @group
+  = simple_form_for @group, url: add_users_group_path, method: 'post' do |f|
+    = f.association :users, label: 'new participant', as: :select, collection: users_for_select(@group)
+    = f.submit 'Dodaj'
 
 %br
 Participants:
@@ -14,6 +15,8 @@ Participants:
   - @group.users.each do |user|
     %li
       = user.email
-      = link_to delete_user_group_path(@group, user_id: user.id) do
-        %i{ class: 'fa fa-remove'}
+      - if can? :owner, @group
+        = link_to delete_user_group_path(@group, user_id: user.id) do
+          %i{ class: 'fa fa-remove'}
+
 = link_to 'Back', groups_path

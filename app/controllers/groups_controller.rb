@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_action :find_group, except: [:new, :create, :index]
+  load_and_authorize_resource only: [:show, :update, :destroy]
 
   def index
     @groups = current_user.groups
