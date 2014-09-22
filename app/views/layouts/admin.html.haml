@@ -1,28 +1,24 @@
 !!!
 %html
-  %head
-    %title Panel Admin
-    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
-    %link{href: "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css", rel: "stylesheet"}
-    %link{href: "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css", rel: "stylesheet"}
-    = javascript_include_tag "application", "data-turbolinks-track" => true
-    %script{src: "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"}
-    = csrf_meta_tags
   %body
-    %nav{ class: "navbar navbar-inverse" }
-      %a{ class: "navbar-brand", href: "#" }
-        Panel Admin
-
-    .container.bs-docs-container
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %meta{:content => "", :name => "description"}/
+    %meta{:content => "", :name => "author"}/
+    %title SB Admin 2 - Bootstrap Admin Theme
+    / HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    / WARNING: Respond.js doesn't work if you view the page via file://
+    /[if lt IE 9]
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    = stylesheet_link_tag 'sb-admin/admin', media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "sb-admin/admin", "data-turbolinks-track" => true
+    = csrf_meta_tags
+    #wrapper
+      = render 'layouts/admin_panel'
+    #page-wrapper
       .row
-        .col-md-2
-          %div{ class: "bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" }
-            %ul{ class: "nav nav-list bs-docs-sidenav"}
-              %li
-                = link_to 'Administrators', admin_administrators_path
-              %li
-                = link_to 'Users'
-              %li
-                = link_to 'Groups'
-        .col-md-10
+        .col-lg-12
           = yield
+ 
