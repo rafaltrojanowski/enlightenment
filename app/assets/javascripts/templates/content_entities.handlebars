@@ -1,7 +1,9 @@
 <div id="container">
   <h1>Add content</h1>
-  {{view Ember.TextField valueBinding="newEntryName" action="addEntry"}}
-  {{newEntryName}}
+  <form class="form-horizontal" {{action "addEntry" on="submit"}}>
+    {{view Ember.TextArea name='content_entity[content]' valueBinding="newEntryName"}}
+    <button type="submit" class="btn">Save</button>
+  </form>
 </div>
 
 <h1>Conent Entities List</h1>
