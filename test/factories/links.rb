@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :link do
     url "MyString"
-    title "MyString"
+    title nil
     description "MyText"
     image "MyString"
   end

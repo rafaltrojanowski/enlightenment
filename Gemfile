@@ -29,6 +29,7 @@ gem 'friendly_id', '>= 5.0.0'
 gem 'dotenv-rails'
 gem 'cancancan', '~> 1.9'
 gem 'primary'
+gem 'pismo', '~> 0.7.4'
 
 group :development, :test do
   gem 'spring'

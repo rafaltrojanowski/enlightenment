@@ -86,6 +86,7 @@ GEM
     celluloid-io (0.15.0)
       celluloid (>= 0.15.0)
       nio4r (>= 0.5.0)
+    chronic (0.10.2)
     cliver (0.3.2)
     coderay (1.1.0)
     coffee-rails (4.0.1)
@@ -98,6 +99,7 @@ GEM
     columnize (0.8.9)
     configurable_engine (0.3.2)
       rails (> 3.1.0)
+    crass (0.2.1)
     database_cleaner (1.2.0)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
@@ -135,6 +137,7 @@ GEM
     factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
+    fast-stemmer (1.0.2)
     ffi (1.9.3)
     formatador (0.2.4)
     friendly_id (5.0.3)
@@ -219,8 +222,16 @@ GEM
     nio4r (1.0.0)
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
+    nokogumbo (1.1.12)
+      nokogiri
     orm_adapter (0.5.0)
     pg (0.17.1)
+    pismo (0.7.4)
+      awesome_print
+      chronic
+      fast-stemmer
+      nokogiri
+      sanitize
     poltergeist (1.5.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
@@ -274,6 +285,10 @@ GEM
       ffi (>= 0.5.0)
     responders (1.0.0)
       railties (>= 3.2, < 5)
+    sanitize (3.0.2)
+      crass (~> 0.2.0)
+      nokogiri (>= 1.4.4)
+      nokogumbo (= 1.1.12)
     sass (3.2.19)
     sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -360,6 +375,7 @@ DEPENDENCIES
   minitest-rails-capybara (>= 2.0.0.beta1)
   nested_form (~> 0.3.2)
   pg
+  pismo (~> 0.7.4)
   poltergeist
   primary
   pry-byebug
