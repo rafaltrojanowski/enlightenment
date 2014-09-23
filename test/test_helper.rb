@@ -81,3 +81,9 @@ Capybara.javascript_driver = :poltergeist
 Capybara.always_include_port = true
 Capybara.app_host = 'http://app.dev'
 DatabaseCleaner.strategy = :transaction
+
+require 'vcr'
+VCR.configure do |c|
+  c.cassette_library_dir = 'test/fixtures/vcr_cassettes'
+  c.hook_into :webmock # or :fakeweb
+end

@@ -49,6 +49,8 @@ group :test do
   gem 'launchy'
   gem 'simplecov', require: false
   gem 'database_cleaner', require: false
+  gem 'vcr', require: false
+  gem 'webmock', require: false
 end
 
 group :development do
