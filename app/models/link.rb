@@ -1,5 +1,5 @@
 class Link < ActiveRecord::Base
-  before_save :fetch_title
+  after_commit :fetch_title
   has_one :content_entity, as: :contentable, dependent: :destroy
 
   def to_s
@@ -9,13 +9,6 @@ class Link < ActiveRecord::Base
   private
 
   def fetch_title
-    return if url.blank?
-
-    begin
-      doc = Pismo::Document.new(url)
-      self.title = doc.title
-    rescue # RuntimeError: redirection forbidden
-      return
-    end
+    TitleFetcher.perform_async(self.id)
   end
 end

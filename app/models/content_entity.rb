@@ -19,16 +19,17 @@ class ContentEntity < ActiveRecord::Base
       else
         create_note
       end
-    rescue
+    rescue => error
+      logger.error error
       create_note
     end
   end
 
   def create_link
-    self.contentable = Link.create!(url: content)
+    self.contentable = Link.create(url: content)
   end
 
   def create_note
-    self.contentable = Note.create!(body: content)
+    self.contentable = Note.create(body: content)
   end
 end

@@ -38,4 +38,15 @@ describe ContentEntity do
       end
     end
   end
+
+  describe 'save' do
+    it 'must fetch title if contentable is link' do
+      VCR.use_cassette('webpage') do
+        cn = FactoryGirl.create(:content_entity, content: 'https://www.prograils.com')
+
+        cn.contentable.is_a?(Link).must_equal true
+        cn.contentable.title.must_equal 'Prograils - Ruby on Rails web development'
+      end
+    end
+  end
 end
