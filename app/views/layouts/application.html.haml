@@ -16,6 +16,18 @@
             %span.icon-bar
             %span.icon-bar
           = link_to 'Enlightenment App', root_url, class: 'navbar-brand'
+        .container-fluid
+          %ul.nav.navbar-nav.navbar-right
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                Dropdown
+                %span.caret
+              %ul.dropdown-menu{:role => "menu"}
+                %li
+                  = link_to 'Edit user profile', edit_user_registration_path(@current_user)
+                %li.divider
+                %li
+                  = link_to 'Logout', destroy_user_session_path, method: 'delete'
       .container-fluid
         .row.row-offcanvas.row-offcanvas-left
           / sidebar
