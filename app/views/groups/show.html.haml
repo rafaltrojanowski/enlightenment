@@ -5,17 +5,8 @@ Owner:
 = @group.owner.email
 - if can? :owner, @group
 
-  = simple_form_for @group, url: add_users_group_path, method: 'post' do |f|
-    = f.association :users, label: 'new member', collection: users_for_select(@group)
-    = f.submit 'Dodaj'
-%br
-Participants:
-%ul
-  - @group.users.each do |user|
-    %li
-      = user.email
-      - if can? :owner, @group
-        = link_to delete_user_group_path(@group, user_id: user.id) do
-          %i{ class: 'fa fa-remove'}
+  = simple_form_for @group, url: update_users_group_path, method: 'post' do |f|
+    = f.input :user_tokens, label: 'Members:', input_html: { data: { pre: @preload_users } }
+    = f.submit 'apply changes'
 
 = link_to 'Back', groups_path
