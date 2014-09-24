@@ -2,20 +2,37 @@
 %html
   %head
     %title Prograils App
-    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
-    %link{href: "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css", rel: "stylesheet"}
-    %link{href: "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css", rel: "stylesheet"}
+    = stylesheet_link_tag    "holo/holo", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     %script{src: "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"}
     = csrf_meta_tags
   %body{class: request[:controller].gsub('/','_')}
-    %nav{ class: "navbar navbar-default navbar-fixed-top", role: "navigation" }
-      - if current_user
-        lgin as: 
-        = current_user.email
-        = link_to 'sign out', destroy_user_session_path, method: :delete
-      - else
-        = link_to 'Log in', new_user_session_path
-    .container{ style: "margin-top: 60px" }
-      = yield
+    .page-container
+      / top navbar
+      %nav.navbar.navbar-inverse.navbar-fixed-top{:role => "navigation"}
+        .navbar-header
+          %button.navbar-toggle{"data-target" => ".sidebar-nav", "data-toggle" => "offcanvas", :type => "button"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          = link_to 'Enlightenment App', root_url, class: 'navbar-brand'
+      .container-fluid
+        .row.row-offcanvas.row-offcanvas-left
+          / sidebar
+          #sidebar.col-xs-6.col-sm-3.sidebar-offcanvas{:role => "navigation"}
+            %div{"data-offset-bottom" => "90", "data-offset-top" => "45", "data-spy" => "affix"}
+              %ul#sidebar-nav.nav
+                %li
+                  = link_to 'Dashboard', root_path
+                %li
+                  = link_to 'Links', root_path
+                %li
+                  = link_to 'Notes', root_path
+                %li
+                  = link_to 'Groups', groups_path
+
+          / /sidebar
+          / /main
+          .col-xs-12.col-sm-9{"data-spy" => "scroll", "data-target" => "#sidebar-nav"}
+            = yield
     

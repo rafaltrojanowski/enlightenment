@@ -1,21 +1,29 @@
-Name:
-= @group.name
-%br
-Owner:
-= @group.owner.email
-- if can? :owner, @group
-
-  = simple_form_for @group, url: add_users_group_path, method: 'post' do |f|
-    = f.association :users, label: 'new member', collection: users_for_select(@group)
-    = f.submit 'Dodaj'
-%br
-Participants:
-%ul
-  - @group.users.each do |user|
-    %li
-      = user.email
-      - if can? :owner, @group
-        = link_to delete_user_group_path(@group, user_id: user.id) do
-          %i{ class: 'fa fa-remove'}
-
-= link_to 'Back', groups_path
+.row
+  .col-sm-6
+    .panel.panel-default
+      .panel-heading
+        %h4= "Name: #{@group.name}"
+      .panel-body
+        %p
+          %img.img-circle.pull-right{:src => "//placehold.it/100"}/
+          Participants:
+          %ul
+            - @group.users.each do |user|
+              %li
+                = user.email
+                - if can? :owner, @group
+                  = link_to 'Delete', delete_user_group_path(@group, user_id: user.id), class: 'label label-danger'
+        .clearfix
+        %hr/
+        Owner:
+        = @group.owner.email
+  .col-sm-6
+    .well
+      %h4 Add new member
+      .form-group{:style => "padding:14px;"}
+        - if can? :owner, @group
+          = simple_form_for @group, url: add_users_group_path, method: 'post' do |f|
+            = f.association :users, label: 'New member', collection: users_for_select(@group)
+            = f.submit 'Add', class: 'btn btn-success'
+    
+= link_to 'Back', groups_path, class: 'btn btn-default center-block'
