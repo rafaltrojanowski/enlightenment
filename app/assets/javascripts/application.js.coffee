@@ -7,5 +7,7 @@
 #= require enlightenment_app
 
 # for more details see: http://emberjs.com/guides/application/
-window.EnlightenmentApp = Ember.Application.create()
+window.EnlightenmentApp = Ember.Application.create(
+  rootElement: '#ember-app'
+)
 
