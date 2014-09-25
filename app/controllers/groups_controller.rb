@@ -48,16 +48,10 @@ class GroupsController < ApplicationController
   end
 
   def update_users
-    user_ids = group_params[:user_tokens].split(',').map(&:to_i)
-    @users = User.find(user_ids)
+    new_user_ids = group_params[:user_tokens].split(',').map(&:to_i)
 
-    @group.users.each do |member|
-      delete_user(member) if @users.exclude? member
-    end
+    @group.user_ids = new_user_ids << @group.owner_id
 
-    @users.each do |new_member|
-      add_user(new_member) if @group.users.exclude? new_member
-    end
     redirect_to group_path(@group)
   end
 
