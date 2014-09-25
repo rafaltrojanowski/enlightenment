@@ -31,6 +31,7 @@ gem 'cancancan', '~> 1.9'
 gem 'primary'
 gem 'pismo', '~> 0.7.4'
 gem 'sidekiq'
+gem 'jquery-tokeninput-rails'
 
 group :development, :test do
   gem 'spring'

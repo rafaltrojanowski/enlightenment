@@ -44,37 +44,38 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @preload_users = @group.users.where.not(id: @group.owner_id).to_json
   end
 
+  def update_users
+    new_user_ids = group_params[:user_tokens].split(',').map(&:to_i)
 
-  def add_users
-    user_ids = params[:group][:user_ids]
-    users = User.where(id: user_ids)
-    @group.users << users
+    @group.user_ids = new_user_ids << @group.owner_id
 
     redirect_to group_path(@group)
   end
 
-  def delete_user
-    user = User.find_by_id(params[:user_id])
-
-    @group.users.delete(user) if user && user != @group.owner
-
-    redirect_to group_path(@group)
+  def other_users
+    respond_to do |format|
+      format.json { render json: User.filtering(params[:q]).not_members(@group.user_ids), root: false }
+    end
   end
 
   private
+
+  def add_user(user)
+    @group.users << user
+  end
+
+  def delete_user(user)
+    @group.users.delete(user) if user && user != @group.owner
+  end
 
   def find_group
     @group = Group.find(params[:id])
   end
 
   def group_params
-    params.require(:group).permit(:name, :participant)
+    params.require(:group).permit(:name, :user_tokens)
   end
-
-  def users_for_select(group)
-    User.where('id NOT in (?)', group.user_ids).map { |u| [u.email, u.id] }
-  end
-  helper_method :users_for_select
 end
