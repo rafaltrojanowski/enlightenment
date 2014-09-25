@@ -1,6 +1,6 @@
 <div id="container">
-  <div class="well"> 
-  <form class="form-horizontal" role="form" {{action "addEntry" on="submit"}}>
+  <div class="well">
+    <form class="form-horizontal" role="form" {{action "addEntry" on="submit"}}>
     <h4>Add content</h4>
       <div class="form-group" style="padding:14px;">
         {{view Ember.TextArea name='content_entity[content]' valueBinding="newEntryName" class="form-control"}}
@@ -9,10 +9,17 @@
       </button>
     </form>
   </div>
-
 </div>
 
-<h1>Conent Entities List</h1>
+<h1>List</h1>
+
+{{#each content_entity in paginatedContent}}
+  <h2>{{content_entity.type}} {{content_entity.title}}</h2>
+  {{#link-to "content_entity" content_entity}}{{content_entity._content}}{{/link-to}}
+  <p>{{{content_entity.updated_at}}}</p>
+{{/each}}
+
+{{pagination-links page=page pages=pages}}
 
 {{!--}
 
@@ -22,9 +29,3 @@
 {{/each}}
 
 {{--}}
-
-{{#each content_entity in paginatedContent}}
-  {{render "content_entity" content_entity}}
-{{/each}}
-
-{{pagination-links page=page pages=pages}}
