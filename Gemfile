@@ -33,7 +33,6 @@ gem 'pismo', '~> 0.7.4'
 gem 'sidekiq'
 gem 'jquery-tokeninput-rails'
 
-
 group :development, :test do
   gem 'spring'
   gem 'spring-commands-testunit', require: false
