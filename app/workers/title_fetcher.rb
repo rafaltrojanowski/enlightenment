@@ -7,7 +7,6 @@ class TitleFetcher
     begin
       doc = Pismo::Document.new(link.url)
       link.update_column(:title, doc.title)
-      self.title = doc.title
     rescue # RuntimeError: redirection forbidden
       return
     end
