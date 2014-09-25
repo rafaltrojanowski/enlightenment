@@ -1,3 +1,4 @@
-= simple_form_for @group do |f|
-  = f.input :name
-  = f.button :submit
+.form-group{:style => "padding:14px;"}
+  = simple_form_for @group do |f|
+    = f.input :name
+    = f.button :submit, class: 'btn btn-success center-block'

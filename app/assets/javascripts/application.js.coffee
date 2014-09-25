@@ -6,6 +6,7 @@
 #= require_self
 #= require enlightenment_app
 #= require jquery.tokeninput
+#= require holo/holo
 
 # for more details see: http://emberjs.com/guides/application/
 window.EnlightenmentApp = Ember.Application.create(
