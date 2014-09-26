@@ -5,11 +5,12 @@ class Ability
     user ||= User.new
 
     if user.is_a? User
-      can :show, Group do |group|
-        group.users.exists?(user.id)
+      can :create, Group
+      can :manage, Group, owner_id: user.id
+      can :update_users, Group, owner_id: user.id
+      can :read, Group do |group|
+        group.user_ids.include? user.id
       end
-      can [:destroy, :update], Group, owner_id: user.id
-      can :owner, Group, owner_id: user.id
     end
     # Define abilities for the passed in user here. For example:
     #

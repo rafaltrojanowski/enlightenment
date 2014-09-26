@@ -1,6 +1,8 @@
 class GroupsController < ApplicationController
+  load_and_authorize_resource
+
+  before_action :authenticate_user!
   before_action :find_group, except: [:new, :create, :index]
-  load_and_authorize_resource only: [:show, :update, :destroy]
 
   def index
     @groups = current_user.groups
@@ -49,7 +51,6 @@ class GroupsController < ApplicationController
 
   def update_users
     new_user_ids = group_params[:user_tokens].split(',').map(&:to_i)
-
     @group.user_ids = new_user_ids << @group.owner_id
 
     redirect_to group_path(@group)
@@ -62,14 +63,6 @@ class GroupsController < ApplicationController
   end
 
   private
-
-  def add_user(user)
-    @group.users << user
-  end
-
-  def delete_user(user)
-    @group.users.delete(user) if user && user != @group.owner
-  end
 
   def find_group
     @group = Group.find(params[:id])
