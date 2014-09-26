@@ -11,8 +11,6 @@
             - @group.users.each do |user|
               %li
                 = user.email
-                - if can? :owner, @group
-                  = link_to 'Delete', delete_user_group_path(@group, user_id: user.id), class: 'label label-danger'
         .clearfix
         %hr/
         Owner:
@@ -22,8 +20,8 @@
       %h4 Add new member
       .form-group{:style => "padding:14px;"}
         - if can? :owner, @group
-          = simple_form_for @group, url: add_users_group_path, method: 'post' do |f|
-            = f.association :users, label: 'New member', collection: users_for_select(@group)
-            = f.submit 'Add', class: 'btn btn-success'
-    
+          = simple_form_for @group, url: update_users_group_path, method: 'post' do |f|
+            = f.input :user_tokens, label: 'Members:', input_html: { data: { pre: @preload_users, url: other_users_group_path(@group) } }
+            = f.submit 'apply changes'
+
 = link_to 'Back', groups_path, class: 'btn btn-default center-block'
