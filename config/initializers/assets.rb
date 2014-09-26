@@ -9,7 +9,7 @@ Rails.application.config.assets.version = '1.0'
 
 Rails.application.config.tap do |config|
   config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.svg *.eot *.woff *.ttf *.ico)
-  config.assets.precompile += %w(sb-admin/admin.css sb-admin/admin.js holo/holo.css holo/holo.js)
+  config.assets.precompile += %w(application.css application.js sb-admin/admin.css sb-admin/admin.js holo/holo.css.scss holo/holo.js)
 
   config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
 end
