@@ -23,5 +23,7 @@ module EnlightenmentApp
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :en
     config.i18n.enforce_available_locales = false
+    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.svg *.eot *.woff *.ttf *.ico)
+    config.assets.precompile += %w(sb-admin/admin.css sb-admin/admin.js holo/holo.css holo/holo.js)
   end
 end
