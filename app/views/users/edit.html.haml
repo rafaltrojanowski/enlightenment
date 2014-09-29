@@ -1,0 +1,12 @@
+= simple_form_for resource do |f|
+  = f.input :email, required: true, autofocus: true
+  = f.input :username
+  %label My Avatar
+  = image_tag resource.avatar_url if resource.avatar?
+  = f.input :avatar, as: :file
+  = f.input :avatar_cache, as: :hidden
+  %label
+    = f.check_box :remove_avatar
+    Remove avatar
+  %br
+  = f.submit

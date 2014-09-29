@@ -1,6 +1,7 @@
 class TitleFetcher
   include Sidekiq::Worker
   def perform(id)
+    sleep 1
     link = Link.find(id)
     return if link.url.blank?
 

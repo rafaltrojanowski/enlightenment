@@ -12,7 +12,7 @@ feature 'Add New Group Test' do
 
     page.text.must_include 'Group list:'
 
-    click_link 'new group'
+    click_link 'New group'
     fill_in 'group_name', with: 'nerd group'
     click_button 'Create Group'
 
@@ -24,7 +24,7 @@ feature 'Add New Group Test' do
 
     page.text.must_include 'Group list:'
 
-    click_link 'new group'
+    click_link 'New group'
     click_button 'Create Group'
 
     page.text.must_include 'be blank'

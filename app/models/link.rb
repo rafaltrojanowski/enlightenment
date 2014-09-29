@@ -1,5 +1,5 @@
 class Link < ActiveRecord::Base
-  after_commit :fetch_title
+  after_save :fetch_title, if: :url_changed?
   has_one :content_entity, as: :contentable, dependent: :destroy
 
   def to_s

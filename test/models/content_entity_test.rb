@@ -1,4 +1,5 @@
 require "test_helper"
+require 'sidekiq/testing'
 
 describe ContentEntity do
   describe 'create' do
@@ -42,10 +43,13 @@ describe ContentEntity do
   describe 'save' do
     it 'must fetch title if contentable is link' do
       VCR.use_cassette('webpage') do
-        cn = FactoryGirl.create(:content_entity, content: 'https://www.prograils.com')
+        Sidekiq::Testing.inline! do
+          cn = FactoryGirl.create(:content_entity, content: 'https://www.prograils.com')
 
-        cn.contentable.is_a?(Link).must_equal true
-        cn.contentable.title.must_equal 'Prograils - Ruby on Rails web development'
+          cn.contentable.is_a?(Link).must_equal true
+          sleep 1
+          cn.contentable.reload.title.must_equal 'Prograils - Ruby on Rails web development'
+        end
       end
     end
   end

@@ -27,4 +27,6 @@ Rails.application.routes.draw do
       get :other_users
     end
   end
+
+  resources :users, only: [:edit, :update]
 end

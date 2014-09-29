@@ -10,6 +10,7 @@ require 'capybara/rails'
 require 'capybara/rspec/matchers'
 require 'minitest/rails/capybara'
 require 'capybara/poltergeist'
+require 'sidekiq/testing'
 
 # Uncomment for awesome colorful output
 require 'minitest/pride'

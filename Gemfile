@@ -32,6 +32,7 @@ gem 'primary'
 gem 'pismo', '~> 0.7.4'
 gem 'sidekiq'
 gem 'jquery-tokeninput-rails'
+gem 'carrierwave'
 
 group :development, :test do
   gem 'spring'
