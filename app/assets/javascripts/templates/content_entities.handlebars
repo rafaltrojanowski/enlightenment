@@ -3,7 +3,7 @@
     <form class="form-horizontal" role="form" {{action "addEntry" on="submit"}}>
     <h4>Add content</h4>
       <div class="form-group" style="padding:14px;">
-        {{view Ember.TextArea name='content_entity[content]' valueBinding="newEntryName" class="form-control"}}
+        {{view Ember.TextArea name='content_entity[content]' valueBinding="newEntryName" class="form-control" required="true"}}
       </div>
       <button class="btn btn-success" type="submit">Add
       </button>

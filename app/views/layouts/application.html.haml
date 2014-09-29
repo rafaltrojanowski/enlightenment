@@ -25,7 +25,7 @@
                   %span.caret
                 %ul.dropdown-menu{:role => "menu"}
                   %li
-                    = link_to 'Edit user profile', edit_user_registration_path(current_user)
+                    = link_to 'Edit user profile', edit_user_registration_path
                   %li.divider
                   %li
                     = link_to 'Logout', destroy_user_session_path, method: 'delete'
@@ -33,6 +33,13 @@
           .container-fluid
             %ul.nav.navbar-nav.navbar-right
               = link_to 'Log in', new_user_session_path
+      - flash_messages = {[:info, :alert, 'alert-success'] => notice, [:error, :alert, 'alert-error'] => alert}.reject{|k, m| m.blank?}
+      - if flash_messages.any?
+        .flash-messages
+          - flash_messages.each do |classes, message|
+            .flash-message{class: classes.map(&:to_s).join(' ') }
+              %button.close{ 'data-dismiss' => 'alert' }
+              %span.message= message
       .container-fluid
         .row.row-offcanvas.row-offcanvas-left
           - if current_user

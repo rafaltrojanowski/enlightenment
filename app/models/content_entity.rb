@@ -1,5 +1,7 @@
 class ContentEntity < ActiveRecord::Base
   attr_accessor :content
+  validates :content, presence: true
+
   default_scope { includes(:contentable).order(created_at: :desc) }
 
   belongs_to :contentable, polymorphic: true
