@@ -13,11 +13,13 @@ describe GroupsController do
     it 'wont show group' do
       get :show, id: @group
       assert_response :redirect # 302
+      flash[:alert].must_equal 'You are not authorized to access this page.'
     end
 
     it 'wont index group' do
       get :show, id: @group
       assert_response :redirect # 302
+      flash[:alert].must_equal 'You are not authorized to access this page.'
     end
   end
 
@@ -35,7 +37,7 @@ describe GroupsController do
         must_redirect_to groups_path
       end
 
-      it 'should destroy group' do
+      it 'must destroy group' do
         assert_difference('Group.count', -1) do
           delete :destroy, id: @group
         end
@@ -43,41 +45,41 @@ describe GroupsController do
         must_redirect_to groups_path
       end
 
-      it 'should edit' do
+      it 'must edit' do
         get :edit, id: @group
 
         assert_response :success
       end
 
-      it 'should be update' do
+      it 'must update' do
         patch :update, id: @group, group: { name: 'bleble' }
 
         must_redirect_to groups_path
       end
 
-      it 'should get new' do
+      it 'must get new' do
         get :new
         assert_response :success
       end
 
-      it 'should show group' do
+      it 'must show group' do
         get :show, id: @group
         assert_response :success
       end
 
-      it 'should post update_users with tokens' do
-        post :update_users, id: @group, group: { user_tokens: @participant.id }
+      it 'must post update_users with tokens' do
+        post :update_users, id: @group, group: { user_tokens: @participant.id } # or "1,2,3"
 
         must_redirect_to group_path(@group)
       end
 
-      it 'should post update_users with empty tokens' do
+      it 'must post update_users with empty tokens' do
         post :update_users, id: @group, group: { user_tokens: ''}
 
         must_redirect_to group_path(@group)
       end
 
-      it 'should get other_users' do
+      it 'must get other_users' do
         get :other_users, id: @group, format: :json
         assert_response :success
       end
@@ -100,7 +102,7 @@ describe GroupsController do
         must_redirect_to groups_path
       end
 
-      it 'should destroy group' do
+      it 'wont destroy group' do
         assert_difference('Group.count', 0) do
           delete :destroy, id: @group
         end
@@ -123,17 +125,17 @@ describe GroupsController do
         flash[:alert].wont_equal nil
       end
 
-      it 'should get new' do
+      it 'must get new' do
         get :new
         assert_response :success
       end
 
-      it 'should show group' do
+      it 'must show group' do
         get :show, id: @group
         assert_response :success
       end
 
-      it 'wont post update_users with empty tokens' do
+      it 'wont post update_users' do
         post :update_users, id: @group, group: { user_tokens: ''}
 
         must_redirect_to root_url
@@ -154,8 +156,15 @@ describe GroupsController do
         sign_in(@user)
       end
 
-      it 'test that user is not participant' do
+      it 'test that user is not participant or owner' do
         @group.user_ids.wont_include @user.id
+        @group.owner_id.wont_equal @user.id
+      end
+
+      it 'should get new' do
+        get :new
+
+        assert_response :success
       end
 
       it 'must create group' do
@@ -166,15 +175,16 @@ describe GroupsController do
         must_redirect_to groups_path
       end
 
-      it 'should destroy group' do
+      it 'wont destroy others group ' do
         assert_difference('Group.count', 0) do
           delete :destroy, id: @group
         end
 
         must_redirect_to root_url
+        flash[:alert].wont_equal nil
       end
 
-      it 'wont update' do
+      it 'wont edit' do
         get :edit, id: @group
 
         must_redirect_to root_url
@@ -188,12 +198,6 @@ describe GroupsController do
         flash[:alert].wont_equal nil
       end
 
-      it 'should get new' do
-        get :new
-
-        assert_response :success
-      end
-
       it 'wont show group' do
         get :show, id: @group
 
@@ -201,7 +205,7 @@ describe GroupsController do
         flash[:alert].wont_equal nil
       end
 
-      it 'wont post update_users with empty tokens' do
+      it 'wont post update_users' do
         post :update_users, id: @group, group: { user_tokens: ''}
 
         must_redirect_to root_url
