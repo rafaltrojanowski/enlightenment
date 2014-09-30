@@ -69,5 +69,5 @@
           / /sidebar
           / /main
           .col-xs-12.col-sm-9{"data-spy" => "scroll", "data-target" => "#sidebar-nav"}
+            #ember-app{ style: controller.controller_name != 'dashboard' ? 'display: none;' : '' }
             = yield
-    
