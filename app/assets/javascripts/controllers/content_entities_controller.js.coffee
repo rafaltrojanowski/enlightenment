@@ -65,22 +65,8 @@ EnlightenmentApp.PaginationLinksComponent = Em.Component.extend
 EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend EnlightenmentApp.PaginatableMixin,
   page:           1
   perPage:        10
-  sortProperties: ['updated_at'],
   sortAscending: false,
-  sortContent: (->
-    content = @get("content").sortBy("-body")
-    return unless content
-    console.log "--sorting by ID desc--"
-    content.forEach (item) ->
-      console.log item.get("body")
-      console.log item.get("type")
-      console.log item.get("updated_at")
-      console.log item
-      return
-
-    return
-  ).observes("content.@each")
-  # entries: []
+  sortProperties: ['updated_at']
 
   actions:
     addEntry: ->
@@ -88,5 +74,4 @@ EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend Enligh
         body: @get('newEntryName')
       });
       record.save();
-      # @entries.pushObject name: @get('newEntryName')
       @set('newEntryName', "")
