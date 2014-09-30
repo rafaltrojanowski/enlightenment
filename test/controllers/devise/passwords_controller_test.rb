@@ -11,7 +11,6 @@ describe Devise::PasswordsController do
     it 'should be successful' do
       get :new
       must_respond_with :success
-      assert_template :new
       # must_render_template 'new'
     end
   end
