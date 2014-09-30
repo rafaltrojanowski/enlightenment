@@ -1,6 +1,9 @@
 <h2>{{type}} {{title}}</h2>
-<p>{{{body}}}</p>
-{{#link-to "content_entity" content_entity}}{{content_entity.body}}{{/link-to}}
+{{#if isLink}}
+  <p><a target="_blank" {{bind-attr href='fullAddress'}}>{{fullAddress}}</a></p>
+{{else}}
+  <p>{{{body}}}</p>
+{{/if}}
 <p>{{{updated_at}}}</p>
 
 <br>

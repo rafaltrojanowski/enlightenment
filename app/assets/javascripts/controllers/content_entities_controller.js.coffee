@@ -75,3 +75,4 @@ EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend Enligh
       });
       record.save();
       @set('newEntryName', "")
+
