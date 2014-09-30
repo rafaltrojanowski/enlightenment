@@ -68,11 +68,11 @@ EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend Enligh
   sortProperties: ['updated_at'],
   sortAscending: false,
   sortContent: (->
-    content = @get("content").sortBy("-_content")
+    content = @get("content").sortBy("-body")
     return unless content
     console.log "--sorting by ID desc--"
     content.forEach (item) ->
-      console.log item.get("_content")
+      console.log item.get("body")
       console.log item.get("type")
       console.log item.get("updated_at")
       console.log item
@@ -85,7 +85,7 @@ EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend Enligh
   actions:
     addEntry: ->
       record = this.store.createRecord('content_entity',{
-        _content: @get('newEntryName')
+        body: @get('newEntryName')
       });
       record.save();
       # @entries.pushObject name: @get('newEntryName')

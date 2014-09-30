@@ -1,9 +1,14 @@
 class ContentEntitySerializer < ActiveModel::Serializer
-  attributes :id, :type, :_content, :updated_at, :title
+  attributes :id,
+             :type,
+             :body,
+             :updated_at,
+             :title,
+             :avatar
 
-  # NOTE content not works - reserved word ?
-  def _content
-    object.contentable.to_s # url for link / body for note
+  def body
+    # url for link / body for note
+    object.contentable.to_s
   end
 
   def type
@@ -12,5 +17,13 @@ class ContentEntitySerializer < ActiveModel::Serializer
 
   def title
     object.contentable_type.downcase == 'link' ? object.contentable.title : ''
+  end
+
+  def avatar
+    src = if object.try(:user).try(:avatar?)
+      object.user.avatar_url
+    else
+      'https://dl.dropboxusercontent.com/u/57582960/doge.png'
+    end
   end
 end

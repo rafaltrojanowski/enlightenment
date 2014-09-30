@@ -18,13 +18,13 @@
       <div class="list-group">
       {{#each content_entity in paginatedContent}}
         {{#link-to "content_entity" content_entity class="list-group-item"}}
-            <img alt="" src="https://dl.dropboxusercontent.com/u/57582960/doge.png" style="width:50px;height:50px" class="img-circle">
+            <img {{bind-attr src=content_entity.avatar}} style="width:50px;height:50px" class="img-circle">
             <b>{{content_entity.type}}</b>
             <small style="font-family:courier,'new courier';" class="text-muted pull-right">
             {{{content_entity.updated_at}}}
             </small>
           <p class="ellipsis block">
-            {{content_entity._content}}
+            {{content_entity.body}}
           </p>
         {{/link-to}}
       {{/each}}

@@ -7,7 +7,7 @@ class Api::V1::ContentEntitiesController < ApplicationController
 
   def create
     attrs = {
-      content: params[:contentEntity][:_content],
+      content: params[:contentEntity][:body],
       user_id: current_user.id
       # group_id: # TODO
     }
