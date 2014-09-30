@@ -29,6 +29,10 @@ feature 'Users::Can Add Link Or Note Feature Test' do
     click_button 'Add'
 
     page.text.must_include 'my first note'
+
+    sleep 1
+    ContentEntity.count.must_equal 1
+    ContentEntity.last.user.must_equal @user
   end
 
   scenario 'user add link', js: true do

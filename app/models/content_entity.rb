@@ -5,6 +5,7 @@ class ContentEntity < ActiveRecord::Base
   default_scope { includes(:contentable).order(created_at: :desc) }
 
   belongs_to :contentable, polymorphic: true
+  belongs_to :user
 
   before_create :create_entity
 

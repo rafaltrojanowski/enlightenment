@@ -6,7 +6,13 @@ class Api::V1::ContentEntitiesController < ApplicationController
   end
 
   def create
-    respond_with :api, :v1, ContentEntity.create(content: params[:contentEntity][:_content])
+    attrs = {
+      content: params[:contentEntity][:_content],
+      user_id: current_user.id
+      # group_id: # TODO
+    }
+
+    respond_with :api, :v1, ContentEntity.create(attrs)
   end
 
   def show
