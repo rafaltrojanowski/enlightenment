@@ -7,7 +7,7 @@
       %fieldset
         .form-group
           = f.label 'Email'
-          = f.input_field :email, required: true, autofocus: true, class: 'form-control'
+          = f.input_field :email, required: true, autofocus: true, class: 'form-control input-sm'
         .form-actions
           = f.button :submit, "Send me reset password instructions", class: 'a btn btn-success'
     = render "devise/shared/links"

@@ -7,13 +7,13 @@
       %fieldset
         .form-group
           = f.label 'Email'
-          = f.input_field :email, required: true, autofocus: true, class: 'form-control'
+          = f.input_field :email, required: true, autofocus: true, class: 'form-control input-sm'
         .form-group
           = f.label 'Password'
-          = f.input_field :password, required: true, class: 'form-control'
+          = f.input_field :password, required: true, class: 'form-control input-sm'
         .form-group
           = f.label 'Password confirmation'
-          = f.input_field :password_confirmation, required: true, class: 'form-control'
+          = f.input_field :password_confirmation, required: true, class: 'form-control input-sm'
         .form-actions
           = f.button :submit, "Sign up", class: 'btn btn-success'
     = render "devise/shared/links"

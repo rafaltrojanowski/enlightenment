@@ -2,9 +2,9 @@
   = simple_form_for resource, :html=> { class: 'form' } do |f|
     .input-group
       = f.label 'Email'
-      = f.input_field :email, required: true, autofocus: true, class: 'form-control input-lg', inline_label: true
+      = f.input_field :email, required: true, autofocus: true, class: 'form-control input-sm', inline_label: true
       = f.label "Username"
-      = f.input_field :username, class: 'form-control input-lg'
+      = f.input_field :username, class: 'form-control input-sm'
     %br
     = f.label 'My avatar'
     = image_tag resource.avatar_url, size: "150x150" if resource.avatar?
