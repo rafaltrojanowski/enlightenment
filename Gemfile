@@ -33,11 +33,8 @@ gem 'pismo', '~> 0.7.4'
 gem 'sidekiq'
 gem 'jquery-tokeninput-rails'
 gem 'carrierwave'
-<<<<<<< HEAD
 gem 'webshot'
-=======
 gem 'font-awesome-sass'
->>>>>>> trello-fix
 
 group :development, :test do
   gem 'spring'
