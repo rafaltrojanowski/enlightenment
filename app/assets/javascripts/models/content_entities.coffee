@@ -4,4 +4,5 @@ EnlightenmentApp.ContentEntity = DS.Model.extend(
   updated_at: DS.attr('date')
   title: DS.attr('string')
   avatar: DS.attr('string')
+  image: DS.attr('string')
 )

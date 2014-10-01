@@ -4,7 +4,8 @@ class ContentEntitySerializer < ActiveModel::Serializer
              :body,
              :updated_at,
              :title,
-             :avatar
+             :avatar,
+             :image
 
   def body
     # url for link / body for note
@@ -24,6 +25,14 @@ class ContentEntitySerializer < ActiveModel::Serializer
       object.user.avatar_url
     else
       'https://dl.dropboxusercontent.com/u/57582960/doge.png'
+    end
+  end
+
+  def image
+    src = if object.contentable.is_a? Note
+      'https://dl.dropboxusercontent.com/u/57582960/note.png'
+    else
+      object.contentable.image_url
     end
   end
 end
