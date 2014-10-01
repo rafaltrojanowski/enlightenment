@@ -34,8 +34,8 @@
         - else
           .container-fluid
             %ul.nav.navbar-nav.navbar-right
-              = link_to 'Log in', new_user_session_path
-      - flash_messages = {[:info, :alert, 'alert-success'] => notice, [:error, :alert, 'alert-error'] => alert}.reject{|k, m| m.blank?}
+              = link_to 'Log in', new_user_session_path, class: 'btn btn-lg btn-success'
+      - flash_messages = {[:info, :alert, 'alert-success'] => notice, [:error, :alert, 'alert-danger'] => alert}.reject{|k, m| m.blank?}
       - if flash_messages.any?
         .flash-messages
           - flash_messages.each do |classes, message|

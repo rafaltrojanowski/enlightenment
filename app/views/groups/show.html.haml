@@ -15,11 +15,11 @@
         %hr/
         Owner:
         = @group.owner.email
-  .col-sm-6
-    .well
-      %h4 Add new member
-      .form-group
-        - if can? :update_users, @group
+  - if can? :update_users, @group
+    .col-sm-6
+      .well
+        %h4 Add new member
+        .form-group
           = simple_form_for @group, url: update_users_group_path, method: 'post' do |f|
             = f.input :user_tokens, label: false, input_html: { data: { pre: @preload_users, url: other_users_group_path(@group) } }
             = f.submit 'Apply changes', class: 'btn btn-success'
