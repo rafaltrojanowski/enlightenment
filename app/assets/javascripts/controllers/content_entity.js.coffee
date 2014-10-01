@@ -5,7 +5,7 @@ EnlightenmentApp.ContentEntityController = Ember.ObjectController.extend
     else
       false
   ).property("type")
-  fullAddress: (->
+  fullAddress: (-> # TODO move to model
     @get("body")
   ).property("body")
   isNote: (->

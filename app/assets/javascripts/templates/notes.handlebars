@@ -1,4 +1,13 @@
-<h1>Notes</h1>
-{{#each note in controller}}
-  {{render "note" note}}
-{{/each}}
+<div class="list-group">
+  {{#each note in controller}}
+    {{#link-to "note" note class="list-group-item"}}
+      <b>{{note.title}}</b>
+      <small style="font-family:courier,'new courier';" class="text-muted pull-right">
+        {{{note.updated_at}}}
+      </small>
+      <p class="ellipsis block">
+        {{{note.body}}}
+      </p>
+    {{/link-to}}
+  {{/each}}
+</div>
