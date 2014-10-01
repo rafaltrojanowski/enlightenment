@@ -1,5 +1,7 @@
 class Link < ActiveRecord::Base
-  after_save :fetch_title, if: :url_changed?
+  mount_uploader :image, LinkImageUploader
+
+  after_commit :fetch_title
   has_one :content_entity, as: :contentable, dependent: :destroy
 
   def to_s
@@ -9,6 +11,7 @@ class Link < ActiveRecord::Base
   private
 
   def fetch_title
-    TitleFetcher.perform_async(self.id)
+    TitleFetcher.perform_async(id)
+    WebshotWorker.perform_async(id)
   end
 end
