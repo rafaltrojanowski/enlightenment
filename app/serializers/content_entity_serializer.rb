@@ -17,7 +17,8 @@ class ContentEntitySerializer < ActiveModel::Serializer
   end
 
   def title
-    object.contentable_type.downcase == 'link' ? object.contentable.title : ''
+    # object.contentable.title #TODO
+    object.contentable_type.downcase == 'link' ? object.contentable.title : '#TODO: possibility to edit title'
   end
 
   def avatar
