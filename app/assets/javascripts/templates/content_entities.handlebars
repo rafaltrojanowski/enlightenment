@@ -35,10 +35,11 @@ function autoheight(a) {
 <div class="list-group">
   {{#each content_entity in paginatedContent itemController="ContentEntity"}}
     {{#link-to "content_entity" content_entity class="list-group-item"}}
+      <img {{bind-attr src=content_entity.avatar}} style="width:50px;height:50px" class="img-circle">
       {{#if content_entity.isNote}}
-        <img src="https://dl.dropboxusercontent.com/u/57582960/note.png" style="width:50px;height:50px">
+        <i class="fa fa-newspaper-o fa-1x"></i>
       {{else }}
-        <img {{bind-attr src=content_entity.avatar}} style="width:50px;height:50px">
+        <i class="fa fa-globe fa-1x"></i>
       {{/if }}
       <b>{{content_entity.type}}</b>
       <small style="font-family:courier,'new courier';" class="text-muted pull-right">

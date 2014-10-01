@@ -33,6 +33,7 @@ gem 'pismo', '~> 0.7.4'
 gem 'sidekiq'
 gem 'jquery-tokeninput-rails'
 gem 'carrierwave'
+gem 'font-awesome-sass'
 
 group :development, :test do
   gem 'spring'
