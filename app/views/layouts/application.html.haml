@@ -15,22 +15,22 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          = link_to 'Enlightenment App', root_url, class: 'navbar-brand'
+          = link_to '<i class="fa fa-sun-o fa-1x"> getE</i>'.html_safe, root_url, class: 'navbar-brand'
         - if current_user
           .container-fluid
             %ul.nav.navbar-nav.navbar-right
               %li.dropdown
                 %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
-                  = current_user.email
+                  = "<i class='fa fa-user'></i> #{current_user.email}".html_safe
                   %span.caret
                 %ul.dropdown-menu{:role => 'menu'}
                   %li
-                    = link_to 'Profile', edit_user_path(current_user)
+                    = link_to "<i class='fa fa-pencil-square-o'></i> Profile".html_safe, edit_user_path(current_user)
                   %li
-                    = link_to 'Edit account', edit_user_registration_path
+                    = link_to "<i class='fa fa-pencil-square-o'></i> Edit account".html_safe, edit_user_registration_path
                   %li.divider
                   %li
-                    = link_to 'Logout', destroy_user_session_path, method: 'delete'
+                    = link_to "<i class='fa fa-arrow-circle-down'></i> Logout".html_safe, destroy_user_session_path, method: 'delete'
         - else
           .container-fluid
             %ul.nav.navbar-nav.navbar-right
@@ -49,18 +49,18 @@
               %div{'data-offset-bottom' => '90', 'data-offset-top' => '45', 'data-spy' => 'affix'}
                 %ul#sidebar-nav.nav
                   %li
-                    = link_to 'Dashboard', '#content_entities'
+                    = link_to '<i class="fa fa-tachometer"></i> Dashboard'.html_safe, '#content_entities'
                   %li
-                    = link_to 'Links', '#/links'
+                    = link_to '<i class="fa fa-globe"></i> Links'.html_safe, '#/links'
                   %li
-                    = link_to 'Notes', '#/notes'
+                    = link_to '<i class="fa fa-newspaper-o"></i> Notes'.html_safe, '#/notes'
                   %hr/
                   %li
-                    = link_to '<b>Groups</b>'.html_safe, groups_path
+                    = link_to '<i class="fa fa-users"></i> Groups'.html_safe, groups_path
                   - unless current_user.groups.nil?
                     - current_user.groups.each do |group|
-                      %li{style: 'text-indent: 20px;'}
-                        = link_to group.name, group_path(group)
+                      %li{style: 'text-indent: 15px;'}
+                        = link_to "<i class='fa fa-circle'></i> #{group.name}".html_safe, group_path(group)
           - else
             #sidebar.col-xs-6.col-sm-3.sidebar-offcanvas{:role => 'navigation'}
               %div{'data-offset-bottom' => '90', 'data-offset-top' => '45', 'data-spy' => 'affix'}

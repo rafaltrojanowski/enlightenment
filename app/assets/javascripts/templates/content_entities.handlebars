@@ -1,29 +1,24 @@
 <script>
-$("textarea").keyup(function (e) {
-    autoheight(this);
-});
-
-function autoheight(a) {
-    if (!$(a).prop('scrollTop')) {
-        do {
-            var b = $(a).prop('scrollHeight');
-            var h = $(a).height();
-            $(a).height(h - 5);
-        }
-        while (b && (b != $(a).prop('scrollHeight')));
-    };
-    $(a).height($(a).prop('scrollHeight') + 10);
-}
+  $('#container').on( 'keyup', 'textarea', function (e){
+      $(this).css('height', 'auto' );
+      $(this).height( this.scrollHeight );
+      if (this.scrollHeight <= 300) {
+        $('#add_button').css('height', this.scrollHeight)
+      }
+      
+  });
+  $('#container').find( 'textarea' ).keyup();
+// $('#add_button').css('height', '100px')
 </script>
 
 <div id="container">
   <div class="well">
     <form class="form-horizontal" role="form" {{action "addEntry" on="submit"}}>
       <div class="input-group" style="padding:14px;">
-        {{view Ember.TextArea name='content_entity[content]' valueBinding="newEntryName" class="form-control" required="true" onkeyup="textAreaAdjust(this)"}}
-      <span class="input-group-btn">
-        <button class="btn btn-success" type="submit">Add</button>
-      </span>
+        {{view Ember.TextArea name='content_entity[content]' valueBinding="newEntryName" class="form-control" required="true" id="textarea"}}
+        <span class="input-group-btn">
+          <button class="btn btn-success" type="submit" id="add_button">Add</button>
+        </span>
       </div>
     </form>
   </div>
