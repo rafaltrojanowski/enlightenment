@@ -25,3 +25,5 @@
 .env
 /tags
 /public/uploads/*
+
+dump.rdb
