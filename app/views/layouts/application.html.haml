@@ -2,16 +2,16 @@
 %html
   %head
     %title EnlightenmentApp
-    = stylesheet_link_tag    "holo/holo", media: "all", "data-turbolinks-track" => true
-    = javascript_include_tag "application", "data-turbolinks-track" => true
-    %script{src: "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"}
+    = stylesheet_link_tag 'holo/holo', media: 'all'
+    = javascript_include_tag 'application'
+    %script{src: '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'}
     = csrf_meta_tags
   %body{class: request[:controller].gsub('/','_')}
     .page-container
       / top navbar
-      %nav.navbar.navbar-inverse.navbar-fixed-top{:role => "navigation"}
+      %nav.navbar.navbar-inverse.navbar-fixed-top{:role => 'navigation'}
         .navbar-header
-          %button.navbar-toggle{"data-target" => ".sidebar-nav", "data-toggle" => "offcanvas", :type => "button"}
+          %button.navbar-toggle{'data-target' => '.sidebar-nav', 'data-toggle' => 'offcanvas', :type => 'button'}
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
@@ -20,10 +20,10 @@
           .container-fluid
             %ul.nav.navbar-nav.navbar-right
               %li.dropdown
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
                   = current_user.email
                   %span.caret
-                %ul.dropdown-menu{:role => "menu"}
+                %ul.dropdown-menu{:role => 'menu'}
                   %li
                     = link_to 'Profile', edit_user_path(current_user)
                   %li
@@ -45,8 +45,8 @@
       .container-fluid
         .row.row-offcanvas.row-offcanvas-left
           - if current_user
-            #sidebar.col-xs-6.col-sm-3.sidebar-offcanvas{:role => "navigation"}
-              %div{"data-offset-bottom" => "90", "data-offset-top" => "45", "data-spy" => "affix"}
+            #sidebar.col-xs-6.col-sm-3.sidebar-offcanvas{:role => 'navigation'}
+              %div{'data-offset-bottom' => '90', 'data-offset-top' => '45', 'data-spy' => 'affix'}
                 %ul#sidebar-nav.nav
                   %li
                     = link_to 'Dashboard', root_path
@@ -62,12 +62,12 @@
                       %li{style: 'text-indent: 20px;'}
                         = link_to group.name, group_path(group)
           - else
-            #sidebar.col-xs-6.col-sm-3.sidebar-offcanvas{:role => "navigation"}
-              %div{"data-offset-bottom" => "90", "data-offset-top" => "45", "data-spy" => "affix"}
+            #sidebar.col-xs-6.col-sm-3.sidebar-offcanvas{:role => 'navigation'}
+              %div{'data-offset-bottom' => '90', 'data-offset-top' => '45', 'data-spy' => 'affix'}
                 %ul#sidebar-nav.nav
                   %li Welcome guest!
           / /sidebar
           / /main
-          .col-xs-12.col-sm-9{"data-spy" => "scroll", "data-target" => "#sidebar-nav"}
+          .col-xs-12.col-sm-9{'data-spy' => 'scroll', 'data-target' => '#sidebar-nav'}
             #ember-app{ style: controller.controller_name != 'dashboard' ? 'display: none;' : '' }
             = yield
