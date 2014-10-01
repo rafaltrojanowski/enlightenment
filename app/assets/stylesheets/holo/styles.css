@@ -201,6 +201,13 @@ input, textarea, select {
     text-overflow: ellipsis;
 }
  
-p.block {
-    width: 400px;
+p.content {
+    width: 500px;
+}
+
+textarea {
+  width:250px;
+  min-height:75px;
+  max-height:300px;
+  resize:none;
 }

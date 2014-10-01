@@ -8,3 +8,9 @@ EnlightenmentApp.ContentEntityController = Ember.ObjectController.extend
   fullAddress: (->
     @get("body")
   ).property("body")
+  isNote: (->
+    if @get("model.type") == 'note'
+      true
+    else
+      false
+  ).property("type")
