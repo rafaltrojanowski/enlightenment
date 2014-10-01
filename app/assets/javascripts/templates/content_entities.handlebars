@@ -19,7 +19,6 @@ function autoheight(a) {
 <div id="container">
   <div class="well">
     <form class="form-horizontal" role="form" {{action "addEntry" on="submit"}}>
-    <h4>Add content</h4>
       <div class="input-group" style="padding:14px;">
         {{view Ember.TextArea name='content_entity[content]' valueBinding="newEntryName" class="form-control" required="true" onkeyup="textAreaAdjust(this)"}}
       <span class="input-group-btn">

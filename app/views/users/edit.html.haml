@@ -1,11 +1,18 @@
 .well
-  = simple_form_for resource do |f|
-    = f.input :email, required: true, autofocus: true
-    = f.input :username
-    %label My Avatar
-    = image_tag resource.avatar_url if resource.avatar?
+  = simple_form_for resource, :html=> { class: 'form' } do |f|
+    .input-group
+      = f.label 'Email'
+      = f.input_field :email, required: true, autofocus: true, class: 'form-control input-lg', inline_label: true
+      = f.label "Username"
+      = f.input_field :username, class: 'form-control input-lg'
+    %br
+    = f.label 'My avatar'
+    = image_tag resource.avatar_url, size: "150x150" if resource.avatar?
+    %br
     = f.input :avatar, as: :file
+    %br
     = f.input :avatar_cache, as: :hidden
+    %br
     %label
       = f.check_box :remove_avatar
       Remove avatar
