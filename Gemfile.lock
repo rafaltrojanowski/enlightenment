@@ -151,6 +151,8 @@ GEM
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.3.1)
     ffi (1.9.3)
+    font-awesome-sass (4.2.0)
+      sass (~> 3.2)
     formatador (0.2.4)
     friendly_id (5.0.3)
       activerecord (>= 4.0.0)
@@ -397,6 +399,7 @@ DEPENDENCIES
   ember-source (= 1.5.0)
   emblem-rails
   factory_girl_rails
+  font-awesome-sass
   friendly_id (>= 5.0.0)
   gravatar_image_tag
   guard-minitest
