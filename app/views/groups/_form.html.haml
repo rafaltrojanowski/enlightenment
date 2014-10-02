@@ -1,6 +1,7 @@
-.form-group{:style => "padding:14px;"}
-  = simple_form_for @group do |f|
+= simple_form_for @group, html: { class: '', role: 'form'} do |f|
+  %fieldset
     = f.label 'Name'
     = f.input_field :name, class: 'form-control input-sm'
     %br
-    = f.button :submit, class: 'btn btn-success'
+    .form-actions
+      = f.button :submit, class: 'btn btn-success'

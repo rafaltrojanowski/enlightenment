@@ -7,7 +7,6 @@
     }
   });
   $('#container').find( 'textarea' ).keyup();
-// $('#add_button').css('height', '100px')
 </script>
 
 <div id="container">
@@ -33,8 +32,8 @@
         <i class="fa fa-globe fa-1x"></i>
       {{/if }}
       <b>{{content_entity.title}}</b>
-      <small style="font-family:courier,'new courier';" class="text-muted pull-right">
-        {{{content_entity.updated_at}}}
+      <small style="font-family:courier,'new courier';" class="text-muted pull-right", type='date'>
+        {{{showDate content_entity.updated_at}}}
       </small>
       <p class="ellipsis block">
         {{{content_entity.body}}}
