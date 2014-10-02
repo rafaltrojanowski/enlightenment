@@ -5,15 +5,12 @@
   .panel-body
     = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: '', role: 'form'}) do |f|
       %fieldset
-        .form-group
-          = f.label 'Email'
-          = f.input_field :email, required: true, autofocus: true, class: 'form-control input-sm'
-        .form-group
-          = f.label 'Password'
-          = f.input_field :password, required: true, class: 'form-control input-sm'
-        .form-group
-          = f.label 'Password confirmation'
-          = f.input_field :password_confirmation, required: true, class: 'form-control input-sm'
+        = f.label 'Email'
+        = f.input_field :email, required: true, autofocus: true, class: 'form-control input-sm'
+        = f.label 'Password'
+        = f.input_field :password, required: true, class: 'form-control input-sm'
+        = f.label 'Password confirmation'
+        = f.input_field :password_confirmation, required: true, class: 'form-control input-sm'
         .form-actions
           = f.button :submit, "Sign up", class: 'btn btn-success'
     = render "devise/shared/links"

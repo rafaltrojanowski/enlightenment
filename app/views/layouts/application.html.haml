@@ -3,6 +3,7 @@
   %head
     %title EnlightenmentApp
     = stylesheet_link_tag 'holo/holo', media: 'all'
+    %link{:href => "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css", :rel => "stylesheet"}/
     = javascript_include_tag 'application'
     %link{:href => "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css", :rel => "stylesheet"}/
     %script{src: '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'}
@@ -28,7 +29,7 @@
                   %li
                     = link_to "<i class='fa fa-pencil-square-o'></i> Profile".html_safe, edit_user_path(current_user)
                   %li
-                    = link_to "<i class='fa fa-pencil-square-o'></i> Edit account".html_safe, edit_user_registration_path
+                    = link_to "<i class='fa fa-cog'></i> Edit account".html_safe, edit_user_registration_path
                   %li.divider
                   %li
                     = link_to "<i class='fa fa-arrow-circle-down'></i> Logout".html_safe, destroy_user_session_path, method: 'delete'
