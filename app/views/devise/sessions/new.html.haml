@@ -10,8 +10,8 @@
         = f.label 'Password'
         = f.input_field :password, required: false, class: 'form-control input-sm'
         .checkbox
-          %label
-            = f.input :remember_me, :as => :boolean, :label => false, :inline_label => true if devise_mapping.rememberable?
-          = f.button :submit, "Sign in", class: 'a btn btn-lg btn-success btn-block'
-
+          = f.input :remember_me, :as => :boolean, :label => false, :inline_label => true if devise_mapping.rememberable?
+        %br
+        = f.button :submit, "Sign in", class: 'a btn btn-lg btn-success'
+    %br
     = render "devise/shared/links"

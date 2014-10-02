@@ -11,6 +11,8 @@
         = f.input_field :password, required: true, class: 'form-control input-sm'
         = f.label 'Password confirmation'
         = f.input_field :password_confirmation, required: true, class: 'form-control input-sm'
+        %br
         .form-actions
           = f.button :submit, "Sign up", class: 'btn btn-success'
+        %br
     = render "devise/shared/links"
