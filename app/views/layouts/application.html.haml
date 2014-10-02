@@ -49,18 +49,18 @@
               %div{'data-offset-bottom' => '90', 'data-offset-top' => '45', 'data-spy' => 'affix'}
                 %ul#sidebar-nav.nav
                   %li
-                    = link_to '<i class="fa fa-tachometer"></i> Dashboard'.html_safe, '#content_entities'
+                    = link_to '<i class="fa fa-tachometer"></i> Dashboard'.html_safe, '#/content_entities'
                   %li
                     = link_to '<i class="fa fa-globe"></i> Links'.html_safe, '#/links'
                   %li
                     = link_to '<i class="fa fa-newspaper-o"></i> Notes'.html_safe, '#/notes'
                   %hr/
                   %li
-                    = link_to '<i class="fa fa-users"></i> Groups'.html_safe, groups_path
+                    = link_to '<i class="fa fa-users"></i> Groups'.html_safe, '#/groups'
                   - unless current_user.groups.nil?
                     - current_user.groups.each do |group|
                       %li{style: 'text-indent: 15px;'}
-                        = link_to "<i class='fa fa-circle'></i> #{group.name}".html_safe, group_path(group)
+                        = link_to "<i class='fa fa-circle'></i> #{group.name}".html_safe, "#/groups/#{group.id}"
           - else
             #sidebar.col-xs-6.col-sm-3.sidebar-offcanvas{:role => 'navigation'}
               %div{'data-offset-bottom' => '90', 'data-offset-top' => '45', 'data-spy' => 'affix'}

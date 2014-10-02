@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :content_entities, path: 'contentEntities' # TODO default path possible with ember?
       resources :links, only: [:index, :show]
       resources :notes, only: :index
+      resources :groups, only: [:index, :show]
     end
   end
 
@@ -21,12 +22,12 @@ Rails.application.routes.draw do
     root to: 'dashboard#index'
   end
 
-  resources :groups do
-    member do
-      post :update_users
-      get :other_users
-    end
-  end
+  # resources :groups do
+  #   member do
+  #     post :update_users
+  #     get :other_users
+  #   end
+  # end
 
   resources :users, only: [:edit, :update]
 end
