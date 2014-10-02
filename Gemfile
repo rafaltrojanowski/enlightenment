@@ -34,7 +34,6 @@ gem 'sidekiq'
 gem 'jquery-tokeninput-rails'
 gem 'carrierwave'
 gem 'webshot'
-gem 'font-awesome-sass'
 
 group :development, :test do
   gem 'spring'
