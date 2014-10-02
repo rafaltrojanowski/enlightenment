@@ -14,3 +14,20 @@ EnlightenmentApp.ContentEntityController = Ember.ObjectController.extend
     else
       false
   ).property("type")
+
+EnlightenmentApp.ContentEntityEditController = Ember.ObjectController.extend({
+  needs: [ 'content_entity' ]
+
+  isEditing: true
+
+  actions:
+    update: ->
+      newTitle = @get('title')
+      record = @get('content');
+      record.set("title", newTitle);
+      record.save();
+      this.transitionTo( 'content_entities' );
+
+    cancel: ->
+      alert 'cancel triggered'
+});

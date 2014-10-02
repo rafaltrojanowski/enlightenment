@@ -2,7 +2,8 @@
 
 EnlightenmentApp.Router.map ()->
   @resource 'content_entities'
-  @resource 'content_entity', path: 'content_entities/:content_entity_id'
+  @resource 'content_entity', path: 'content_entities/:content_entity_id', ->
+    @route "edit"
   @resource 'links'
   @resource 'link', path: 'links/:link_id'
   @resource 'notes'
@@ -16,6 +17,12 @@ EnlightenmentApp.IndexRoute = Ember.Route.extend(
 EnlightenmentApp.ContentEntitiesRoute = Ember.Route.extend
   model: ->
     @get('store').find('content_entity')
+
+
+EnlightenmentApp.ContentEntityEditRoute = Ember.Route.extend
+  test: true
+  # model:
+    # @get('store').find('content_entity', 1191)
 
 EnlightenmentApp.LinksRoute = Ember.Route.extend
   model: ->
