@@ -16,13 +16,13 @@ class Api::V1::ContentEntitiesController < ApplicationController
   end
 
   def update
-    type = params[:contentEntity][:type]
-
     record = ContentEntity.find(params[:id]).contentable
 
-    obj = record.update!(title: params[:contentEntity][:title])
-
-    respond_with :api, :v1, obj, status: :ok
+    if object = record.update_attributes(title: params[:contentEntity][:title])
+      render json: object
+    else
+      render json: object, status: 422
+    end
   end
 
   def show
