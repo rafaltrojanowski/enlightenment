@@ -79,4 +79,3 @@ EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend Enligh
       ).bind(this)
 
       @set('newEntryName', "")
-

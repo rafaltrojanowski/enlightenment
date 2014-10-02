@@ -15,6 +15,10 @@ EnlightenmentApp.ContentEntityController = Ember.ObjectController.extend
       false
   ).property("type")
 
+  actions:
+    gotoEdit: (model) ->
+      this.transitionTo('content_entity.edit', model);
+
 EnlightenmentApp.ContentEntityEditController = Ember.ObjectController.extend({
   needs: [ 'content_entity' ]
 
@@ -27,7 +31,4 @@ EnlightenmentApp.ContentEntityEditController = Ember.ObjectController.extend({
       record.set("title", newTitle);
       record.save();
       this.transitionTo( 'content_entities' );
-
-    cancel: ->
-      alert 'cancel triggered'
 });
