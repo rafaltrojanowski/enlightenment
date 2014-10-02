@@ -1,0 +1,32 @@
+EDIT content here:
+
+{{ isEditing }}
+
+{{#with controllers.content_entity.content}}
+  {{ controllers.content_entity.content }}
+  <form class="form-horizontal">
+    <fieldset>
+      <legend>Edit entity TODO: use form partial</legend>
+
+      <div class="form-group">
+        <label class="control-label col-lg-2" for="inputTitle">Title</label>
+        <div class="col-lg-10">
+          {{view Ember.TextField valueBinding=title id="inputTitle" classNames="form-control"}}
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-lg-2" for="textareaDescription">Description</label>
+        <div class="col-lg-10">
+          {{view Ember.TextArea valueBinding=description classNames="form-control" id="textareaDescription"}}
+        </div>
+      </div>
+      <input type="hidden" {{bind-attr value=guid}} id="guid"/>
+      {{!-- partial 'content_entity' --}}
+    </fieldset>
+  </form>
+  <div class="btn-group">
+    <button class="btn btn-large btn-primary" {{action 'update' this}}>Update</button>
+    <button class="btn btn-large btn-danger" {{action 'cancel' this}}>Cancel</button>
+  </div>
+{{/with}}
+

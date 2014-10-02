@@ -15,6 +15,16 @@ class Api::V1::ContentEntitiesController < ApplicationController
     respond_with :api, :v1, ContentEntity.create(attrs)
   end
 
+  def update
+    type = params[:contentEntity][:type]
+
+    record = ContentEntity.find(params[:id]).contentable
+
+    obj = record.update!(title: params[:contentEntity][:title])
+
+    respond_with :api, :v1, obj, status: :ok
+  end
+
   def show
     respond_with ContentEntity.find(params[:id])
   end
