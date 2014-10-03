@@ -21,11 +21,10 @@
             %ul.nav.navbar-nav.navbar-right
               %li.dropdown
                 %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
-                  - if current_user.username
+                  - if current_user.username.present?
                     = "<i class='fa fa-user'></i> #{current_user.username}".html_safe
                   - else
                     = "<i class='fa fa-user'></i> #{current_user.email}".html_safe
-
                   %span.caret
                 %ul.dropdown-menu{:role => 'menu'}
                   %li
