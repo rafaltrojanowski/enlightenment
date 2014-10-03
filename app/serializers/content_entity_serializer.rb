@@ -9,7 +9,7 @@ class ContentEntitySerializer < ActiveModel::Serializer
 
   def body
     # url for link / body for note
-    object.contentable.to_s.gsub(/\n/, '<br/>')
+    object.contentable.to_s.gsub(/\n/, '<br/>') rescue object.contentable
   end
 
   def type
