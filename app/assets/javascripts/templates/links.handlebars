@@ -1,11 +1,11 @@
 <div class="list-group">
   {{#each link in controller}}
     {{#link-to "link" link class="list-group-item"}}
-      <img {{bind-attr src=link.image}} style="width:50px;height:50px" class="img-circle">
+      <img {{bind-attr src=link.avatar}} style="width:50px;height:50px" class="img-circle">
       <i class="fa fa-globe fa-1x"></i>
       <b>{{link.title}}</b>
       <small style="font-family:courier,'new courier';" class="text-muted pull-right">
-        {{{link.updated_at}}}
+        {{{showDate link.updated_at}}}
       </small>
       <p class="ellipsis block">
         {{{link.url}}}
