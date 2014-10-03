@@ -7,6 +7,12 @@
     }
   });
   $('#container').find( 'textarea' ).keyup();
+
+  $("a.list-group-item").on("mouseenter", function() {
+    $(this).children("#edit_button").show();
+  }).on("mouseleave", function() {
+    $(this).children("#edit_button").hide();
+  });
 </script>
 
 <div id="container">
@@ -38,7 +44,7 @@
       <p class="ellipsis block">
         {{{content_entity.body}}}
       </p>
-      <button {{action 'gotoEdit' content_entity}} class='btn btn-large btn-danger'>Edit</button>
+      <button {{action 'gotoEdit' content_entity}} class='btn btn-large btn-warning ' id='edit_button' style="display:none;">Edit <i class="fa fa-pencil"></i></button>
     {{/link-to}}
   {{/each}}
 </div>
