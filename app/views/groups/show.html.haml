@@ -5,7 +5,6 @@
         %h4= "Name: #{@group.name}"
       .panel-body
         %p
-          %img.img-circle.pull-right{:src => "//placehold.it/100"}/
           Participants:
           %ul
             - @group.users.each do |user|
