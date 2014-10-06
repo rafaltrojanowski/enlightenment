@@ -7,7 +7,8 @@ EnlightenmentApp.Router.map ()->
   @resource 'link', path: 'links/:link_id'
   @resource 'notes'
   @resource 'note', path: 'notes/:note_id'
-  @resource 'groups'
+  @resource 'groups', ->
+    @route 'new'
   @resource 'group', path: 'groups/:group_id'
 
 EnlightenmentApp.IndexRoute = Ember.Route.extend(

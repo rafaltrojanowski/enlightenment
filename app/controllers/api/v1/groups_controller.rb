@@ -12,6 +12,7 @@ class Api::V1::GroupsController < ApplicationController
     }
 
     respond_with :api, :v1, Group.create(attrs)
+    Group.last.users << current_user
   end
 
   def show

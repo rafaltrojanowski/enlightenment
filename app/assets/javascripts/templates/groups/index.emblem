@@ -1,0 +1,8 @@
+.panel.panel-default
+  .panel-heading
+    link-to .button.btn.btn-lg.btn-success 'groups.new' | New Group
+  .panel-body
+    each
+      .list-group-item
+        = name
+        link-to .btn.btn-info 'group' this | show

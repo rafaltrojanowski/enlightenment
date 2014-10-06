@@ -1,2 +1,13 @@
-= name
-= owner_id
+.row
+  .col-sm-6
+    .panel.panel-default
+      .panel-heading
+        h4 = name
+      .panel-body
+        | Participants:
+        each users
+          = email
+  .col-sm-6
+    .well
+      h4 Add new member
+      button{ action "addUser" } AddUser
