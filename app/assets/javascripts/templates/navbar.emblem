@@ -1,0 +1,12 @@
+nav.navbar.navbar-inverse.navbar-fixed-top role=navigation
+  div class=navbar-header
+    button.navbar-toggle data-target= '.sidebar-nav' data-toggle=offcanvas type=button
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+    = link-to 'home' class=navbar-brand | EnlightenmentApp
+    if isAuthenticated
+      button.btn{ action 'logout' } Logout
+    else
+      link-to 'login' | Login
+      link-to 'registration' | Register
