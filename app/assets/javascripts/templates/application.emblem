@@ -6,13 +6,13 @@
       div.col-xs-6.col-sm-2.sidebar-offcanvas id=sidebar role=navigation
         div data-offset-bottom=90 data-offset-top=45 data-spy=affix
           ul id=sidebar-nav class=nav
-            li Welcome guest!
-            li
-              = link-to 'content_entities' | Dashboard
-            li
-              = link-to 'links' | My Links
-            li
-              = link-to 'notes' | My Notes
+            if isAuthenticated
+              li
+                = link-to 'content_entities' | Dashboard
+              li
+                = link-to 'links' | My Links
+              li
+                = link-to 'notes' | My Notes
       div.col-xs-12.col-sm-10 data-spy=scroll data-target='#sidebar-nav'
         = outlet
 
