@@ -1,6 +1,6 @@
 .page-container
-  = render navbar
-  = render welcome_msg
+  = render 'navbar'
+  = render 'welcome_msg'
   div class=container-fluid
     div.row.row-offcanvas.row-offcanvas-left
       div.col-xs-6.col-sm-2.sidebar-offcanvas id=sidebar role=navigation
