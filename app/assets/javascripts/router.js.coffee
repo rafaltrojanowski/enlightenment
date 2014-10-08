@@ -19,9 +19,12 @@ EnlightenmentApp.IndexRoute = Ember.Route.extend(
 )
 
 EnlightenmentApp.ContentEntitiesRoute = Ember.Route.extend
+  beforeModel: (transition) ->
+    unless @controllerFor("auth").get("isAuthenticated")
+      @transitionTo "login"
+
   model: ->
     @get('store').find('content_entity')
-
 
 EnlightenmentApp.ContentEntityEditRoute = Ember.Route.extend
   test: true # TODO
