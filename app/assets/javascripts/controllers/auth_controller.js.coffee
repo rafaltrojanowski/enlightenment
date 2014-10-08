@@ -2,9 +2,21 @@
 ## They are grouped together here for ease of exposition
 
 EnlightenmentApp.AuthController = Ember.ObjectController.extend
+  content: {}
   currentUser:  null
   isAuthenticated: Em.computed.notEmpty("currentUser.email")
   login: (route) ->
+    previousTransition = @get("previousTransition")
+    successTransition = null
+
+    if previousTransition
+      @set "previousTransition", null
+      successTransition = previousTransition.targetName
+      # would be nice if could do something like this
+      # previousTransition.retry() in ajax success method
+    else
+      successTransition = 'home'
+
     me = @
     $.ajax
       url: EnlightenmentApp.urls.login
@@ -15,7 +27,7 @@ EnlightenmentApp.AuthController = Ember.ObjectController.extend
       success: (data) ->
         log.log "Login Msg #{data.user.dummy_msg}"
         me.set 'currentUser', data.user
-        route.transitionTo 'home'
+        route.transitionTo successTransition
       error: (jqXHR, textStatus, errorThrown) ->
         if jqXHR.status==401
           route.controllerFor('login').set "errorMsg", "That email/password combo didn't work.  Please try again"

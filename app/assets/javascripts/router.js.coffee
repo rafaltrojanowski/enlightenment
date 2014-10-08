@@ -21,6 +21,8 @@ EnlightenmentApp.IndexRoute = Ember.Route.extend(
 EnlightenmentApp.ContentEntitiesRoute = Ember.Route.extend
   beforeModel: (transition) ->
     unless @controllerFor("auth").get("isAuthenticated")
+      loginController = @controllerFor("auth")
+      loginController.set "previousTransition", transition
       @transitionTo "login"
 
   model: ->
