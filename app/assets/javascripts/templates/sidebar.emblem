@@ -1,0 +1,12 @@
+if isAuthenticated
+  ul#sidebar-nav.nav
+    li
+      link-to 'content_entities' | <i class="fa fa-tachometer"></i> Dashboard
+    li
+      link-to 'links' | <i class="fa fa-globe"></i> My Links
+    li
+      link-to 'notes' | <i class="fa fa-newspaper-o"></i> My Notes
+    hr/
+else
+  ul#sidebar-nav.nav
+    li Welcome guest!
