@@ -17,7 +17,7 @@
     $(this).find("#edit_button").hide();
     $(this).find("#show_date").show();
   });
-  
+
 </script>
 
 <div id="container">
@@ -35,29 +35,32 @@
 
 <div class="list-group">
   {{#each content_entity in paginatedContent itemController="ContentEntity"}}
-    <div id="content_entity">
-      {{#link-to "content_entity" content_entity class="list-group-item"}}
-        <img {{bind-attr src=content_entity.avatar}} style="width:60px;height:60px" class="img-circle">
-
-        {{#if content_entity.isNote}}
+    <div id="content_entity" class='list-group-item'>
+      <img {{bind-attr src=content_entity.avatar}} style="width:60px;height:60px" class="img-circle">
+      {{#if content_entity.isNote}}
+        {{#link-to "content_entity" content_entity}}
           <i class="fa fa-newspaper-o fa-2x"></i>
           <b>{{showTitle content_entity.body}}</b>
-          <small style="font-family:courier,'new courier';" class="text-muted pull-right" id="show_date">
-            {{{showDate content_entity.updated_at}}}
-          </small>
-          <button {{action 'gotoEdit' content_entity}} class="btn btn-large btn-warning pull-right" id="edit_button" style="display:none;">Edit <i class="fa fa-pencil"></i></button>
-        {{else }}
+        {{/link-to}}
+        <small style="font-family:courier,'new courier';" class="text-muted pull-right" id="show_date">
+          {{{showDate content_entity.updated_at}}}
+        </small>
+        <button {{action 'gotoEdit' content_entity}} class="btn btn-large btn-warning pull-right" id="edit_button" style="display:none;">Edit <i class="fa fa-pencil"></i></button>
+      {{else }}
+        {{#link-to "content_entity" content_entity}}
           <i class="fa fa-globe fa-2x"></i>
           <b>{{content_entity.title}}</b>
-          <small style="font-family:courier,'new courier';" class="text-muted pull-right" id="show_date">
-            {{{showDate content_entity.updated_at}}}
-          </small>
-          <button {{action 'gotoEdit' content_entity}} class="btn btn-large btn-warning pull-right" id="edit_button" style="display:none;">Edit <i class="fa fa-pencil"></i></button>
-          <p class="ellipsis block">
-            {{{content_entity.body}}}
-          </p>
+        {{/link-to}}
+        <small style="font-family:courier,'new courier';" class="text-muted pull-right" id="show_date">
+          {{{showDate content_entity.updated_at}}}
+        </small>
+        <button {{action 'gotoEdit' content_entity}} class="btn btn-large btn-warning pull-right" id="edit_button" style="display:none;">Edit <i class="fa fa-pencil"></i></button>
+        <p class="ellipsis block">
+          {{{content_entity.body}}}
+        </p>
         {{/if }}
-      {{/link-to}}
+      <button {{action edit this}}>edit</button>
+      <button {{action confirmDelete this}}>delete</button>
     </div>
   {{/each}}
 </div>

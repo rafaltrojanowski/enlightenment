@@ -13,20 +13,49 @@ EnlightenmentApp.Router.map ()->
   @resource 'notes'
   @resource 'note', path: 'notes/:note_id'
 
+EnlightenmentApp.ModalView = Ember.View.extend(
+  didInsertElement: ->
+    Ember.run.next this, ->
+      @$(".modal, .modal-backdrop").addClass "in"
+      return
+
+    return
+
+  layoutName: "modal_layout"
+  actions:
+    close: ->
+      view = this
+      # use one of: transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd
+      # events so the handler is only fired once in your browser
+      @$(".modal, .modal-backdrop").one "transitionend", (ev) ->
+        view.controller.send "close"
+        return
+
+      @$(".modal").removeClass "in"
+      return
+)
+
 EnlightenmentApp.IndexRoute = Ember.Route.extend(
   beforeModel: ->
     @transitionTo "content_entities" # TODO home
 )
 
 EnlightenmentApp.ContentEntitiesRoute = Ember.Route.extend
-  beforeModel: (transition) ->
-    unless @controllerFor("auth").get("isAuthenticated")
-      loginController = @controllerFor("auth")
-      loginController.set "previousTransition", transition
-      @transitionTo "login"
+  # beforeModel: (transition) ->
+    # unless @controllerFor("auth").get("isAuthenticated")
+      # loginController = @controllerFor("auth")
+      # loginController.set "previousTransition", transition
+      # @transitionTo "login"
 
   model: ->
     @get('store').find('content_entity')
+
+  actions:
+    edit: (content_entity) ->
+      alert ('1');
+      @controllerFor("content_entities.modal").edit content_entity
+      @send "openModal", "content_entities.modal"
+      return
 
 EnlightenmentApp.ContentEntityEditRoute = Ember.Route.extend
   test: true # TODO
