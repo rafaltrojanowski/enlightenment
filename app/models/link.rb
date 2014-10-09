@@ -3,6 +3,7 @@ class Link < ActiveRecord::Base
 
   after_commit :fetch_title
   has_one :content_entity, as: :contentable, dependent: :destroy
+  has_many :comments, as: :commentable
 
   def to_s
     url

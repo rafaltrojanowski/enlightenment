@@ -7,4 +7,5 @@ EnlightenmentApp.Link = DS.Model.extend(
   fullAddress: (->
     @get("url")
   ).property("url")
+  comments: DS.hasMany('comment', {async: true}) #polymorphic: true
 )
