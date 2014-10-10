@@ -1,14 +1,13 @@
 <script>
   $('#container').on( 'keyup', 'textarea', function (e){
-      $(this).css('height', 'auto' );
-      $(this).height( this.scrollHeight );
-      if (this.scrollHeight <= 300) {
-        $('#add_button').css('height', this.scrollHeight)
-      }
-      
+    $(this).css('height', 'auto' );
+    $(this).height( this.scrollHeight );
+    if (this.scrollHeight <= 300) {
+      $('#add_button').css('height', this.scrollHeight)
+    }
   });
   $('#container').find( 'textarea' ).keyup();
-// $('#add_button').css('height', '100px')
+
 </script>
 
 <div id="container">
@@ -24,27 +23,36 @@
   </div>
 </div>
 
-
 <div class="list-group">
   {{#each content_entity in paginatedContent itemController="ContentEntity"}}
-    {{#link-to "content_entity" content_entity class="list-group-item"}}
-      <img {{bind-attr src=content_entity.avatar}} style="width:50px;height:50px" class="img-circle">
+    <div id="content_entity" class='list-group-item'>
+      <img {{bind-attr src=content_entity.avatar}} style="width:60px;height:60px" class="img-circle">
       {{#if content_entity.isNote}}
-        <i class="fa fa-newspaper-o fa-1x"></i>
+        {{#link-to "content_entity" content_entity}}
+          <i class="fa fa-newspaper-o fa-2x"></i>
+          <b>{{showTitle content_entity.body}}</b>
+        {{/link-to}}
+        <small style="font-family:courier,'new courier';" class="text-muted pull-right" id="show_date">
+          {{{showDate content_entity.updated_at}}}
+        </small>
+        <button {{action 'gotoEdit' content_entity}} class="btn btn-large btn-warning pull-right" id="edit_button" style="display:none;">Edit <i class="fa fa-pencil"></i></button>
       {{else }}
-        <i class="fa fa-globe fa-1x"></i>
-      {{/if }}
-      <b>{{content_entity.title}}</b>
-      <small style="font-family:courier,'new courier';" class="text-muted pull-right">
-        {{{content_entity.updated_at}}}
-      </small>
-      <p class="ellipsis block">
-        {{{content_entity.body}}}
-      </p>
-    {{/link-to}}
+        {{#link-to "content_entity" content_entity}}
+          <i class="fa fa-globe fa-2x"></i>
+          <b>{{content_entity.title}}</b>
+        {{/link-to}}
+        <small style="font-family:courier,'new courier';" class="text-muted pull-right" id="show_date">
+          {{{showDate content_entity.updated_at}}}
+        </small>
+        <button {{action 'gotoEdit' content_entity}} class="btn btn-large btn-warning pull-right" id="edit_button" style="display:none;">Edit <i class="fa fa-pencil"></i></button>
+        <p class="ellipsis block">
+          {{{content_entity.body}}}
+        </p>
+        {{/if }}
+      <button {{action edit this}}>edit</button>
+      <button {{action confirmDelete this}}>delete</button>
+    </div>
   {{/each}}
 </div>
 
-
 {{pagination-links page=page pages=pages}}
-

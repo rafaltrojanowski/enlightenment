@@ -73,6 +73,9 @@ EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend Enligh
       record = this.store.createRecord('content_entity',{
         body: @get('newEntryName')
       });
-      record.save();
-      @set('newEntryName', "")
 
+      record.save().then ((result) ->
+        # @transitionToRoute "content_entity.edit", result
+      ).bind(this)
+
+      @set('newEntryName', "")

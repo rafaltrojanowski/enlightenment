@@ -6,7 +6,8 @@
       = f.label "Username"
       = f.input_field :username, class: 'form-control input-sm'
     %br
-    = f.label 'My avatar'
+    .form-control
+      = f.label 'My avatar'
     = image_tag resource.avatar_url, size: "150x150" if resource.avatar?
     %br
     = f.input :avatar, as: :file
