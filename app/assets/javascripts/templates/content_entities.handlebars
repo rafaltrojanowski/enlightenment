@@ -7,17 +7,6 @@
     }
   });
   $('#container').find( 'textarea' ).keyup();
-
-  $(document).on("mouseenter","#content_entity a",function(e) {
-    e.preventDefault();
-    $(this).find("#show_date").hide();
-    $(this).find("#edit_button").show();
-  }).on("mouseleave","#content_entity a",function(e) {
-    e.preventDefault();
-    $(this).find("#edit_button").hide();
-    $(this).find("#show_date").show();
-  });
-  
 </script>
 
 <div id="container">
@@ -35,7 +24,7 @@
 
 <div class="list-group">
   {{#each content_entity in paginatedContent itemController="ContentEntity"}}
-    <div id="content_entity">
+    <div id="link_note">
       {{#link-to "content_entity" content_entity class="list-group-item"}}
         <img {{bind-attr src=content_entity.avatar}} style="width:60px;height:60px" class="img-circle">
 

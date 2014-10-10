@@ -7,6 +7,8 @@ if isAuthenticated
     li
       link-to 'notes' | <i class="fa fa-newspaper-o"></i> My Notes
     hr/
+  .destination
 else
   ul#sidebar-nav.nav
     li Welcome guest!
+    .destination

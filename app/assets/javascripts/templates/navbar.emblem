@@ -7,12 +7,9 @@
     link-to 'home' class='navbar-brand' | <i class="fa fa-sun-o fa-1x"> getE</i>
   if isAuthenticated
     .container-fluid
-      ul.nav.navbar-nav.navbar-right
+      ul.nav.navbar-nav.navbar-right id='dropdown_auth'
         li.dropdown
           a.dropdown-toggle data-toggle='dropdown' href='#' 
-            / - if current_user.username.present?
-            / = "<i class='fa fa-user'></i> #{current_user.username}".html_safe
-            / = "<i class='fa fa-user'></i> #{current_user.email}".html_safe
             | <i class='fa fa-user'></i> {{ hiName }}
             span.caret
           ul.dropdown-menu role='menu' 
@@ -25,7 +22,7 @@
               a{ action 'logout' } Logout
   else
     .container-fluid
-      ul.nav.navbar-nav.navbar-right
+      ul.nav.navbar-nav.navbar-right id='dropdown_not_auth'
         link-to 'login' class='btn btn-default' | Login
         link-to 'registration' class='btn btn-success' | Register
 
