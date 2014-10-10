@@ -15,7 +15,7 @@ EnlightenmentApp.AuthController = Ember.ObjectController.extend
       # would be nice if could do something like this
       # previousTransition.retry() in ajax success method
     else
-      successTransition = 'home'
+      successTransition = 'content_entities'
 
     me = @
     $.ajax

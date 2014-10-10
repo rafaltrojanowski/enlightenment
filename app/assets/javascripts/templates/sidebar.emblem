@@ -10,5 +10,5 @@ if isAuthenticated
   .destination
 else
   ul#sidebar-nav.nav
-    li Welcome guest!
+    li You need to be signed in to access this content!
     .destination

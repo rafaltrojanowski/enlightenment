@@ -5,35 +5,39 @@
           {{errorMsg}}
       </div>
     {{/if}}
-  <div class="control-group">
-    <label class="control-label" for="email">Name</label>
-    <div class="controls">
-        {{view Em.TextField valueBinding="name" id="name" action="register"}}
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="email">Email</label>
-    <div class="controls">
-      {{view Em.TextField valueBinding="email" id="email"}}
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="password">Password</label>
-    <div class="controls">
-      {{view Ember.TextField valueBinding="password" type="password" id="password"}}
-      <br/>
-      (at least 6 chars)
-    </div>
 
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="password_confirmation">Confirm Password</label>
-    <div class="controls">
-      {{view Ember.TextField valueBinding="password_confirmation" type="password" id="password_confirmation"}}
+  <div class="form-group">
+    <label class="col-lg-1 control-label">Name</label>
+    <div class="col-lg-11">
+      {{view Em.TextField valueBinding="name" id="name" action="register" type="text" class="form-control" placeholder="Name"}}
     </div>
   </div>
-  <div class="form-actions">
-    <input {{action 'register'}} type="submit" class="btn btn-primary" value="Register" />
-    <input {{action 'cancel'}} type="submit" class="btn" value="Cancel" />
+
+  <div class="form-group">
+    <label class="col-lg-1 control-label">Email</label>
+    <div class="col-lg-11">
+      {{view Em.TextField valueBinding="email" id="email" action="register" type="text" class="form-control" placeholder="Email"}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-lg-1 control-label">Password</label>
+    <div class="col-lg-11">
+      {{view Ember.TextField valueBinding="password" type="password" id="password" class="form-control" placeholder="Password (at least 6 char)"}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-lg-1 control-label">Confirm password</label>
+    <div class="col-lg-11">
+      {{view Ember.TextField valueBinding="password_confirmation" type="password" id="password_confirmation" class="form-control" placeholder="Password confirmation"}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-11 col-lg-offset-2">
+      <input {{action 'cancel'}} type="submit" class="btn btn-default" value="Cancel" />
+      <input {{action 'register'}} type="submit" class="btn btn-primary" value="Register" />
+    </div>
   </div>
 </div>
