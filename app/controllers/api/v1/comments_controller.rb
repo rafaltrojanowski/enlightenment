@@ -5,7 +5,13 @@ class Api::V1::CommentsController < ApplicationController
   def index
   end
 
-  def new
+  def create
+    attrs = {
+      content: params[:comment][:content],
+      user_id: current_user.id
+    }
+
+    respond_with :api, :v1, Comment.create(attrs)
   end
 
   def show
@@ -18,4 +24,7 @@ class Api::V1::CommentsController < ApplicationController
   #   klass = [Link, Note].detect { |c| params["#{c.name.underscore}_id"] }
   #   @commentable = klass.find(params["#{klass.name.underscore}_id"])
   # end
+  def comment_params
+    params.require(:comment).permit(:content, :user_id)
+  end
 end

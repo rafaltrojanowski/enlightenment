@@ -5,7 +5,7 @@ class NoteSerializer < ActiveModel::Serializer
               :updated_at,
               :avatar,
               :comments
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, key: :comments
 
   def avatar
     src = if object.content_entity.try(:user).try(:avatar?)
@@ -14,9 +14,4 @@ class NoteSerializer < ActiveModel::Serializer
       'https://dl.dropboxusercontent.com/u/57582960/doge.png'
     end
   end
-
-  def comments
-    object.comments
-  end
-
 end
