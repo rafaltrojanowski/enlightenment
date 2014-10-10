@@ -1,7 +1,9 @@
 class Link < ActiveRecord::Base
   mount_uploader :image, LinkImageUploader
 
-  after_commit :fetch_title
+  after_commit :fetch_title, unless: :title?
+  after_commit :fetch_image, unless: :image?
+
   has_one :content_entity, as: :contentable, dependent: :destroy
 
   def to_s
@@ -12,6 +14,9 @@ class Link < ActiveRecord::Base
 
   def fetch_title
     TitleFetcher.perform_async(id)
+  end
+
+  def fetch_image
     WebshotWorker.perform_async(id)
   end
 end

@@ -52,7 +52,6 @@ EnlightenmentApp.ContentEntitiesRoute = Ember.Route.extend
 
   actions:
     edit: (content_entity) ->
-      alert ('1');
       @controllerFor("content_entities.modal").edit content_entity
       @send "openModal", "content_entities.modal"
       return

@@ -17,8 +17,9 @@ class Api::V1::ContentEntitiesController < ApplicationController
 
   def update
     record = ContentEntity.find(params[:id]).contentable
+    do_update = record.is_a?(Link) ? update_link(record) : update_note(record)
 
-    if object = record.update_attributes(title: params[:contentEntity][:title])
+    if object = do_update
       render json: object
     else
       render json: object, status: 422
@@ -27,5 +28,13 @@ class Api::V1::ContentEntitiesController < ApplicationController
 
   def show
     respond_with ContentEntity.find(params[:id])
+  end
+
+  def update_link(record)
+    record.update_attributes(title: params[:contentEntity][:title])
+  end
+
+  def update_note(record)
+    record.update_attributes(body: params[:contentEntity][:body])
   end
 end

@@ -9,7 +9,9 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
 
   save: function() {
     this.get('model').save().then(function(){
+      alert ('save trig');
     },function(response){
+      alert ('save trig');
     });
   },
 

@@ -1,7 +1,6 @@
 EnlightenmentApp.ApplicationRoute = Em.Route.extend({
   events: {
     openModal: function(modal) {
-      alert ('3');
       this.render(modal, {
         into: 'application',
         outlet: 'modal'

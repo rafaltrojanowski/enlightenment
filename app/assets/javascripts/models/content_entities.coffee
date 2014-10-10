@@ -5,4 +5,10 @@ EnlightenmentApp.ContentEntity = DS.Model.extend(
   title: DS.attr('string')
   avatar: DS.attr('string')
   image: DS.attr('string')
+  isLink: (->
+    if @get("type") == 'link'
+      true
+    else
+      false
+  ).property("type")
 )
