@@ -5,9 +5,14 @@
         h4 = name
       .panel-body
         | Participants:
-        each users
-          = email
+        ul
+          each users
+            li
+              = email
   .col-sm-6
     .well
       h4 Add new member
-      button{ action "addUser" } AddUser
+      form submit="update"
+        = input id="members" data-pre=preData data-url=urlPath
+        button.btn.btn-success Update
+      button{ action "addMem" } Hej

@@ -15,6 +15,17 @@ class Api::V1::GroupsController < ApplicationController
     Group.last.users << current_user
   end
 
+  def update
+    group = Group.find(params[:id])
+    group.user_ids = params[:group][:users]
+    respond_with :api, :v1, group
+  end
+
+  def other_users
+    group = Group.find(params[:id])
+    respond_with User.filtering(params[:q]).not_members(group.user_ids), root: false
+  end
+
   def show
     respond_with Group.find(params[:id])
   end

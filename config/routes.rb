@@ -10,8 +10,13 @@ Rails.application.routes.draw do
       resources :content_entities, path: 'contentEntities' # TODO default path possible with ember?
       resources :links, only: [:index, :show]
       resources :notes, only: :index
-      resources :groups
       resources :users
+      resources :groups do
+        member do
+          get :other_users
+          get :members
+        end
+      end
     end
   end
 
