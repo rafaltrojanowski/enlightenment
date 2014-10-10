@@ -1,9 +1,9 @@
 Ember.Handlebars.registerBoundHelper('showTitle', function(value) {
-   if (value.length > 50) {
-      var truncatedBody = strip(value.substring(0, 50));
+   if (value.length > 20) {
+      var truncatedBody = strip(value.substring(0, 20));
       return truncatedBody + "...";
    }else{
-      return value;
+      return strip(value);
    }
 })
 

@@ -8,16 +8,6 @@
   });
   $('#container').find( 'textarea' ).keyup();
 
-  $(document).on("mouseenter","#content_entity a",function(e) {
-    e.preventDefault();
-    $(this).find("#show_date").hide();
-    $(this).find("#edit_button").show();
-  }).on("mouseleave","#content_entity a",function(e) {
-    e.preventDefault();
-    $(this).find("#edit_button").hide();
-    $(this).find("#show_date").show();
-  });
-
 </script>
 
 <div id="container">
