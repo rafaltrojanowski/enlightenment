@@ -75,7 +75,7 @@ EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend Enligh
       });
 
       record.save().then ((result) ->
-        @transitionToRoute "content_entity.edit", result
+        # @transitionToRoute "content_entity.edit", result
       ).bind(this)
 
       @set('newEntryName', "")

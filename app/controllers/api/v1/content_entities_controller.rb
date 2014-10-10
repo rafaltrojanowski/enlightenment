@@ -30,6 +30,12 @@ class Api::V1::ContentEntitiesController < ApplicationController
     respond_with ContentEntity.find(params[:id])
   end
 
+  def destroy
+    respond_with ContentEntity.find(params[:id]).destroy
+  end
+
+  private
+
   def update_link(record)
     record.update_attributes(title: params[:contentEntity][:title])
   end

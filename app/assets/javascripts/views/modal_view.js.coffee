@@ -15,5 +15,5 @@ EnlightenmentApp.ModalView = Em.View.extend(
     return
 )
 EnlightenmentApp.ContentEntitiesModalView = EnlightenmentApp.ModalView.extend({})
-# EnlightenmentApp.ConfirmDeleteView = EnlightenmentApp.ModalView.extend()
+EnlightenmentApp.ConfirmDeleteView = EnlightenmentApp.ModalView.extend();
 
