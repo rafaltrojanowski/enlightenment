@@ -13,4 +13,5 @@
  *= require_directory ./controllers/
  *= require_self
  *= require token-input
+ *= require select2
  */

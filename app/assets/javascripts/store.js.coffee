@@ -19,5 +19,7 @@
 EnlightenmentApp.ApplicationAdapter = DS.RESTAdapter.extend
   namespace: 'api/v1',
   configure: 'plurals', content_entity: 'content_entities'
+  configure: 'plurals', group: 'groups'
+  configure: 'plurals', user: 'users'
   configure: 'plurals', link: 'links'
   # configure: 'plurals', note: 'notes'

@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
   has_many :links, through: :content_entities, source: :contentable, source_type: 'Link'
   has_many :notes, through: :content_entities, source: :contentable, source_type: 'Note'
   has_and_belongs_to_many :groups, join_table: :participants
+
+  def name
+    username
+  end
 end

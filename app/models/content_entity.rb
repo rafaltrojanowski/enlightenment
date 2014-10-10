@@ -8,6 +8,7 @@ class ContentEntity < ActiveRecord::Base
   belongs_to :user
 
   before_create :create_entity
+  after_destroy :destroy_contentable
 
   delegate :to_s, to: :contentable
 
@@ -26,6 +27,10 @@ class ContentEntity < ActiveRecord::Base
       logger.error error
       create_note
     end
+  end
+
+  def destroy_contentable
+    contentable.destroy
   end
 
   def create_link
