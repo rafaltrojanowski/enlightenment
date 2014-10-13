@@ -65,6 +65,7 @@
               {{view Ember.Select content = groups
                  optionValuePath="content.id"
                  optionLabelPath="content.name"
+                 valueBinding="group_id"
               }}
               {{#each error in errors.group}}{{error.message}}{{/each}}
             </div>

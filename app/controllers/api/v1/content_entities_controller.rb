@@ -9,7 +9,6 @@ class Api::V1::ContentEntitiesController < ApplicationController
     attrs = {
       content: params[:contentEntity][:body],
       user_id: current_user.id
-      # group_id: # TODO
     }
 
     respond_with :api, :v1, ContentEntity.create(attrs)
@@ -37,10 +36,13 @@ class Api::V1::ContentEntitiesController < ApplicationController
   private
 
   def update_link(record)
-    record.update_attributes(title: params[:contentEntity][:title], description: params[:contentEntity][:description])
+    record.content_entity.update_column(:group_id, params[:contentEntity][:group_id])
+    record.update_attributes(title: params[:contentEntity][:title],
+                             description: params[:contentEntity][:description])
   end
 
   def update_note(record)
+    record.content_entity.update_column(:group_id, params[:contentEntity][:group_id])
     record.update_attributes(body: params[:contentEntity][:body])
   end
 end

@@ -1,16 +1,7 @@
 EnlightenmentApp.ModalController = Em.ObjectController.extend({
-  init: function() {
-    var groups = []
-
-    this.store.find('group').then(function(items) {
-       items.map(function(item){
-         groups.addObject({ id: item.get('id'), name: item.get('name')});
-       });
-
-    })
-
-    return this.set('groups', groups);
-  },
+  groups: function() {
+      return this.get('store').find('group');
+  }.property(),
 
   edit: function(record) {
     record.one('didUpdate', this, function() {
