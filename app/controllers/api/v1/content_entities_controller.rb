@@ -37,7 +37,7 @@ class Api::V1::ContentEntitiesController < ApplicationController
   private
 
   def update_link(record)
-    record.update_attributes(title: params[:contentEntity][:title])
+    record.update_attributes(title: params[:contentEntity][:title], description: params[:contentEntity][:description])
   end
 
   def update_note(record)

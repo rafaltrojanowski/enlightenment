@@ -4,6 +4,7 @@ class ContentEntitySerializer < ActiveModel::Serializer
              :body,
              :updated_at,
              :title,
+             :description,
              :avatar,
              :image
 
@@ -18,6 +19,14 @@ class ContentEntitySerializer < ActiveModel::Serializer
 
   def title
     object.contentable.title
+  end
+
+  def description
+    if object.contentable.is_a? Link
+      object.contentable.description
+    else
+      nil
+    end
   end
 
   def avatar

@@ -3,6 +3,7 @@ EnlightenmentApp.ContentEntity = DS.Model.extend(
   type: DS.attr('string')
   updated_at: DS.attr('string')
   title: DS.attr('string')
+  description: DS.attr('string')
   avatar: DS.attr('string')
   image: DS.attr('string')
   isLink: (->

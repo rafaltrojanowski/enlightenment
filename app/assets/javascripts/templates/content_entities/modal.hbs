@@ -20,7 +20,12 @@
             <div {{bind-attr class="errors.title:error :field"}}>
               <label>Title</label>
               {{view Ember.TextField valueBinding="title"}}
-              {{#each error in errors.name}}{{error.message}}{{/each}}
+              {{#each error in errors.title}}{{error.message}}{{/each}}
+            </div>
+            <div {{bind-attr class="errors.description:error :field"}}>
+              <label>Description</label>
+              {{view Ember.TextArea valueBinding="description"}}
+              {{#each error in errors.description}}{{error.message}}{{/each}}
             </div>
           </div>
         </div>
