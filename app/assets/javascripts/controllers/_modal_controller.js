@@ -7,24 +7,26 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
     this.set('model', record);
   },
 
-  save: function() {
-    this.get('model').save().then(function(){
-    },function(response){
-    });
-  },
+  actions: {
+    save: function() {
+      this.get('model').save().then(function(){
+      },function(response){
+      });
+    },
 
-  close: function() {
-    var model = this.get('model'),
-        transaction = model.get('transaction');
+    close: function() {
+      var model = this.get('model'),
+          transaction = model.get('transaction');
 
-    if (transaction) transaction.rollback();
-    if (model.get('errors'))
+      if (transaction) transaction.rollback();
+      if (model.get('errors'))
 
-    this.send("closeModal");
-  },
+      this.send("closeModal");
+    },
 
-  shouldDisableSubmit: function() {
-    return !this.get('isDirty') || this.get('isSaving');
-  }.property('isDirty', 'isSaving')
+    shouldDisableSubmit: function() {
+      return !this.get('isDirty') || this.get('isSaving');
+    }.property('isDirty', 'isSaving')
+  }
 });
 
