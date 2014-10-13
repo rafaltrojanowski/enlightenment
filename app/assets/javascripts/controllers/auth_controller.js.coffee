@@ -2,7 +2,7 @@
 ## They are grouped together here for ease of exposition
 
 EnlightenmentApp.AuthController = Ember.ObjectController.extend
-  content: {}
+  model: {}
   currentUser:  null
   isAuthenticated: Em.computed.notEmpty("currentUser.email")
   login: (route) ->
