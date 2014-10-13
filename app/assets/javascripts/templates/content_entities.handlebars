@@ -47,7 +47,7 @@
             {{{showDate content_entity.updated_at}}}
           </small>
           <button {{action edit this}} class="btn btn-large btn-warning pull-right" id="edit_button" style="display:none;">Edit <i class="fa fa-pencil"></i></button>
-          <button {{action confirmDelete this}} class="btn btn-large btn-warning pull-right" id="destroy_button" style="display:none;">Destroy <i class="fa fa-trash"></i></button>
+          <button {{action 'confirmDelete' this}} class="btn btn-large btn-warning pull-right" id="destroy_button" style="display:none;">Destroy <i class="fa fa-trash"></i></button>
           <p class="ellipsis block">
             {{{content_entity.body}}}
           </p>
