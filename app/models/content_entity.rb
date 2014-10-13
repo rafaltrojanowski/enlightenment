@@ -6,6 +6,7 @@ class ContentEntity < ActiveRecord::Base
 
   belongs_to :contentable, polymorphic: true
   belongs_to :user
+  belongs_to :group
 
   before_create :create_entity
   after_destroy :destroy_contentable

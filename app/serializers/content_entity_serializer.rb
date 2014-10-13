@@ -6,7 +6,12 @@ class ContentEntitySerializer < ActiveModel::Serializer
              :title,
              :description,
              :avatar,
-             :image
+             :image,
+             :group
+
+  def group
+    object.group_id
+  end
 
   def body
     # url for link / body for note

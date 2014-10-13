@@ -59,6 +59,16 @@
               {{view Ember.TextArea valueBinding="body"}}
               {{#each error in errors.body}}{{error.message}}{{/each}}
             </div>
+
+            <div {{bind-attr class="errors.group:error :field"}}>
+              <label>Group</label>
+              {{view Ember.Select content = groups
+                 optionValuePath="content.id"
+                 optionLabelPath="content.name"
+              }}
+              {{#each error in errors.group}}{{error.message}}{{/each}}
+            </div>
+
           </div>
         </div>
         <div class="modal-footer">
