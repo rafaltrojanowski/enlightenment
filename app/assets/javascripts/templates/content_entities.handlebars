@@ -22,16 +22,16 @@
             <b>{{showTitle content_entity.body}}</b>
           {{/link-to}}
           <span class="label label-default pull-right" style="font-family:courier,'new courier';" id="show_date">{{{date content_entity.updated_at}}}</span>
+          <button {{action confirmDelete content_entity}} class="btn btn-large btn-danger pull-right" id="destroy_button" style="display:none;">Delete <i class="fa fa-trash"></i></button>
           <button {{action edit content_entity}} class="btn btn-large btn-warning pull-right" id="edit_button" style="display:none;">Edit <i class="fa fa-pencil"></i></button>
-          <button {{action confirmDelete content_entity}} class="btn btn-large btn-warning pull-right" id="destroy_button" style="display:none;">Destroy <i class="fa fa-trash"></i></button>
         {{else }}
           {{#link-to "content_entity" content_entity}}
             <i class="fa fa-globe fa-2x"></i>
             <b>{{content_entity.title}}</b>
           {{/link-to}}
           <span class="label label-default pull-right" style="font-family:courier,'new courier';" id="show_date">{{{date content_entity.updated_at}}}</span>
+          <button {{action 'confirmDelete' content_entity}} class="btn btn-large btn-danger pull-right" id="destroy_button" style="display:none;">Delete <i class="fa fa-trash"></i></button>
           <button {{action edit content_entity}} class="btn btn-large btn-warning pull-right" id="edit_button" style="display:none;">Edit <i class="fa fa-pencil"></i></button>
-          <button {{action 'confirmDelete' content_entity}} class="btn btn-large btn-warning pull-right" id="destroy_button" style="display:none;">Destroy <i class="fa fa-trash"></i></button>
           <p class="ellipsis block">
             {{{content_entity.body}}}
           </p>
