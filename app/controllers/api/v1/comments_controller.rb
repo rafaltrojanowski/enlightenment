@@ -3,12 +3,16 @@ class Api::V1::CommentsController < ApplicationController
   respond_to :json
 
   def index
+    respond_with Comment.all
   end
 
   def create
+    # raise params.inspect
     attrs = {
       content: params[:comment][:content],
-      user_id: current_user.id
+      user_id: current_user.id,
+      commentable_id: params[:comment][:commentable_id],
+      commentable_type: params[:comment][:commentable_type]
     }
 
     respond_with :api, :v1, Comment.create(attrs)
@@ -25,6 +29,6 @@ class Api::V1::CommentsController < ApplicationController
   #   @commentable = klass.find(params["#{klass.name.underscore}_id"])
   # end
   def comment_params
-    params.require(:comment).permit(:content, :user_id)
+    params.require(:comment).permit(:content, :user_id, :commentable_id, :commentable_type)
   end
 end

@@ -1,5 +1,7 @@
+#= require moment
 #= require jquery
 #= require jquery_ujs
+#= require jquery.autosize
 #= require handlebars
 #= require ember
 #= require ember-data

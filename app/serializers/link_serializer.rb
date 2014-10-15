@@ -2,6 +2,7 @@ class LinkSerializer < ActiveModel::Serializer
   attributes :id,
              :url,
              :updated_at,
+             :created_at,
              :title,
              :avatar,
              :image

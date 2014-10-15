@@ -13,9 +13,9 @@
   <div class="well">
     <form class="form-horizontal" role="form" {{action "addEntry" on="submit"}}>
       <div class="input-group" style="padding:14px;">
-        {{view Ember.TextArea name='content_entity[content]' valueBinding="newEntryName" class="form-control" required="true" id="textarea"}}
+        {{button-input name='content_entity[content]' valueBinding="newEntryName" class="form-control" required="true" id="textarea"}}
         <span class="input-group-btn">
-          <button class="btn btn-success" type="submit" id="add_button">Add</button>
+          <button class="btn btn-success" type="submit" id="add_button" style="height:75px;">Add</button>
         </span>
       </div>
     </form>
@@ -30,7 +30,7 @@
         <i class="fa fa-globe fa-2x"></i>
         <b>{{link.title}}</b>
         <small style="font-family:courier,'new courier';" class="text-muted pull-right" id="show_date">
-          {{{showDate link.updated_at}}}
+          {{{date link.updated_at}}}
         </small>
         <button {{action edit this}} class="btn btn-large btn-warning pull-right" id="edit_button" style="display:none;">Edit <i class="fa fa-pencil"></i></button>
         <p class="ellipsis block">

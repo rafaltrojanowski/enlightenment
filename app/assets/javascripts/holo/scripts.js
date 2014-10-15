@@ -9,8 +9,18 @@ $('.btn-toggle').click(function() {
 
 });
 
-// textarea elastic button
-// $('#container').on( 'keyup', 'textarea', function(e){
+  // $('#container').on( 'keyup', 'textarea', function(e){
+  //   $(this).css('height', 'auto' );
+  //   $(this).height( this.scrollHeight );
+  //   if (this.scrollHeight <= 300) {
+  //     $('#add_button').css('height', this.scrollHeight)
+  //   }
+  // });
+  // $('#container').find( 'textarea' ).keyup();
+
+// działa
+// $(document).on("keyup","textarea",function(e) {
+//   e.preventDefault();
 //   $(this).css('height', 'auto' );
 //   $(this).height( this.scrollHeight );
 //   if (this.scrollHeight <= 300) {
@@ -18,16 +28,6 @@ $('.btn-toggle').click(function() {
 //   }
 // });
 // $('#container').find( 'textarea' ).keyup();
-
-$(document).on("keyup","textarea",function(e) {
-  e.preventDefault();
-  $(this).css('height', 'auto' );
-  $(this).height( this.scrollHeight );
-  if (this.scrollHeight <= 300) {
-    $('#add_button').css('height', this.scrollHeight)
-  }
-});
-$('#container').find( 'textarea' ).keyup();
 
 // edit button for links/notes
 $(document).on("mouseenter","#link_note",function(e) {

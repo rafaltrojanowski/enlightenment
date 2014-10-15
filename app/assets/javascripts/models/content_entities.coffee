@@ -1,13 +1,14 @@
 EnlightenmentApp.ContentEntity = DS.Model.extend(
   body: DS.attr('string')
   type: DS.attr('string')
-  updated_at: DS.attr('string')
+  updated_at: DS.attr('date')
   title: DS.attr('string')
   description: DS.attr('string')
   avatar: DS.attr('string')
   image: DS.attr('string')
   group: DS.belongsTo('group', {async: true})
   group_id: DS.attr('number')
+  comments: DS.hasMany('comment', {async: true})
   isLink: (->
     if @get("type") == 'link'
       true

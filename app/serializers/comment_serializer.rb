@@ -8,10 +8,10 @@ class CommentSerializer < ActiveModel::Serializer
 
   # belongs_to :commentable, polymorphic: true
 
-  def attributes
-    data = super
-    data[object.commentable_type.downcase.to_sym] = object.commentable_id
-    data
-  end
+  # def attributes
+  #   data = super
+  #   data[object.commentable_type.to_sym] = object.commentable_id
+  #   data
+  # end
 
 end
