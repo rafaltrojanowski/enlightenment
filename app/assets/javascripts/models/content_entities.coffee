@@ -8,11 +8,11 @@ EnlightenmentApp.ContentEntity = DS.Model.extend(
   image: DS.attr('string')
   group: DS.belongsTo('group', {async: true})
   group_id: DS.attr('number')
-  comments: DS.hasMany('comment', {async: true})
   isLink: (->
     if @get("type") == 'link'
       true
     else
       false
   ).property("type")
+  comments: DS.hasMany('comment', {async: true})
 )

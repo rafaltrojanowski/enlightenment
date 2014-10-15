@@ -1,9 +1,4 @@
-EnlightenmentApp.ContentEntityController = Ember.ObjectController.extend EnlightenmentApp.PaginatableMixin,
-  page:           1,
-  perPage:        10,
-  sortAscending: false,
-  sortProperties: ['updated_at'],
-
+EnlightenmentApp.ContentEntityController = Ember.ObjectController.extend
   isLink: (->
     if @get("type") == 'link'
       true
