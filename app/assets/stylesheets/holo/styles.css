@@ -13,10 +13,10 @@ author: bootply.com
 
 html,body {
   height: 100%;
-  font-family: 'Droid Sans Mono', sans-serif;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-p,h1,h2,h3,h4 {
+p {
   font-family: 'Droid Sans Mono', sans-serif;
 }
 

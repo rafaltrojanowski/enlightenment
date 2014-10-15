@@ -27,7 +27,7 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
       if (model.get('errors'))
 
       this.send("closeModal");
-      EnlightenmentApp.get('flash').success('Record added without changes!')
+      // EnlightenmentApp.get('flash').success('Record added without changes!')
     },
 
     shouldDisableSubmit: function() {
