@@ -14,6 +14,7 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
   actions: {
     save: function() {
       this.get('model').save().then(function(){
+        EnlightenmentApp.get('flash').success('Record updated!');
       },function(response){
       });
     },
@@ -26,6 +27,7 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
       if (model.get('errors'))
 
       this.send("closeModal");
+      EnlightenmentApp.get('flash').success('Record added without changes!')
     },
 
     shouldDisableSubmit: function() {
