@@ -7,7 +7,12 @@ class ContentEntitySerializer < ActiveModel::Serializer
              :description,
              :avatar,
              :image,
+             :group_id,
              :group
+
+  def group_id
+    object.group_id
+  end
 
   def group
     object.group_id

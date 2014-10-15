@@ -7,7 +7,7 @@ EnlightenmentApp.ContentEntity = DS.Model.extend(
   avatar: DS.attr('string')
   image: DS.attr('string')
   group: DS.belongsTo('group', {async: true})
-  group_id: DS.attr('number')
+  # group_id: DS.attr('number')
   isLink: (->
     if @get("type") == 'link'
       true
