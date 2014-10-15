@@ -60,7 +60,7 @@ EnlightenmentApp.ContentEntitiesRoute = Ember.Route.extend
       @send 'openModal', 'content_entities.modal'
       return
     confirmDelete: (content_entity) ->
-      @controllerFor('confirm.delete').confirmDelete content_entity, 'content_entity.index' # should be content_entities.index (router) ?
+      @controllerFor('confirm.delete').send('confirmDelete', content_entity, 'content_entity.index');
       @send 'openModal', 'confirm.delete'
 
 EnlightenmentApp.ContentEntityEditRoute = Ember.Route.extend
