@@ -19,6 +19,20 @@ EnlightenmentApp.ContentEntityController = Ember.ObjectController.extend
     gotoEdit: (model) ->
       this.transitionTo('content_entity.edit', model);
 
+    addComment: (param) ->
+      contententity = @get('content_entity.content')
+      comment = @get("store").createRecord("comment",{
+        commentable_type: "ContentEntity",
+        commentable_id: param.id,
+        content: @get("commentBody")
+      });
+
+      comment.save().then ((result) ->
+        @get("comments").pushObject comment
+      ).bind(this)
+
+      @set('commentBody', "")
+
 EnlightenmentApp.ContentEntityEditController = Ember.ObjectController.extend({
   needs: [ 'content_entity' ]
 

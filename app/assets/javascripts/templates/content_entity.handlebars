@@ -1,92 +1,39 @@
 {{ outlet }}
-
+<div class="well">
 {{#if isLink}}
-  <h2>{{title}}</h2>
-  <p><a target="_blank" {{bind-attr href='fullAddress'}}>{{fullAddress}}</a></p>
+  <h1 id="section1">{{title}}</h1>
+  <p><a target="_blank" {{bind-attr href='fullAddress'}} class="btn btn-primary">{{fullAddress}}</a></p>
 {{else}}
   <p>{{{body}}}</p>
 {{/if}}
-<p>{{{showDate updated_at}}}</p>
 
-<br>
-<br>
-<br>
-<br>
-
-Comments:
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4>Commenter name</h4>
-    <i>Date</i>
-  </div>
-  <div class="panel-body">
-    <div class="clearfix"></div>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-      Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
-      dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
-      Aliquam in felis sit amet augue.
-  </div><!--/panel-body-->
-</div>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4>Commenter name</h4>
-    <i>Date</i>
-  </div>
-  <div class="panel-body">
-    <div class="clearfix"></div>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-      Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
-      dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
-      Aliquam in felis sit amet augue.
-  </div><!--/panel-body-->
-</div>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4>Commenter name</h4>
-    <i>Date</i>
-  </div>
-  <div class="panel-body">
-    <div class="clearfix"></div>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-      Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
-      dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
-      Aliquam in felis sit amet augue.
-  </div><!--/panel-body-->
-</div>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4>Commenter name</h4>
-    <i>Date</i>
-  </div>
-  <div class="panel-body">
-    <div class="clearfix"></div>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-      Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
-      dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
-      Aliquam in felis sit amet augue.
-  </div><!--/panel-body-->
-</div>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4>Commenter name</h4>
-    <i>Date</i>
-  </div>
-  <div class="panel-body">
-    <div class="clearfix"></div>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-      Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
-      dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
-      Aliquam in felis sit amet augue.
-  </div><!--/panel-body-->
+<span class="label label-default">{{{date updated_at}}}</span>
 </div>
 
-<ul class="pagination center-block" style="display:inline-block;">
-  <li><a href="#">«</a></li>
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#">4</a></li>
-  <li><a href="#">5</a></li>
-  <li><a href="#">»</a></li>
-</ul>
+<div id="container">
+  <div class="well">
+    <form class="form-horizontal" role="form" {{action "addComment" this on="submit"}}>
+      <div class="input-group" style="padding:14px;">
+        {{button-input valueBinding="commentBody" class="form-control" placeholder="Enter your comment here!"}}
+        <span class="input-group-btn">
+          <button class="btn btn-success" type="submit" id="add_button" style="height:75px;">Add</button>
+        </span>
+      </div>
+    </form>
+  </div>
+</div>
+
+<h3>Comments</h3>
+{{#each comment in comments}}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <small style="font-family:courier,'new courier';" class="text-muted pull-right">
+        {{{date comment.updated_at}}}
+      </small>
+      <h4>{{comment.user_id}}</h4>
+    </div>
+    <div class="panel-body">
+      {{comment.content}}
+    </div>
+  </div>
+{{/each}}

@@ -1,7 +1,7 @@
 EnlightenmentApp.ContentEntity = DS.Model.extend(
   body: DS.attr('string')
   type: DS.attr('string')
-  updated_at: DS.attr('string')
+  updated_at: DS.attr('date')
   title: DS.attr('string')
   description: DS.attr('string')
   avatar: DS.attr('string')
@@ -14,4 +14,5 @@ EnlightenmentApp.ContentEntity = DS.Model.extend(
     else
       false
   ).property("type")
+  comments: DS.hasMany('comment', {async: true})
 )

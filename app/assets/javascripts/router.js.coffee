@@ -8,14 +8,18 @@ EnlightenmentApp.Router.map ()->
   @resource 'content_entities'
   @resource 'content_entity', path: 'content_entities/:content_entity_id', ->
     @route "edit"
+    @resource 'comments', ->
+      @route 'new'
+    @route 'comment', path: '/comments/:comment_id'
   @resource 'links'
-  @resource 'link', path: 'links/:link_id', ->
-    @resource 'comments'
+  @resource 'link', path: 'links/:link_id' #, ->
+    # @resource 'comments'
   @resource 'notes'
   @resource 'note', path: 'notes/:note_id'
   @resource 'groups', ->
     @route 'new'
   @resource 'group', path: 'groups/:group_id'
+  @resource 'comments'
 
 EnlightenmentApp.ModalView = Ember.View.extend(
   didInsertElement: ->
@@ -63,6 +67,10 @@ EnlightenmentApp.ContentEntitiesRoute = Ember.Route.extend
       @controllerFor('confirm.delete').send('confirmDelete', content_entity, 'content_entity.index');
       @send 'openModal', 'confirm.delete'
 
+# EnlightenmentApp.ContentEntityRoute = Ember.Route.extend
+#   model: ->
+#     @modelFor('content_entity')
+
 EnlightenmentApp.ContentEntityEditRoute = Ember.Route.extend
   test: true # TODO
 
@@ -70,9 +78,24 @@ EnlightenmentApp.LinksRoute = Ember.Route.extend
   model: ->
     @get('store').find('link')
 
+# EnlightenmentApp.LinksNewRoute = Ember.Route.extend(
+#   model: ->
+#     EnlightenmentApp.Link.createRecord(created_at: new Date())
+#   # setupController: (controller) ->
+#   #   # controller.set('content', App.Post.createRecord(publishedAt: new Date(), author: "current user"))
+# )
+
 EnlightenmentApp.CommentsRoute = Ember.Route.extend(
   model: ->
     @modelFor('link').get 'comments' # link.index?
+    # @get('store').find('comment')
+    # @get('store').find('content_entity')
+)
+
+EnlightenmentApp.CommentsNewRoute = Ember.Route.extend(
+  setupController: (controller, model) ->
+    controller.set "content", null
+    return
 )
 
 EnlightenmentApp.NotesRoute = Ember.Route.extend
