@@ -7,3 +7,4 @@ EnlightenmentApp.GroupsNewController = Ember.Controller.extend
       record.save()
       @set('newGroup')
       @transitionToRoute('groups')
+      EnlightenmentApp.get("flash").success "New group added!"

@@ -19,6 +19,7 @@ EnlightenmentApp.ConfirmDeleteController = Em.ObjectController.extend({
 
       model.deleteRecord();
       model.save();
+      EnlightenmentApp.get('flash').success('Record destroyed!');
     },
 
     close: function() {

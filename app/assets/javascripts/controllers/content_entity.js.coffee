@@ -40,6 +40,7 @@ EnlightenmentApp.ContentEntityController = Ember.ObjectController.extend
         @get("comments").pushObject comment
       ).bind(this)
       @set('commentBody', "")
+      EnlightenmentApp.get("flash").success "Comment added!"
 
 EnlightenmentApp.ContentEntityEditController = Ember.ObjectController.extend({
   needs: [ 'content_entity' ]
@@ -53,4 +54,5 @@ EnlightenmentApp.ContentEntityEditController = Ember.ObjectController.extend({
       record.set("title", newTitle);
       record.save();
       this.transitionTo( 'content_entities' );
+      EnlightenmentApp.get("flash").success "Record updated!"
 });

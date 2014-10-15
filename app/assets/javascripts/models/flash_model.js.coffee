@@ -21,4 +21,3 @@ EnlightenmentApp.FlashModel = Ember.Object.extend(
     return
 )
 
-EnlightenmentApp.set "flash", EnlightenmentApp.FlashModel.create()
