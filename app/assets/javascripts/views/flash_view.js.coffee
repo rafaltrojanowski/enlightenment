@@ -2,8 +2,8 @@ EnlightenmentApp.FlashView = Ember.View.extend(
   templateName: "flash"
   classNames: ["alert"]
   classNameBindings: [
-    "alert-success"
-    "alert-danger"
+    "alert:alert-danger"
+    "success:alert-success"
   ]
   messageBinding: "model.message"
   alertBinding: "model.isAlert"
@@ -18,11 +18,11 @@ EnlightenmentApp.FlashView = Ember.View.extend(
     return
   ).observes("message")
   hide: ->
-    @$().hide()
+    @$().hide('slow')
     return
 
   show: ->
-    @$().show()
+    @$().show('slow')
     return
 
   click: (e) ->

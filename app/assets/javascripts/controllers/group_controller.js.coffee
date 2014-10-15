@@ -30,3 +30,4 @@ EnlightenmentApp.GroupController = Ember.ObjectController.extend
         usr = @store.getById(member.id)
         @get('users').pushObject(usr)
       @get('model').save()
+      EnlightenmentApp.get("flash").success "Group updated!"
