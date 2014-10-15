@@ -7,6 +7,7 @@
         div data-offset-bottom='90' data-offset-top='45' data-spy='affix'
           partial 'sidebar'
       .col-xs-12.col-sm-10 data-spy='scroll' data-target='#sidebar-nav'
+        EnlightenmentApp.FlashView modelBinding=EnlightenmentApp.flash
         = outlet
         = outlet modal
 
