@@ -125,3 +125,4 @@ EnlightenmentApp.RegistrationRoute = Ember.Route.extend
       log.info "cancelling registration"
       @transitionTo 'home'
 
+EnlightenmentApp.set "flash", EnlightenmentApp.FlashModel.create()

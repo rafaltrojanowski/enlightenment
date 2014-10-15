@@ -28,6 +28,7 @@ EnlightenmentApp.AuthController = Ember.ObjectController.extend
         log.log "Login Msg #{data.user.dummy_msg}"
         me.set 'currentUser', data.user
         route.transitionTo successTransition
+        EnlightenmentApp.get('flash').success('This is a success message.');
       error: (jqXHR, textStatus, errorThrown) ->
         if jqXHR.status==401
           route.controllerFor('login').set "errorMsg", "That email/password combo didn't work.  Please try again"

@@ -19,12 +19,12 @@
           <div class="modal-body">
             <div {{bind-attr class="errors.title:error :field"}}>
               <label>Title</label>
-              {{view Ember.TextField valueBinding="title"}}
+              {{view Ember.TextField valueBinding="title" class="form-control"}}
               {{#each error in errors.title}}{{error.message}}{{/each}}
             </div>
             <div {{bind-attr class="errors.description:error :field"}}>
               <label>Description</label>
-              {{view Ember.TextArea valueBinding="description"}}
+              {{view Ember.TextArea valueBinding="description" class="form-control"}}
               {{#each error in errors.description}}{{error.message}}{{/each}}
             </div>
 
@@ -34,6 +34,7 @@
                  optionValuePath="content.id"
                  optionLabelPath="content.name"
                  valueBinding="group_id"
+                 class="form-control"
               }}
               {{#each error in errors.group}}{{error.message}}{{/each}}
             </div>
@@ -41,8 +42,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" {{bind-attr disabled="shouldDisableSubmit"}}>Save</button>
-          <button {{action 'close'}}>Cancel</button>
+          <button type="submit" {{bind-attr disabled="shouldDisableSubmit"}} class="btn btn-info">Save</button>
+          <button {{action 'close'}} class="btn btn-default">Cancel</button>
           {{#if isSaving}}
             <img src="{{unbound App.AJAX_LOADER_IMG}}" alt="Loading..." class="ajax-loader">
             Saving...
@@ -64,10 +65,9 @@
         </div>
         <form {{action 'save' on="submit"}}>
         <div class="modal-body">
-          <div class="modal-body">
             <div {{bind-attr class="errors.body:error :field"}}>
               <label>Body</label>
-              {{view Ember.TextArea valueBinding="body"}}
+              {{view Ember.TextArea valueBinding="body" class="form-control"}}
               {{#each error in errors.body}}{{error.message}}{{/each}}
             </div>
 
@@ -77,15 +77,14 @@
                  optionValuePath="content.id"
                  optionLabelPath="content.name"
                  valueBinding="group_id"
+                 class="form-control"
               }}
               {{#each error in errors.group}}{{error.message}}{{/each}}
             </div>
-
-          </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" {{bind-attr disabled="shouldDisableSubmit"}}>Save</button>
-          <button {{action 'close'}}>Cancel</button>
+          <button type="submit" {{bind-attr disabled="shouldDisableSubmit"}} class="btn btn-info">Save</button>
+          <button {{action 'close'}} class="btn btn-default">Cancel</button>
           {{#if isSaving}}
             <img src="{{unbound App.AJAX_LOADER_IMG}}" alt="Loading..." class="ajax-loader">
             Saving...
