@@ -9,3 +9,10 @@ EnlightenmentApp.ButtonInputComponent = Ember.TextArea.extend({
   }.on('didInsertElement')
 
 });
+
+EnlightenmentApp.AutosizeTextareaComponent = Ember.TextArea.extend({
+  setAutosize: function() {
+    $('textarea').autosize();
+  }.on('didInsertElement')
+
+});

@@ -28,7 +28,8 @@ EnlightenmentApp.AuthController = Ember.ObjectController.extend
         log.log "Login Msg #{data.user.dummy_msg}"
         me.set 'currentUser', data.user
         route.transitionTo successTransition
-        EnlightenmentApp.get("flash").success "You have successfully logged in!"
+        # EnlightenmentApp.get("flash").success "You have successfully logged in!"
+        alertify.success("You have successfully logged in!");
       error: (jqXHR, textStatus, errorThrown) ->
         if jqXHR.status==401
           route.controllerFor('login').set "errorMsg", "That email/password combo didn't work.  Please try again"
@@ -55,10 +56,12 @@ EnlightenmentApp.AuthController = Ember.ObjectController.extend
       success: (data) ->
         me.set 'currentUser', data.user
         route.transitionTo 'home'
-        EnlightenmentApp.get("flash").success "Welcome to EnlightenmentApp, enjoy!"
+        # EnlightenmentApp.get("flash").success "Welcome to EnlightenmentApp, enjoy!"
+        alertify.success("Welcome to EnlightenmentApp, enjoy!");
       error: (jqXHR, textStatus, errorThrown) ->
         route.controllerFor('registration').set "errorMsg", "That email/password combo didn't work.  Please try again"
-        EnlightenmentApp.get("flash").alert "That email/password combo didn't work.  Please try again"
+        # EnlightenmentApp.get("flash").alert "That email/password combo didn't work.  Please try again"
+        alertify.error("That email/password combo didn't work. Please try again");
 
   logout: ->
     log.info "Logging out..."
@@ -73,7 +76,8 @@ EnlightenmentApp.AuthController = Ember.ObjectController.extend
         log.info "Logged out on server"
         me.set 'currentUser', null
         me.transitionToRoute "home"
-        EnlightenmentApp.get("flash").success "You have successfully logged out."
+        # EnlightenmentApp.get("flash").success "You have successfully logged out."
+        alertify.success("You have successfully logged out.");
       error: (jqXHR, textStatus, errorThrown) ->
         alert "Error logging out: #{errorThrown}"
         EnlightenmentApp.get("flash").alert "Error logging out: #{errorThrown}"

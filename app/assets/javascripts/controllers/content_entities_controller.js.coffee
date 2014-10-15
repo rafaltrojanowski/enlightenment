@@ -80,4 +80,5 @@ EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend Enligh
       ).bind(this)
 
       @set('newEntryName', "")
-      EnlightenmentApp.get("flash").success "New record added!"
+      # EnlightenmentApp.get("flash").success "New record added!"
+      alertify.success("New record added!")

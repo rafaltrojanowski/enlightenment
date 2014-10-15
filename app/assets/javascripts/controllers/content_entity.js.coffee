@@ -54,5 +54,6 @@ EnlightenmentApp.ContentEntityEditController = Ember.ObjectController.extend({
       record.set("title", newTitle);
       record.save();
       this.transitionTo( 'content_entities' );
-      EnlightenmentApp.get("flash").success "Record updated!"
+      # EnlightenmentApp.get("flash").success "Record updated!"
+      alertify.success("Record updated!")
 });

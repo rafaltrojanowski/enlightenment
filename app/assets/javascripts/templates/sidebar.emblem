@@ -7,9 +7,11 @@ if isAuthenticated
     li
       link-to 'notes' | <i class="fa fa-newspaper-o"></i> My Notes
     hr/
+    <i class="fa fa-cog pull-right"></i>
+    br
     each group in groups
       li
-        link-to 'content_entities' | <i class="fa fa-group"></i><i class="fa fa-cog pull-right"></i> {{group.name}}
+        link-to 'content_entities' | <i class="fa fa-group"></i> {{group.name}}
   .destination
 else
   ul#sidebar-nav.nav

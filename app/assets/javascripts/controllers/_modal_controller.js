@@ -14,7 +14,8 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
   actions: {
     save: function() {
       this.get('model').save().then(function(){
-        EnlightenmentApp.get('flash').success('Record updated!');
+        // EnlightenmentApp.get('flash').success('Record updated!');
+        alertify.success("Record updated!");
       },function(response){
       });
     },
