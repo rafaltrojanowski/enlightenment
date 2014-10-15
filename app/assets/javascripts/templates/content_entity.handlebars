@@ -4,7 +4,7 @@
   <h1 id="section1">{{title}}</h1>
   <p><a target="_blank" {{bind-attr href='fullAddress'}} class="btn btn-primary">{{fullAddress}}</a></p>
 {{else}}
-  <p>{{{body}}}</p>
+  <p>{{{formattedBody}}}</p>
 {{/if}}
 
 <span class="label label-default">{{{date updated_at}}}</span>

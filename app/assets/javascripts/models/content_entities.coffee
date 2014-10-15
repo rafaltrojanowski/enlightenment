@@ -15,4 +15,7 @@ EnlightenmentApp.ContentEntity = DS.Model.extend(
       false
   ).property("type")
   comments: DS.hasMany('comment', {async: true})
+  formattedBody: (->
+    @get("body").replace /\n\r?/g, "<br />"
+  ).property("body")
 )
