@@ -16,6 +16,15 @@ EnlightenmentApp.ContentEntityController = Ember.ObjectController.extend
   ).property("type")
 
   actions:
+    edit: (content_entity) ->
+      @controllerFor("content_entities.modal").edit content_entity
+      @send 'openModal', 'content_entities.modal'
+      return
+
+    confirmDelete: (content_entity) ->
+      @controllerFor('confirm.delete').send('confirmDelete', content_entity, 'content_entities');
+      @send 'openModal', 'confirm.delete'
+    # TODO remove gotoEdit
     gotoEdit: (model) ->
       this.transitionTo('content_entity.edit', model);
 
@@ -30,7 +39,6 @@ EnlightenmentApp.ContentEntityController = Ember.ObjectController.extend
       comment.save().then ((result) ->
         @get("comments").pushObject comment
       ).bind(this)
-
       @set('commentBody', "")
 
 EnlightenmentApp.ContentEntityEditController = Ember.ObjectController.extend({

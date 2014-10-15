@@ -1,5 +1,9 @@
 {{ outlet }}
 <div class="well">
+
+<button {{action edit this}} class="btn btn-large btn-warning pull-right" id="edit_button">Edit <i class="fa fa-pencil"></i></button>
+<button {{action 'confirmDelete' this}} class="btn btn-large btn-warning pull-right" id="destroy_button">Destroy <i class="fa fa-trash"></i></button>
+
 {{#if isLink}}
   <h1 id="section1">{{title}}</h1>
   <p>{{description}}</p>
