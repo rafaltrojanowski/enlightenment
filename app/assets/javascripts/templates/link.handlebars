@@ -1,7 +1,7 @@
 <div class="well">
   <h1 id="section1">{{title}}</h1>
   <p><a target="_blank" {{bind-attr href='fullAddress'}} class="btn btn-primary">{{fullAddress}}</a></p>
-  <p>{{{showDate updated_at}}}</p>
+  <p>{{{date updated_at}}}</p>
 </div>
 <br>
 <h3>Comments</h3>
@@ -9,7 +9,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <small style="font-family:courier,'new courier';" class="text-muted pull-right">
-        {{{showDate updated_at}}}
+        {{{date updated_at}}}
       </small>
       <h4>commenter email</h4>
     </div>

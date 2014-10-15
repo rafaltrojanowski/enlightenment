@@ -7,6 +7,8 @@ class ContentEntitySerializer < ActiveModel::Serializer
              :avatar,
              :image
 
+  has_many :comments, as: :commentable, key: :comments # if console have errors delete key
+
   def body
     # url for link / body for note
     object.contentable.to_s.gsub(/\n/, '<br/>') rescue object.contentable

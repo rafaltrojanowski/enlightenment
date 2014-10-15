@@ -12,6 +12,8 @@ class ContentEntity < ActiveRecord::Base
 
   delegate :to_s, to: :contentable
 
+  has_many :comments, as: :commentable
+
   private
 
   def create_entity

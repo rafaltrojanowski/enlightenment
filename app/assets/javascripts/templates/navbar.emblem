@@ -19,7 +19,7 @@
               | Edit account
             li.divider
             li
-              a{ action 'logout' } Logout
+              link-to action 'logout' | Logout
   / else
   /   .container-fluid
   /     ul.nav.navbar-nav.navbar-right id='dropdown_not_auth'
