@@ -2,6 +2,9 @@
 <div class="well">
 {{#if isLink}}
   <h1 id="section1">{{title}}</h1>
+  <a target='_blank' {{bind-attr href='fullAddress'}}>
+    <img {{bind-attr src=image}}/>
+  </a>
   <p><a target="_blank" {{bind-attr href='fullAddress'}} class="btn btn-primary">{{fullAddress}}</a></p>
 {{else}}
   <p>{{{formattedBody}}}</p>
