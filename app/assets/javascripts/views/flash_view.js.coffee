@@ -22,7 +22,7 @@ EnlightenmentApp.FlashView = Ember.View.extend(
     return
 
   show: ->
-    @$().show('slow')
+    @$().show('slow').delay(4000).fadeOut('slow')
     return
 
   click: (e) ->
