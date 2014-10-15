@@ -43,6 +43,7 @@ class Api::V1::ContentEntitiesController < ApplicationController
 
   def update_note(record)
     record.content_entity.update_column(:group_id, params[:contentEntity][:group_id])
-    record.update_attributes(body: params[:contentEntity][:body])
+    record.update_attributes(body: params[:contentEntity][:body],
+                             title: params[:contentEntity][:title])
   end
 end
