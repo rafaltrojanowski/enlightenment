@@ -19,18 +19,8 @@
               | Edit account
             li.divider
             li
-              link-to action 'logout' | Logout
-  / else
-  /   .container-fluid
-  /     ul.nav.navbar-nav.navbar-right id='dropdown_not_auth'
-  /       link-to 'login' class='btn btn-default' | Login
-  /       link-to 'registration' class='btn btn-success' | Register
-
-/ - flash_messages = {[:info, :alert, 'alert-success'] => notice, [:error, :alert, 'alert-danger'] => alert}.reject{|k, m| m.blank?}
-/ - if flash_messages.any?
-/   .flash-messages
-/     - flash_messages.each do |classes, message|
-/       .flash-message class: classes.map(&:to_s).join(' ')  
-/         button.close  'data-dismiss' => 'alert'  
-/         span.message= message
-
+              / button{action 'logout'} Logout
+              / or
+              / # HACK - link doesnt work without span
+              span{action 'logout'}
+                link-to '' action='logout' | Logout
