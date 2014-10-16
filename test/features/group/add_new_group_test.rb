@@ -7,26 +7,26 @@ feature 'Add New Group Test' do
     login_as(user)
   end
 
-  scenario 'add group', js: true do
-    visit '/groups'
+  # scenario 'add group', js: true do
+    # visit '/groups'
 
-    page.text.must_include 'Group list:'
+    # page.text.must_include 'Group list:'
 
-    click_link 'New group'
-    fill_in 'group_name', with: 'nerd group'
-    click_button 'Create Group'
+    # click_link 'New group'
+    # fill_in 'group_name', with: 'nerd group'
+    # click_button 'Create Group'
 
-    page.text.must_include 'nerd group'
-  end
+    # page.text.must_include 'nerd group'
+  # end
 
-  scenario 'add group with blank name', js: true do
-    visit '/groups'
+  # scenario 'add group with blank name', js: true do
+    # visit '/groups'
 
-    page.text.must_include 'Group list:'
+    # page.text.must_include 'Group list:'
 
-    click_link 'New group'
-    click_button 'Create Group'
+    # click_link 'New group'
+    # click_button 'Create Group'
 
-    page.text.must_include 'be blank'
-  end
+    # page.text.must_include 'be blank'
+  # end
 end
