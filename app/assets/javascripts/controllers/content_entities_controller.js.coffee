@@ -77,8 +77,9 @@ EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend Enligh
       record.save().then ((result) ->
         # @controllerFor("content_entities.modal").edit result
         # @send 'openModal', 'content_entities.modal'
-      ).bind(this)
+        alertify.success("New record added!")
+      ).bind(this), ->
+        alertify.error("Your record is invalid!")
 
       @set('newEntryName', "")
       # EnlightenmentApp.get("flash").success "New record added!"
-      alertify.success("New record added!")

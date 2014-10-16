@@ -18,4 +18,7 @@ EnlightenmentApp.ContentEntity = DS.Model.extend(
   formattedBody: (->
     @get("body").replace /\n\r?/g, "<br />"
   ).property("body")
+  formatedDate: (->
+    @get("updated_at").toString()
+  ).property("updated_at")
 )
