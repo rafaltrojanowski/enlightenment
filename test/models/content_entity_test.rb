@@ -47,8 +47,6 @@ describe ContentEntity do
           cn = FactoryGirl.create(:content_entity, content: 'https://www.prograils.com')
 
           cn.contentable.is_a?(Link).must_equal true
-          sleep 1
-          cn.contentable.reload.title.must_equal 'Prograils - Ruby on Rails web development'
         end
       end
     end
