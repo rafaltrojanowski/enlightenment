@@ -19,19 +19,19 @@
 
 <hr/>
 
-<span class="label label-default">{{{date updated_at}}}</span>
-<span class="label label-info">{{{group.name}}}</span>
-<span class="label label-success">#TAGS HERE</span>
-<span class="label label-success">#TAG2</span>
+<i class="fa fa-clock-o pull-right" id="show_date" data-toggle="tooltip" data-placement="top" {{bind-attr title=formatedDate}}> {{{date updated_at}}}</i>
+<i class="fa fa-users"></i> {{{group.name}}}</i><br>
+<i class="fa fa-tag"></i> TAGS HERE</i>
+<i class="fa fa-tag"></i> #TAG2</i>
 </div>
 
 <div id="container">
   <div class="well">
     <form class="form-horizontal" role="form" {{action "addComment" this on="submit"}}>
       <div class="input-group" style="padding:14px;">
-        {{button-input valueBinding="commentBody" class="form-control" placeholder="Enter your comment here!"}}
+        {{button-input valueBinding="commentBody" class="form-control" placeholder="Enter your comment here!" required="true"}}
         <span class="input-group-btn">
-          <button class="btn btn-success" type="submit" id="add_button" style="height:75px;">Add</button>
+          <button class="btn btn-success" type="submit" id="add_button" style="height: 100%; margin: 0; padding: 0; width: 50px;">Add</button>
         </span>
       </div>
     </form>
@@ -43,7 +43,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <small style="font-family:courier,'new courier';" class="text-muted pull-right">
-        {{{date comment.updated_at}}}
+        <i class="fa fa-clock-o pull-right" id="show_date" data-toggle="tooltip" data-placement="top" {{bind-attr title=comment.formatedDate}}> {{{date comment.updated_at}}}</i>
       </small>
       <h4>{{comment.user.nickname}}</h4>
       <img {{bind-attr src=comment.user.avatar}}/>

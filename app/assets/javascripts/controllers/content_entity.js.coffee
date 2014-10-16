@@ -1,4 +1,6 @@
 EnlightenmentApp.ContentEntityController = Ember.ObjectController.extend
+  sortAscending: false
+  sortProperties: ['updated_at']
   isLink: (->
     if @get("type") == 'link'
       true
@@ -37,10 +39,12 @@ EnlightenmentApp.ContentEntityController = Ember.ObjectController.extend
       });
 
       comment.save().then ((result) ->
-        @get("comments").pushObject comment
-      ).bind(this)
+        @get("comments").unshiftObject comment
+        alertify.success("Comment added!")
+      ).bind(this), ->
+        alertify.error("Comment cant be blank!")
       @set('commentBody', "")
-      EnlightenmentApp.get("flash").success "Comment added!"
+      # EnlightenmentApp.get("flash").success "Comment added!"
 
 EnlightenmentApp.ContentEntityEditController = Ember.ObjectController.extend({
   needs: [ 'content_entity' ]
