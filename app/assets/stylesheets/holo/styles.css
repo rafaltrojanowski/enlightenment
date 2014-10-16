@@ -247,3 +247,7 @@ textarea {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.panel.panel-default {
+  border-radius: 5px;
+}

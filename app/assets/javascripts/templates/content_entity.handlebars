@@ -38,18 +38,18 @@
   </div>
 </div>
 
-<h3>Comments</h3>
+<h2><i class="fa fa-comments"> Comments ({{comments.length}}) </i></h2>
 {{#each comment in comments}}
   <div class="panel panel-default">
     <div class="panel-heading">
       <small style="font-family:courier,'new courier';" class="text-muted pull-right">
-        <i class="fa fa-clock-o pull-right" id="show_date" data-toggle="tooltip" data-placement="top" {{bind-attr title=comment.formatedDate}}> {{{date comment.updated_at}}}</i>
       </small>
-      <h4>{{comment.user.nickname}}</h4>
-      <img {{bind-attr src=comment.user.avatar}}/>
-    </div>
-    <div class="panel-body">
-      {{comment.content}}
+      <img {{bind-attr src=comment.user.avatar}} style="width:60px;height:60px" class="img-circle"/>
+      {{comment.user.nickname}}
+      <i class="fa fa-clock-o date" id="show_date" data-toggle="tooltip" data-placement="top" {{bind-attr title=comment.formatedDate}}> {{{date comment.updated_at}}}</i>
+      <p class="ellipsis block" style="padding-left:60px;">
+        {{{comment.content}}}
+      </p>
     </div>
   </div>
 {{/each}}
