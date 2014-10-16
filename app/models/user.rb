@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
   def name
     username
   end
+
+  def nickname
+    username.presence || email
+  end
 end

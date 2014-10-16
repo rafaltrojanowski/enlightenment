@@ -45,7 +45,8 @@
       <small style="font-family:courier,'new courier';" class="text-muted pull-right">
         {{{date comment.updated_at}}}
       </small>
-      <h4>{{comment.user_id}}</h4>
+      <h4>{{comment.user.nickname}}</h4>
+      <img {{bind-attr src=comment.user.avatar}}/>
     </div>
     <div class="panel-body">
       {{comment.content}}

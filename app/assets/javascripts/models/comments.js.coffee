@@ -5,5 +5,6 @@ EnlightenmentApp.Comment = DS.Model.extend(
   commentable_type: DS.attr('string')
   # link: DS.belongsTo('link'c)
   # note: DS.belongsTo('note', {async: true})
-  content_entity: DS.belongsTo('content_entity', {async: true})
+  content_entity: DS.belongsTo('content_entity', { async: true })
+  user: DS.belongsTo('user', { async: true })
 )
