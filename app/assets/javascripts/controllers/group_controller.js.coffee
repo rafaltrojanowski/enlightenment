@@ -22,6 +22,10 @@ EnlightenmentApp.GroupController = Ember.ObjectController.extend
 
     save: ->
       @get('model').save()
-      alert('sukces')
-      EnlightenmentApp.get("flash").success "Group updated!"
       alertify.success("Group updated!")
+    destroy: ->
+      group = @get('model')
+      group.deleteRecord()
+      group.save()
+      @transitionToRoute('groups')
+      alertify.success('group destroyed!')
