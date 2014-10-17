@@ -16,4 +16,4 @@ window.EnlightenmentApp = Ember.Application.create(
 )
 
 Ember.TextField.reopen
-  attributeBindings: ["data-url", "data-pre"]
+  attributeBindings: ["data-url", "data-pre", "data-id"]

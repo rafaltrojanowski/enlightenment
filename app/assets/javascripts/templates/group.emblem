@@ -13,6 +13,6 @@
     .well
       h4 Add new member
       form submit="update"
-        = input id="members" data-pre=preData data-url=urlPath
+        = input id="members" data-url=urlPath data-id=id
         button.btn.btn-success Update
-      button{ action "addMem" } Hej
+      button.btn.btn-success{ action "save" } SaVe
