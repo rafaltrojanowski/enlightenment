@@ -12,6 +12,10 @@
 </div>
 
 <div class="list-group">
+
+  {{#link-to 'content_entities' (query-params type="link")}}Link{{/link-to}}
+  {{#link-to 'content_entities' (query-params type="note")}}Note{{/link-to}}
+
   {{#each content_entity in paginatedContent itemController="ContentEntity"}}
     <div id="link_note">
       <div id="content_entity" class='list-group-item'>

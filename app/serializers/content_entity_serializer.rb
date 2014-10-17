@@ -8,7 +8,8 @@ class ContentEntitySerializer < ActiveModel::Serializer
              :avatar,
              :image,
              :group_id,
-             :group
+             :group,
+             :inbox
 
   def group_id
     object.group_id
@@ -55,5 +56,9 @@ class ContentEntitySerializer < ActiveModel::Serializer
     else
       object.contentable.image_url
     end
+  end
+
+  def inbox
+    object.inbox?
   end
 end

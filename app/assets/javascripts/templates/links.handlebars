@@ -23,7 +23,7 @@
 </div>
 
 <div class="list-group">
-  {{#each link in controller}}
+  {{#each link in paginatedContent}}
     <div id="link_note">
       {{#link-to "link" link class="list-group-item"}}
         <img {{bind-attr src=link.avatar}} style="width:60px;height:60px" class="img-circle">
