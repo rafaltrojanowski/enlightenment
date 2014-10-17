@@ -1,4 +1,5 @@
 class Link < ActiveRecord::Base
+  include Inbox
   mount_uploader :image, LinkImageUploader
 
   after_commit :fetch_title, unless: :title?

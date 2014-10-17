@@ -1,4 +1,9 @@
-EnlightenmentApp.LinksController = Ember.ArrayController.extend
+EnlightenmentApp.LinksController = Ember.ArrayController.extend EnlightenmentApp.PaginatableMixin,
+  page:           1
+  perPage:        5
+  sortAscending: false,
+  sortProperties: ['updated_at']
+
   actions:
     addEntry: ->
       record = this.store.createRecord('content_entity',{
@@ -10,14 +15,3 @@ EnlightenmentApp.LinksController = Ember.ArrayController.extend
       ).bind(this)
 
       @set('newEntryName', "")
-
-# EnlightenmentApp.LinksNewController = Ember.ObjectController.extend(
-#   save: ->
-#     @get('store').commit()
-
-#   transitionAfterSave: ( ->
-#     # when creating new records, it's necessary to wait for the record to be assigned
-#     # an id before we can transition to its route (which depends on its id)
-#     @transitionToRoute('link', @get('content')) if @get('content.id')
-#   ).observes('content.id')
-# )

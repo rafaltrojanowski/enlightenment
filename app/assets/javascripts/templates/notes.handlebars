@@ -23,7 +23,7 @@
 </div>
 
 <div class="list-group">
-  {{#each note in controller}}
+  {{#each note in paginatedContent}}
     <div id="link_note">
       {{#link-to "note" note class="list-group-item"}}
         <img {{bind-attr src=note.avatar}} style="width:60px;height:60px" class="img-circle">
@@ -37,3 +37,5 @@
     </div>
   {{/each}}
 </div>
+
+{{pagination-links page=page pages=pages}}

@@ -28,5 +28,14 @@ describe Link do
         end
       end
     end
+
+    it 'must leave inbox on update' do
+      @link = FactoryGirl.create(:link, url: 'http://www.prograils.com')
+      @link.inbox?.must_equal true
+
+      @link.update(description: 'lorem ipsum')
+
+      @link.inbox?.must_equal false
+    end
   end
 end
