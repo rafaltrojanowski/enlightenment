@@ -1,25 +1,31 @@
 EnlightenmentApp.ConfirmDeleteController = Em.ObjectController.extend({
-  confirmDelete: function(model, afterDeleteRoute) {
-    this.set('model', model);
-    this.set('afterDeleteRoute', afterDeleteRoute);
-  },
+  actions: {
+    confirmDelete: function(model, afterDeleteRoute) {
+      console.log(model);
 
-  confirm: function() {
-    var model = this.get('model'),
-        after = this.get('afterDeleteRoute');
+      this.set('model', model);
+      this.set('afterDeleteRoute', afterDeleteRoute);
+    },
 
-    model.on('didDelete', this, function() {
-      this.close();
+    confirm: function() {
+      var model = this.get('model'),
+          after = this.get('afterDeleteRoute');
 
-      if (after) this.transitionToRoute(after);
-    });
+      model.on('didDelete', this, function() {
+        this.send('close');
 
-    model.deleteRecord();
-    model.save();
-  },
+        if (after) this.transitionToRoute(after);
+      });
 
-  close: function() {
-    this.send('closeModal');
+      model.deleteRecord();
+      model.save();
+      // EnlightenmentApp.get('flash').success('Record destroyed!');
+      alertify.success("Record destroyed!");
+    },
+
+    close: function() {
+      this.send('closeModal');
+    }
   }
 });
 

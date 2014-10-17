@@ -1,4 +1,8 @@
 EnlightenmentApp.ModalController = Em.ObjectController.extend({
+  groups: function() {
+      return this.get('store').find('group');
+  }.property(),
+
   edit: function(record) {
     record.one('didUpdate', this, function() {
       this.send('close');
@@ -7,24 +11,29 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
     this.set('model', record);
   },
 
-  save: function() {
-    this.get('model').save().then(function(){
-    },function(response){
-    });
-  },
+  actions: {
+    save: function() {
+      this.get('model').save().then(function(){
+        // EnlightenmentApp.get('flash').success('Record updated!');
+        alertify.success("Record updated!");
+      },function(response){
+      });
+    },
 
-  close: function() {
-    var model = this.get('model'),
-        transaction = model.get('transaction');
+    close: function() {
+      var model = this.get('model'),
+          transaction = model.get('transaction');
 
-    if (transaction) transaction.rollback();
-    if (model.get('errors'))
+      if (transaction) transaction.rollback();
+      if (model.get('errors'))
 
-    this.send("closeModal");
-  },
+      this.send("closeModal");
+      // EnlightenmentApp.get('flash').success('Record added without changes!')
+    },
 
-  shouldDisableSubmit: function() {
-    return !this.get('isDirty') || this.get('isSaving');
-  }.property('isDirty', 'isSaving')
+    shouldDisableSubmit: function() {
+      return !this.get('isDirty') || this.get('isSaving');
+    }.property('isDirty', 'isSaving')
+  }
 });
 

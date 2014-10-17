@@ -13,10 +13,10 @@ author: bootply.com
 
 html,body {
   height: 100%;
-  font-family: 'Droid Sans Mono', sans-serif;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-p,h1,h2,h3,h4 {
+p {
   font-family: 'Droid Sans Mono', sans-serif;
 }
 
@@ -210,4 +210,44 @@ textarea {
   min-height:75px;
   max-height:300px;
   resize:none;
+}
+
+/*form styles*/
+.form-signin {
+  max-width: 500px;
+  padding: 15px;
+/*  margin: 0 auto;*/
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.panel.panel-default {
+  border-radius: 5px;
 }

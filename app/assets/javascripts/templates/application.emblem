@@ -1,5 +1,5 @@
 .page-container
-  partial 'navbar'
+  render 'navbar'
   / = render 'welcome_msg'
   .container-fluid
     .row.row-offcanvas.row-offcanvas-left.active

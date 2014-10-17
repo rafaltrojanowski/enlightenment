@@ -1,4 +1,6 @@
 EnlightenmentApp.ContentEntityController = Ember.ObjectController.extend
+  sortAscending: false
+  sortProperties: ['updated_at']
   isLink: (->
     if @get("type") == 'link'
       true
@@ -16,8 +18,33 @@ EnlightenmentApp.ContentEntityController = Ember.ObjectController.extend
   ).property("type")
 
   actions:
+    edit: (content_entity) ->
+      @controllerFor("content_entities.modal").edit content_entity
+      @send 'openModal', 'content_entities.modal'
+      return
+
+    confirmDelete: (content_entity) ->
+      @controllerFor('confirm.delete').send('confirmDelete', content_entity, 'content_entities');
+      @send 'openModal', 'confirm.delete'
+    # TODO remove gotoEdit
     gotoEdit: (model) ->
       this.transitionTo('content_entity.edit', model);
+
+    addComment: (param) ->
+      contententity = @get('content_entity.content')
+      comment = @get("store").createRecord("comment",{
+        commentable_type: "ContentEntity",
+        commentable_id: param.id,
+        content: @get("commentBody")
+      });
+
+      comment.save().then ((result) ->
+        @get("comments").unshiftObject comment
+        alertify.success("Comment added!")
+      ).bind(this), ->
+        alertify.error("Comment cant be blank!")
+      @set('commentBody', "")
+      # EnlightenmentApp.get("flash").success "Comment added!"
 
 EnlightenmentApp.ContentEntityEditController = Ember.ObjectController.extend({
   needs: [ 'content_entity' ]
@@ -31,4 +58,6 @@ EnlightenmentApp.ContentEntityEditController = Ember.ObjectController.extend({
       record.set("title", newTitle);
       record.save();
       this.transitionTo( 'content_entities' );
+      # EnlightenmentApp.get("flash").success "Record updated!"
+      alertify.success("Record updated!")
 });

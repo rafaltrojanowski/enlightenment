@@ -36,6 +36,8 @@ gem 'select2-rails'
 gem 'carrierwave'
 gem 'webshot'
 gem 'font-awesome-sass'
+gem 'momentjs-rails'
+gem 'autosize-rails'
 
 group :development, :test do
   gem 'spring'

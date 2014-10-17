@@ -23,3 +23,5 @@ EnlightenmentApp.GroupController = Ember.ObjectController.extend
     save: ->
       @get('model').save()
       alert('sukces')
+      EnlightenmentApp.get("flash").success "Group updated!"
+      alertify.success("Group updated!")
