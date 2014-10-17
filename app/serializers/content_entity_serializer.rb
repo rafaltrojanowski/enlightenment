@@ -4,12 +4,26 @@ class ContentEntitySerializer < ActiveModel::Serializer
              :body,
              :updated_at,
              :title,
+             :description,
              :avatar,
-             :image
+             :image,
+             :group_id,
+             :group,
+             :inbox
+
+  def group_id
+    object.group_id
+  end
+
+  def group
+    object.group_id
+  end
+
+  has_many :comments, as: :commentable, key: :comments # if console have errors delete key
 
   def body
     # url for link / body for note
-    object.contentable.to_s.gsub(/\n/, '<br/>') rescue object.contentable
+    object.contentable.to_s rescue ''
   end
 
   def type
@@ -18,6 +32,14 @@ class ContentEntitySerializer < ActiveModel::Serializer
 
   def title
     object.contentable.title
+  end
+
+  def description
+    if object.contentable.is_a? Link
+      object.contentable.description
+    else
+      nil
+    end
   end
 
   def avatar
@@ -34,5 +56,9 @@ class ContentEntitySerializer < ActiveModel::Serializer
     else
       object.contentable.image_url
     end
+  end
+
+  def inbox
+    object.inbox?
   end
 end

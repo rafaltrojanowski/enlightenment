@@ -4,6 +4,7 @@ class NoteSerializer < ActiveModel::Serializer
               :body,
               :updated_at,
               :avatar,
+              :inbox,
               :comments
   has_many :comments, as: :commentable, key: :comments
 

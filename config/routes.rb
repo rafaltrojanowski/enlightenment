@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :content_entities, path: 'contentEntities' # TODO default path possible with ember?
-<<<<<<< HEAD
       resources :links, only: [:index, :show]
       resources :notes, only: :index
       resources :users
@@ -18,15 +17,7 @@ Rails.application.routes.draw do
           get :members
         end
       end
-=======
-      resources :links, only: [:index, :show] do
-        resources :comments
-      end
-      resources :notes, only: :index do
-        resources :comments
-      end
       resources :comments
->>>>>>> 4f8362b5e4ce2d46db4e1e659eb622f05eae97d2
     end
   end
 

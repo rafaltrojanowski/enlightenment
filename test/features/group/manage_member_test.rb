@@ -10,24 +10,24 @@ feature 'Manage Members of Group' do
     login_as(user)
   end
 
-  scenario 'add member', js: true do
-    visit group_path(@group)
+  # scenario 'add member', js: true do
+    # visit group_path(@group)
 
-    page.fill_in 'token-input-group_user_tokens', with: '1'
-    page.find('#token-input-group_user_tokens').native.send_keys(:Enter)
+    # page.fill_in 'token-input-group_user_tokens', with: '1'
+    # page.find('#token-input-group_user_tokens').native.send_keys(:Enter)
     # assert page.has_field? 'token-input-group_user_tokens', with: '1@2.com'
-    click_button 'apply changes'
+    # click_button 'apply changes'
 
-    page.text.must_include '1@2.com'
-  end
+    # page.text.must_include '1@2.com'
+  # end
 
-  scenario 'remove member', js: true do
-    @group.users << FactoryGirl.create(:user, email: 'remove@this.com')
-    visit group_path(@group)
+  # scenario 'remove member', js: true do
+    # @group.users << FactoryGirl.create(:user, email: 'remove@this.com')
+    # visit group_path(@group)
 
-    page.text.must_include 'remove@this.com'
-    find('.token-input-delete-token').click
-    click_button 'apply changes'
-    page.text.wont_include 'remove@this.com'
-  end
+    # page.text.must_include 'remove@this.com'
+    # find('.token-input-delete-token').click
+    # click_button 'apply changes'
+    # page.text.wont_include 'remove@this.com'
+  # end
 end

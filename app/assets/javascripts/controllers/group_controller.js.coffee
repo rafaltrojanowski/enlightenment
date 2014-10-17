@@ -2,31 +2,26 @@ EnlightenmentApp.GroupController = Ember.ObjectController.extend
   urlPath: (->
     "http://" + location.host + "/api/v1/groups/" + @get('id') + "/other_users.json"
   ).property('id')
-  my: (->
-    fake = []
-    fake.push( {id: 6, email: "33@3.com"} )
-    console.log('cud')
-    JSON.stringify(fake)
-  ).property('users')
-  preData: ->
-    patyk = []
-    @get('users').then (users) ->
-      users.forEach (user) ->
-        patyk.push( { id:user.id, email: user.get('email') } )
-        console.log( { id:user.id, email: user.get('email') } )
-      console.log(JSON.stringify(patyk))
-    console.log(@get('name'))
-    console.log(JSON.stringify(patyk))
+
   actions:
-    addUser: ->
-      @store.find('user', 3)
-      usr = @store.getById('user', 3)
-      @get('users').pushObject(usr)
     update: ->
-      tokens = $("#members").tokenInput("get")
-      console.log(JSON.stringify(tokens))
-      for member, i in tokens
-        @store.find('user', member.id)
-        usr = @store.getById(member.id)
-        @get('users').pushObject(usr)
+      tokens = $("#members").tokenInput("get").mapBy("id")
+      user_ids = @get('user_ids').split(',').map( Number )
+
+      for old_member in user_ids
+        unless tokens.contains old_member
+          usr = @store.getById('user', old_member)
+          @get('users').removeObject(usr)
+          console.log(usr)
+
+      for new_member in tokens
+        unless user_ids.contains new_member
+          @store.find('user', new_member)
+          usr = @store.getById('user', new_member)
+          @get('users').pushObject(usr)
+
+    save: ->
       @get('model').save()
+      alert('sukces')
+      EnlightenmentApp.get("flash").success "Group updated!"
+      alertify.success("Group updated!")

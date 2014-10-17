@@ -1,92 +1,55 @@
 {{ outlet }}
+<div class="well">
 
-<h2>{{title}}</h2>
+<button {{action 'confirmDelete' this}} class="btn btn-large btn-danger pull-right" id="destroy_button">Delete <i class="fa fa-trash"></i></button>
+<button {{action edit this}} class="btn btn-large btn-warning pull-right" id="edit_button">Edit <i class="fa fa-pencil"></i></button>
+
 {{#if isLink}}
-  <p><a target="_blank" {{bind-attr href='fullAddress'}}>{{fullAddress}}</a></p>
+  <h1 id="section1">{{title}}</h1>
+  <p>{{description}}</p>
+  <a target='_blank' {{bind-attr href='fullAddress'}}>
+    <img {{bind-attr src=image}}/>
+  </a>
+  <br/>
+  <br/>
+  <p><a target="_blank" {{bind-attr href='fullAddress'}} class="btn btn-primary">{{fullAddress}}</a></p>
 {{else}}
-  <p>{{{body}}}</p>
+  <p>{{{formattedBody}}}</p>
 {{/if}}
-<p>{{{showDate updated_at}}}</p>
 
-<br>
-<br>
-<br>
-<br>
+<hr/>
 
-Comments:
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4>Commenter name</h4>
-    <i>Date</i>
-  </div>
-  <div class="panel-body">
-    <div class="clearfix"></div>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-      Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
-      dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
-      Aliquam in felis sit amet augue.
-  </div><!--/panel-body-->
-</div>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4>Commenter name</h4>
-    <i>Date</i>
-  </div>
-  <div class="panel-body">
-    <div class="clearfix"></div>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-      Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
-      dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
-      Aliquam in felis sit amet augue.
-  </div><!--/panel-body-->
-</div>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4>Commenter name</h4>
-    <i>Date</i>
-  </div>
-  <div class="panel-body">
-    <div class="clearfix"></div>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-      Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
-      dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
-      Aliquam in felis sit amet augue.
-  </div><!--/panel-body-->
-</div>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4>Commenter name</h4>
-    <i>Date</i>
-  </div>
-  <div class="panel-body">
-    <div class="clearfix"></div>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-      Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
-      dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
-      Aliquam in felis sit amet augue.
-  </div><!--/panel-body-->
-</div>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4>Commenter name</h4>
-    <i>Date</i>
-  </div>
-  <div class="panel-body">
-    <div class="clearfix"></div>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-      Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
-      dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
-      Aliquam in felis sit amet augue.
-  </div><!--/panel-body-->
+<i class="fa fa-clock-o pull-right" id="show_date" data-toggle="tooltip" data-placement="top" {{bind-attr title=formatedDate}}> {{{date updated_at}}}</i>
+<i class="fa fa-users"></i> {{{group.name}}}</i><br>
+<i class="fa fa-tag"></i> TAGS HERE</i>
+<i class="fa fa-tag"></i> #TAG2</i>
 </div>
 
-<ul class="pagination center-block" style="display:inline-block;">
-  <li><a href="#">«</a></li>
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#">4</a></li>
-  <li><a href="#">5</a></li>
-  <li><a href="#">»</a></li>
-</ul>
+<div id="container">
+  <div class="well">
+    <form class="form-horizontal" role="form" {{action "addComment" this on="submit"}}>
+      <div class="input-group" style="padding:14px;">
+        {{button-input valueBinding="commentBody" class="form-control" placeholder="Enter your comment here!" required="true"}}
+        <span class="input-group-btn">
+          <button class="btn btn-success" type="submit" id="add_button" style="height: 100%; margin: 0; padding: 0; width: 50px;">Add</button>
+        </span>
+      </div>
+    </form>
+  </div>
+</div>
+
+<h2><i class="fa fa-comments"> Comments ({{comments.length}}) </i></h2>
+{{#each comment in comments}}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <small style="font-family:courier,'new courier';" class="text-muted pull-right">
+      </small>
+      <img {{bind-attr src=comment.user.avatar}} style="width:60px;height:60px" class="img-circle"/>
+      {{comment.user.nickname}}
+      <i class="fa fa-clock-o date" id="show_date" data-toggle="tooltip" data-placement="top" {{bind-attr title=comment.formatedDate}}> {{{date comment.updated_at}}}</i>
+      <p class="ellipsis block" style="padding-left:60px;">
+        {{{comment.content}}}
+      </p>
+    </div>
+  </div>
+{{/each}}

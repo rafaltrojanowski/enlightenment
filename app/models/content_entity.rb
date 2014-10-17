@@ -2,15 +2,23 @@ class ContentEntity < ActiveRecord::Base
   attr_accessor :content
   validates :content, presence: true
 
-  default_scope { includes(:contentable, :user).order(created_at: :desc) }
+  default_scope { includes(:contentable, :user, :comments).
+                  order(created_at: :desc) }
 
   belongs_to :contentable, polymorphic: true
   belongs_to :user
+  belongs_to :group
 
   before_create :create_entity
   after_destroy :destroy_contentable
 
-  delegate :to_s, to: :contentable
+  delegate :to_s, :inbox?, to: :contentable
+
+  has_many :comments, as: :commentable
+
+  def self.inbox
+    select { |r| r.contentable.inbox? }
+  end
 
   private
 

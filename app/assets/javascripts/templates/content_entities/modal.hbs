@@ -2,31 +2,36 @@
 </div>
 <div class="modal fade show" >
   <div class="modal-dialog">
-
     {{#if isLink}}
-
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" {{action close}}>&times;</button>
-          {{#if isNew}}
-            <h3>Create Link</h3>
-          {{else}}
-            <h3>Editing: {{unbound title}}</h3>
-          {{/if}}
+          <button type="button" class="close" {{action 'close'}}>&times;</button>
         </div>
         <form {{action save on="submit"}}>
         <div class="modal-body">
-          <div class="modal-body">
             <div {{bind-attr class="errors.title:error :field"}}>
-              <label>Title</label>
-              {{view Ember.TextField valueBinding="title"}}
-              {{#each error in errors.name}}{{error.message}}{{/each}}
+              {{view Ember.TextField valueBinding="title" class="form-control" placeholder="Title"}}
+              {{#each error in errors.title}}{{error.message}}{{/each}}
             </div>
-          </div>
+            <div {{bind-attr class="errors.description:error :field"}}>
+              {{autosize-textarea valueBinding="description" class="form-control" placeholder="Description"}}
+              {{#each error in errors.description}}{{error.message}}{{/each}}
+            </div>
+
+            <div {{bind-attr class="errors.group:error :field"}}>
+              {{view Ember.Select content = groups
+                 optionValuePath="content.id"
+                 optionLabelPath="content.name"
+                 valueBinding="group_id"
+                 class="form-control"
+                 prompt="Choose one of the following."
+              }}
+              {{#each error in errors.group}}{{error.message}}{{/each}}
+            </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" {{bind-attr disabled="shouldDisableSubmit"}}>Save</button>
-          <button {{action close}}>Cancel</button>
+          <button type="submit" {{bind-attr disabled="shouldDisableSubmit"}} class="btn btn-info">Save</button>
+          <button {{action 'close'}} class="btn btn-default">Cancel</button>
           {{#if isSaving}}
             <img src="{{unbound App.AJAX_LOADER_IMG}}" alt="Loading..." class="ajax-loader">
             Saving...
@@ -39,26 +44,34 @@
 
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" {{action close}}>&times;</button>
-          {{#if isNew}}
-            <h3>Create Note</h3>
-          {{else}}
-            <h3>Editing: {{unbound title}}</h3>
-          {{/if}}
+          <button type="button" class="close" {{action 'close'}}>&times;</button>
         </div>
-        <form {{action save on="submit"}}>
+        <form {{action 'save' on="submit"}}>
         <div class="modal-body">
-          <div class="modal-body">
+            <div {{bind-attr class="errors.title:error :field"}}>
+              {{view Ember.TextField valueBinding="title" class="form-control" placeholder="Title"}}
+              {{#each error in errors.title}}{{error.message}}{{/each}}
+            </div>
+
             <div {{bind-attr class="errors.body:error :field"}}>
-              <label>Body</label>
-              {{view Ember.TextArea valueBinding="body"}}
+              {{autosize-textarea valueBinding="body" class="form-control" placeholder="Body"}}
               {{#each error in errors.body}}{{error.message}}{{/each}}
             </div>
-          </div>
+
+            <div {{bind-attr class="errors.group:error :field"}}>
+              {{view Ember.Select content = groups
+                 optionValuePath="content.id"
+                 optionLabelPath="content.name"
+                 valueBinding="group_id"
+                 class="form-control"
+                 prompt="Choose one of the following."
+              }}
+              {{#each error in errors.group}}{{error.message}}{{/each}}
+            </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" {{bind-attr disabled="shouldDisableSubmit"}}>Save</button>
-          <button {{action close}}>Cancel</button>
+          <button type="submit" {{bind-attr disabled="shouldDisableSubmit"}} class="btn btn-info">Save</button>
+          <button {{action 'close'}} class="btn btn-default">Cancel</button>
           {{#if isSaving}}
             <img src="{{unbound App.AJAX_LOADER_IMG}}" alt="Loading..." class="ajax-loader">
             Saving...

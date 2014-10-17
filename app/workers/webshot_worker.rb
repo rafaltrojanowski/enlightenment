@@ -12,8 +12,8 @@ class WebshotWorker
     ws = Webshot::Screenshot.instance
     ws.capture link.url,
                path_img,
-               width: 200,
-               height: 150,
+               width: 400,
+               height: 350,
                quality: 85
 
     link.image = File.open(path_img)

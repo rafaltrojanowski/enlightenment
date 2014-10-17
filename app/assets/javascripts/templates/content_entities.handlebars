@@ -1,22 +1,10 @@
-<script>
-  $('#container').on( 'keyup', 'textarea', function (e){
-    $(this).css('height', 'auto' );
-    $(this).height( this.scrollHeight );
-    if (this.scrollHeight <= 300) {
-      $('#add_button').css('height', this.scrollHeight)
-    }
-  });
-  $('#container').find( 'textarea' ).keyup();
-
-</script>
-
 <div id="container">
   <div class="well">
     <form class="form-horizontal" role="form" {{action "addEntry" on="submit"}}>
       <div class="input-group" style="padding:14px;">
-        {{view Ember.TextArea name='content_entity[content]' valueBinding="newEntryName" class="form-control" required="true" id="textarea"}}
+        {{button-input name='content_entity[content]' valueBinding="newEntryName" class="form-control" required="true" id="textarea"}}
         <span class="input-group-btn">
-          <button class="btn btn-success" type="submit" id="add_button">Add</button>
+          <button class="btn btn-success" type="submit" id="add_button" style="height: 100%; margin: 0; padding: 0; width: 50px;">Add</button>
         </span>
       </div>
     </form>
@@ -24,33 +12,41 @@
 </div>
 
 <div class="list-group">
+
+  {{#link-to 'content_entities' (query-params type="link")}}Link{{/link-to}}
+  {{#link-to 'content_entities' (query-params type="note")}}Note{{/link-to}}
+
   {{#each content_entity in paginatedContent itemController="ContentEntity"}}
-    <div id="content_entity" class='list-group-item'>
-      <img {{bind-attr src=content_entity.avatar}} style="width:60px;height:60px" class="img-circle">
-      {{#if content_entity.isNote}}
-        {{#link-to "content_entity" content_entity}}
-          <i class="fa fa-newspaper-o fa-2x"></i>
-          <b>{{showTitle content_entity.body}}</b>
-        {{/link-to}}
-        <small style="font-family:courier,'new courier';" class="text-muted pull-right" id="show_date">
-          {{{showDate content_entity.updated_at}}}
-        </small>
-        <button {{action 'gotoEdit' content_entity}} class="btn btn-large btn-warning pull-right" id="edit_button" style="display:none;">Edit <i class="fa fa-pencil"></i></button>
-      {{else }}
-        {{#link-to "content_entity" content_entity}}
-          <i class="fa fa-globe fa-2x"></i>
-          <b>{{content_entity.title}}</b>
-        {{/link-to}}
-        <small style="font-family:courier,'new courier';" class="text-muted pull-right" id="show_date">
-          {{{showDate content_entity.updated_at}}}
-        </small>
-        <button {{action 'gotoEdit' content_entity}} class="btn btn-large btn-warning pull-right" id="edit_button" style="display:none;">Edit <i class="fa fa-pencil"></i></button>
-        <p class="ellipsis block">
-          {{{content_entity.body}}}
-        </p>
-        {{/if }}
-      <button {{action edit this}}>edit</button>
-      <button {{action confirmDelete this}}>delete</button>
+    <div id="link_note">
+      <div id="content_entity" class='list-group-item'>
+        <img {{bind-attr src=content_entity.avatar}} style="width:60px;height:60px" class="img-circle">
+        {{#if content_entity.isNote}}
+          {{#link-to "content_entity" content_entity}}
+            <i class="fa fa-newspaper-o fa-2x"></i>
+            <b>{{showTitle content_entity.body}}</b>
+          {{/link-to}}
+          {{#if content_entity.group.name }}
+            <i class="fa fa-users"> {{{content_entity.group.name}}}</i>
+          {{/if}}
+          <i class="fa fa-clock-o pull-right" id="show_date" data-toggle="tooltip" data-placement="top" {{bind-attr title=content_entity.formatedDate}}> {{{date content_entity.updated_at}}}</i>
+          <button {{action confirmDelete content_entity}} class="btn btn-large btn-danger pull-right" id="destroy_button" style="display:none;"><i class="fa fa-trash"></i></button>
+          <button {{action edit content_entity}} class="btn btn-large btn-warning pull-right" id="edit_button" style="display:none;"><i class="fa fa-pencil"></i></button>
+        {{else }}
+          {{#link-to "content_entity" content_entity}}
+            <i class="fa fa-globe fa-2x"></i>
+            <b>{{content_entity.title}}</b>
+          {{/link-to}}
+          {{#if content_entity.group.name }}
+            <i class="fa fa-users"> {{{content_entity.group.name}}}</i>
+          {{/if}}
+          <i class="fa fa-clock-o pull-right" id="show_date" data-toggle="tooltip" data-placement="top" {{bind-attr title=content_entity.formatedDate}}> {{{date content_entity.updated_at}}}</i>
+          <button {{action 'confirmDelete' content_entity}} class="btn btn-large btn-danger pull-right" id="destroy_button" style="display:none;"><i class="fa fa-trash"></i></button>
+          <button {{action edit content_entity}} class="btn btn-large btn-warning pull-right" id="edit_button" style="display:none;"><i class="fa fa-pencil"></i></button>
+          <p class="ellipsis block" style="padding-left:70px;">
+            {{{content_entity.body}}}
+          </p>
+          {{/if }}
+      </div>
     </div>
   {{/each}}
 </div>
