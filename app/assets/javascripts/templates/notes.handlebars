@@ -22,6 +22,9 @@
   </div>
 </div>
 
+{{#link-to 'notes' (query-params type="published")}}Published{{/link-to}}
+{{#link-to 'notes' (query-params type="inbox")}}Inbox{{/link-to}}
+
 <div class="list-group">
   {{#each note in paginatedContent}}
     <div id="link_note">

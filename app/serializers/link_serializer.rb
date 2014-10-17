@@ -5,6 +5,7 @@ class LinkSerializer < ActiveModel::Serializer
              :created_at,
              :title,
              :avatar,
+             :inbox,
              :image
 
   has_many :comments, as: :commentable, key: :comments # if console have errors delete key

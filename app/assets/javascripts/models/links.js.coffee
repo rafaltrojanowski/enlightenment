@@ -5,6 +5,7 @@ EnlightenmentApp.Link = DS.Model.extend(
   title: DS.attr('string')
   avatar: DS.attr('string')
   image: DS.attr('string')
+  inbox: DS.attr('boolean')
   fullAddress: (->
     @get("url")
   ).property("url")
