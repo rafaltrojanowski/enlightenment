@@ -34,6 +34,10 @@ class Api::V1::GroupsController < ApplicationController
     respond_with @group
   end
 
+  def destroy
+    respond_with @group.destroy
+  end
+
   private
 
   def set_group

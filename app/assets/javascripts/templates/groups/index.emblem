@@ -2,7 +2,9 @@
   .panel-heading
     link-to .button.btn.btn-lg.btn-success 'groups.new' | New Group
   .panel-body
-    each
+    each itemController="group"
       .list-group-item
         = name
-        link-to .btn.btn-info 'group' this | show
+        button.btn.btn-danger.pull-right{ action "destroy" } delete
+        link-to .btn.btn-info.pull-right 'group' this | show
+
