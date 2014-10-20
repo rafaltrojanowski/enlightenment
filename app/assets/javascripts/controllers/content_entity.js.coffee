@@ -44,7 +44,16 @@ EnlightenmentApp.ContentEntityController = Ember.ObjectController.extend
       ).bind(this), ->
         alertify.error("Comment cant be blank!")
       @set('commentBody', "")
-      # EnlightenmentApp.get("flash").success "Comment added!"
+    deleteComment: (comment) ->
+      alertify.confirm "Delete comment?", (e) ->
+        if e
+          comment.deleteRecord()
+          comment.save()
+          alertify.success "Comment destroyed!"
+        else
+          alertify.error "You've clicked Cancel"
+        return
+
 
 EnlightenmentApp.ContentEntityEditController = Ember.ObjectController.extend({
   needs: [ 'content_entity' ]
