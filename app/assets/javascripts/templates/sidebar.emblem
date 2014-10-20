@@ -1,20 +1,19 @@
-/ if isAuthenticated
-ul#sidebar-nav.nav
-  li
-    link-to 'content_entities' | <i class="fa fa-tachometer"></i> Dashboard
-  li
-    link-to 'links' | <i class="fa fa-globe"></i> My Links
-  li
-    link-to 'notes' | <i class="fa fa-newspaper-o"></i> My Notes
-  hr/
-  link-to 'groups' | <i class="fa fa-cog pull-right"></i>
-  br
-  each group in groups
-    li#group-link
-      link-to 'content_entities' | <i class="fa fa-group"></i> {{group.name}}
-
-.destination
-/ else
+if isAuthenticated
+  ul#sidebar-nav.nav
+    li
+      link-to 'content_entities' | <i class="fa fa-tachometer"></i> Dashboard
+    li
+      link-to 'links' | <i class="fa fa-globe"></i> My Links
+    li
+      link-to 'notes' | <i class="fa fa-newspaper-o"></i> My Notes
+    hr/
+    <i class="fa fa-cog pull-right"></i>
+    br
+    each group in groups
+      li
+        link-to 'content_entities' | <i class="fa fa-group"></i> {{group.name}}
+  .destination
+else
   ul#sidebar-nav.nav
     li You need to be signed in to access this content!
     .destination

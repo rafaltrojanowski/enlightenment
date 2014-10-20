@@ -4,7 +4,7 @@
   .container-fluid
     .row.row-offcanvas.row-offcanvas-left.active
       .col-xs-6.col-sm-2.sidebar-offcanvas role='navigation' id='sidebar'
-        div data-offset-bottom='90' data-offset-top='45' data-spy='affix'
+        div data-offset-bottom='90' data-offset-top='45'
           partial 'sidebar'
       .col-xs-12.col-sm-10 data-spy='scroll' data-target='#sidebar-nav'
         = outlet
