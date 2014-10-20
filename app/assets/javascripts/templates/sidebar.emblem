@@ -11,7 +11,7 @@ ul#sidebar-nav.nav
   br
   each group in groups
     li#group-link
-      link-to 'content_entities' | <i class="fa fa-group"></i> {{group.name}}
+      link-to 'wall' group | <i class="fa fa-group"></i> {{group.name}}
 
 .destination
 / else

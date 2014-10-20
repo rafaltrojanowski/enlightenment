@@ -2,19 +2,6 @@ EnlightenmentApp.PaginatableMixin = Em.Mixin.create
   queryParams: ['type']
   type: null
 
-  filteredContentEntities: (->
-    console.log @get('type')
-    console.log 'test'
-
-    type = @get("type")
-    content_entities = @get("model")
-
-    if type
-      content_entities.filterBy "type", type
-    else
-      content_entities
-  ).property("type", "model")
-
   paginatedContent: (->
     page    = @get('page')
     perPage = @get('perPage')
@@ -31,7 +18,6 @@ EnlightenmentApp.PaginatableMixin = Em.Mixin.create
     else
       length = @get('arrangedContent').length
       @set('contentLength', length)
-
       @get('arrangedContent').slice(start, end)
   ).property('arrangedContent.[]', 'page', 'perPage', 'type')
 
