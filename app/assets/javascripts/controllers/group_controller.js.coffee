@@ -3,25 +3,24 @@ EnlightenmentApp.GroupController = Ember.ObjectController.extend
     "http://" + location.host + "/api/v1/groups/" + @get('id') + "/other_users.json"
   ).property('id')
 
+  init: ->
+    allUsers = @store.find('user')
+    users = @get('users')
+
   actions:
     update: ->
-      tokens = $("#members").tokenInput("get").mapBy("id")
-      user_ids = @get('user_ids').split(',').map( Number )
+      userIds = $("#members").tokenInput("get").mapBy("id")
+      model = @get('model')
+      users = @get('users')
+      # users.clear();
 
-      for old_member in user_ids
-        unless tokens.contains old_member
-          usr = @store.getById('user', old_member)
-          @get('users').removeObject(usr)
-          console.log(usr)
+      for id in userIds
+        @store.find("user", id).then (user) ->
+          users.pushObject(user)
+          # return
 
-      for new_member in tokens
-        unless user_ids.contains new_member
-          @store.find('user', new_member)
-          usr = @store.getById('user', new_member)
-          @get('users').pushObject(usr)
-
-    save: ->
-      @get('model').save()
-      alert('sukces')
-      EnlightenmentApp.get("flash").success "Group updated!"
-      alertify.success("Group updated!")
+        # user = @store.getById('user', id)
+        # console.log user
+        # console.log '________________'
+        # users.pushObject(user)
+      model.save()
