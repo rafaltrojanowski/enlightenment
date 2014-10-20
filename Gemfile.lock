@@ -229,8 +229,6 @@ GEM
       minitest-capybara (~> 0.7.0)
       minitest-metadata (~> 0.5.0)
       minitest-rails (~> 2.1)
-    momentjs-rails (2.8.3)
-      railties (>= 3.1)
     multi_json (1.10.1)
     nested_form (0.3.2)
     net-scp (1.2.0)
@@ -420,7 +418,6 @@ DEPENDENCIES
   meta_request
   minitest-rails (>= 2.0.0.beta1)
   minitest-rails-capybara (>= 2.0.0.beta1)
-  momentjs-rails
   nested_form (~> 0.3.2)
   pg
   pismo (~> 0.7.4)

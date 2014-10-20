@@ -56,11 +56,9 @@ EnlightenmentApp.AuthController = Ember.ObjectController.extend
       success: (data) ->
         me.set 'currentUser', data.user
         route.transitionTo 'home'
-        # EnlightenmentApp.get("flash").success "Welcome to EnlightenmentApp, enjoy!"
         alertify.success("Welcome to EnlightenmentApp, enjoy!");
       error: (jqXHR, textStatus, errorThrown) ->
         route.controllerFor('registration').set "errorMsg", "That email/password combo didn't work.  Please try again"
-        # EnlightenmentApp.get("flash").alert "That email/password combo didn't work.  Please try again"
         alertify.error("That email/password combo didn't work. Please try again");
 
   logout: ->
@@ -76,7 +74,6 @@ EnlightenmentApp.AuthController = Ember.ObjectController.extend
         log.info "Logged out on server"
         me.set 'currentUser', null
         me.transitionToRoute "home"
-        # EnlightenmentApp.get("flash").success "You have successfully logged out."
         alertify.success("You have successfully logged out.");
       error: (jqXHR, textStatus, errorThrown) ->
         alert "Error logging out: #{errorThrown}"

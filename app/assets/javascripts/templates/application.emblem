@@ -9,4 +9,3 @@
       .col-xs-12.col-sm-10 data-spy='scroll' data-target='#sidebar-nav'
         = outlet
         = outlet modal
-
