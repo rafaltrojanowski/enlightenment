@@ -68,8 +68,15 @@ EnlightenmentApp.ContentEntitiesRoute = Ember.Route.extend
       @send 'openModal', 'confirm.delete'
 
 # EnlightenmentApp.ContentEntityRoute = Ember.Route.extend
-#   model: ->
-#     @modelFor('content_entity')
+  # actions:
+  #   deleteComment: (comment) ->
+  #     comment = @get("store").find('comment', comment.id)
+  #     console.log(comment)
+  #     comment.deleteRecord()
+  #     comment.save()
+  #     @get("store").commit()
+  # model: (comment) ->
+  #   @modelFor('link').get('comments').find('comment', comment.id)
 
 EnlightenmentApp.ContentEntityEditRoute = Ember.Route.extend
   test: true # TODO

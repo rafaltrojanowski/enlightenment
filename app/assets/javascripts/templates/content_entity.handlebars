@@ -43,6 +43,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <small style="font-family:courier,'new courier';" class="text-muted pull-right">
+        <button {{action 'deleteComment' comment}} class="btn btn-large btn-danger" id="destroy_button"><i class="fa fa-trash"></i></button>
       </small>
       <img {{bind-attr src=comment.user.avatar}} style="width:60px;height:60px" class="img-circle"/>
       {{comment.user.nickname}}

@@ -3,7 +3,7 @@ class Api::V1::CommentsController < ApplicationController
   respond_to :json
 
   def index
-    respond_with Comment.all
+    respond_with Comment.all.order('created_at DESC')
   end
 
   def create
@@ -20,6 +20,10 @@ class Api::V1::CommentsController < ApplicationController
 
   def show
     respond_with Comment.find(params[:id])
+  end
+
+  def destroy
+    respond_with Comment.find(params[:id]).destroy
   end
 
   private

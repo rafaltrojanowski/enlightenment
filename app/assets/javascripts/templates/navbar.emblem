@@ -23,4 +23,5 @@
               / or
               / # HACK - link doesnt work without span
               span{action 'logout'}
-                link-to '' action='logout' | Logout
+                li
+                  link-to '' action='logout' role="menuitem" | Logout
