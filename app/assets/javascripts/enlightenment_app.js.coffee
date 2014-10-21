@@ -8,5 +8,6 @@
 #= require_tree ./templates
 #= require_tree ./routes
 #= require_tree ./utils
+#= require_tree ./etc
 #= require ./router
 #= require_self
