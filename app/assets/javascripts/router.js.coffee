@@ -21,6 +21,7 @@ EnlightenmentApp.Router.map ()->
   @resource 'group', path: 'groups/:group_id'
   @resource 'wall', path: 'groups/:group_id/wall'
   @resource 'comments'
+  @resource 'inbox', path: 'inbox'
 
 EnlightenmentApp.ModalView = Ember.View.extend(
   didInsertElement: ->

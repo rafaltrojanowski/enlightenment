@@ -5,6 +5,10 @@ class Api::V1::ContentEntitiesController < ApplicationController
     respond_with ContentEntity.all
   end
 
+  def inbox
+    respond_with current_user.content_entities.inbox, root: false
+  end
+
   def create
     attrs = {
       content: params[:contentEntity][:body],
