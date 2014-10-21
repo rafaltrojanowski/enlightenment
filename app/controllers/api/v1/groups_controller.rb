@@ -17,7 +17,10 @@ class Api::V1::GroupsController < ApplicationController
   end
 
   def update
+    # need refactoring
     @group.user_ids = params[:group][:users]
+    @group.icon = params[:group][:icon]
+    @group.save
     respond_with :api, :v1, @group
   end
 
