@@ -25,7 +25,12 @@ EnlightenmentApp.GroupController = Ember.ObjectController.extend
       alertify.success("Group updated!")
     destroy: ->
       group = @get('model')
-      group.deleteRecord()
-      group.save()
-      @transitionToRoute('groups')
-      alertify.success('group destroyed!')
+      alertify.confirm "Delete group?", (e) ->
+        if e
+          group.deleteRecord()
+          group.save()
+          @transitionToRoute('groups')
+          alertify.success('group destroyed!')
+        else
+          alertify.error "You've clicked Cancel"
+        return

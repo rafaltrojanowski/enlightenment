@@ -11,11 +11,14 @@
   </div>
 </div>
 
-<div class="list-group">
+<div class="panel panel-default">
+  <div class="panel-body">
+    <ul class="nav nav-tabs">
+      {{#link-to 'content_entities' (query-params type="link") tagName="li" }}<a {{bindAttr href="view.href"}} data-toggle="tab">Link</a>{{/link-to}}
+      {{#link-to 'content_entities' (query-params type="note") tagName="li" }}<a {{bindAttr href="view.href"}} data-toggle="tab">Note</a>{{/link-to}}
+    </ul>
 
-  {{#link-to 'content_entities' (query-params type="link")}}Link{{/link-to}}
-  {{#link-to 'content_entities' (query-params type="note")}}Note{{/link-to}}
-
+    <div class="list-group">
   {{#each content_entity in paginatedContent itemController="ContentEntity"}}
     <div id="link_note">
       <div id="content_entity" class='list-group-item'>
@@ -52,3 +55,7 @@
 </div>
 
 {{pagination-links page=page pages=pages}}
+  </div>
+</div>
+
+

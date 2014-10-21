@@ -14,21 +14,23 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
   actions: {
     save: function() {
       this.get('model').save().then(function(){
-        // EnlightenmentApp.get('flash').success('Record updated!');
         alertify.success("Record updated!");
       },function(response){
       });
     },
 
     close: function() {
-      var model = this.get('model'),
-          transaction = model.get('transaction');
+      var model = this.get('model');
+      // var transaction = model.get('transaction');
 
-      if (transaction) transaction.rollback();
-      if (model.get('errors'))
+      // if (transaction) model.rollback();
+      // if (model.get('errors'))
+      model.rollback();
 
+
+      // console.log(model.get('title'));
       this.send("closeModal");
-      // EnlightenmentApp.get('flash').success('Record added without changes!')
+      this.set('model', model);
     },
 
     shouldDisableSubmit: function() {
