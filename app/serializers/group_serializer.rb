@@ -2,6 +2,7 @@ class GroupSerializer < ActiveModel::Serializer
   attributes :id,
              :name,
              :owner_id,
+             :icon,
              :users,
              :user_ids
 
