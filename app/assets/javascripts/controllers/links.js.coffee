@@ -1,6 +1,6 @@
 EnlightenmentApp.LinksController = Ember.ArrayController.extend EnlightenmentApp.PaginatableMixin,
   page:           1
-  perPage:        1
+  perPage:        10
   sortAscending: false,
   sortProperties: ['updated_at']
 

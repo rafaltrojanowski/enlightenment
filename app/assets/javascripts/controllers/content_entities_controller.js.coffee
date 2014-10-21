@@ -78,7 +78,7 @@ EnlightenmentApp.PaginationLinksComponent = Em.Component.extend
 
 EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend EnlightenmentApp.PaginatableMixin,
   page:           1
-  perPage:        5
+  perPage:        10
   sortAscending: false,
   sortProperties: ['updated_at']
 

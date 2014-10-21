@@ -3,8 +3,9 @@
     link-to .button.btn.btn-lg.btn-success 'groups.new' | New Group
   .panel-body
     each itemController="group"
-      .list-group-item
+      .list-group-item.myfloater
         = name
-        button.btn.btn-danger.pull-right{ action "destroy" } delete
-        link-to .btn.btn-info.pull-right 'group' this | show
+        .btn-group.pull-right
+          button.btn.btn-danger{ action "destroy" } Delete
+          link-to .btn.btn-info 'group' this | Show
 
