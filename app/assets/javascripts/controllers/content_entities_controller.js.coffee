@@ -1,31 +1,17 @@
 EnlightenmentApp.PaginatableMixin = Em.Mixin.create
-  queryParams: ['type']
-  type: null
-
   paginatedContent: (->
     page    = @get('page')
     perPage = @get('perPage')
     start   = (page - 1 ) * perPage
     end     = page * perPage
-
-    type = @get("type")
-    content_entities = @get("model")
-
-    if type
-      length = @get('arrangedContent').filterBy("type", type).length
-      @set('contentLength', length)
-      @get('arrangedContent').filterBy("type", type).slice(start, end)
-    else
-      length = @get('arrangedContent').length
-      @set('contentLength', length)
-      @get('arrangedContent').slice(start, end)
-  ).property('arrangedContent.[]', 'page', 'perPage', 'type')
+    @get('arrangedContent').slice(start, end)
+  ).property('arrangedContent.[]', 'page', 'perPage')
 
   pages: (->
-    result = parseInt(@get('contentLength') / @get('perPage'))
-    ++result if @get('contentLength') % @get('perPage') > 0
+    result = parseInt(@get('content.length') / @get('perPage'))
+    ++result if @get('content.length') % @get('perPage') > 0
     result
-  ).property('content.[]', 'perPage', 'contentLength')
+  ).property('content.[]', 'perPage')
 
 EnlightenmentApp.PaginationPageComponent = Em.Component.extend
   isCurrent: (-> @get('currentPage') == @get('page')).property('currentPage', 'page')
