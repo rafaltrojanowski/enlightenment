@@ -82,4 +82,4 @@ EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend Enligh
         alertify.error("Your record is invalid!")
 
       @set('newEntryName', "")
-      # EnlightenmentApp.get("flash").success "New record added!"
+

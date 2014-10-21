@@ -3,7 +3,7 @@
     .panel.panel-default
       .panel-heading
         i class=icon
-        button.btn.btn-danger.pull-right{ action "destroy" } delete
+        button.btn.btn-danger.pull-right{ action "destroy" } Delete
         h4 = name
 
       .panel-body
@@ -20,11 +20,11 @@
           each users
             li
               = email
-        link-to .btn.btn-success 'groups' | Back
+        link-to .btn.btn-default 'groups' | Back
   .col-sm-5
     .well
       h4 Add new member
       form submit="update"
         = input id="members" data-url=urlPath data-id=id
-        button.btn.btn-success Update
-      button.btn.btn-success{ action "save" } SaVe
+        button.btn.btn-primary Update
+        button.btn.btn-success{ action "save" } Save
