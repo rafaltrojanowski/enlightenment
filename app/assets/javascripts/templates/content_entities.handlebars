@@ -21,7 +21,7 @@
         {{#if content_entity.isNote}}
           {{#link-to "content_entity" content_entity}}
             <i class="fa fa-newspaper-o fa-2x"></i>
-            <b>{{showTitle content_entity.body}}</b>
+            <b>{{content_entity.body}}</b>
           {{/link-to}}
           {{#if content_entity.group.name }}
             <i class="fa fa-users"> {{{content_entity.group.name}}}</i>
