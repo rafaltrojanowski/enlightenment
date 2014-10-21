@@ -26,9 +26,6 @@ EnlightenmentApp.ContentEntityController = Ember.ObjectController.extend
     confirmDelete: (content_entity) ->
       @controllerFor('confirm.delete').send('confirmDelete', content_entity, 'content_entities');
       @send 'openModal', 'confirm.delete'
-    # TODO remove gotoEdit
-    gotoEdit: (model) ->
-      this.transitionTo('content_entity.edit', model);
 
     addComment: (param) ->
       contententity = @get('content_entity.content')
