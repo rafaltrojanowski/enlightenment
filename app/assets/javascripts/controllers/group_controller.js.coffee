@@ -29,3 +29,6 @@ EnlightenmentApp.GroupController = Ember.ObjectController.extend
       group.save()
       @transitionToRoute('groups')
       alertify.success('group destroyed!')
+    setIcon: (name) ->
+      @set('icon', name)
+      @get('model').save()

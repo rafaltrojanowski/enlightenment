@@ -30,12 +30,12 @@
             </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" {{bind-attr disabled="shouldDisableSubmit"}} class="btn btn-info">Save</button>
-          <button {{action 'close'}} class="btn btn-default">Cancel</button>
           {{#if isSaving}}
-            <img src="{{unbound App.AJAX_LOADER_IMG}}" alt="Loading..." class="ajax-loader">
+            <img src="{{unbound EnlightenmentApp.AJAX_LOADER_IMG}}" alt="Loading..." class="ajax-loader">
             Saving...
           {{/if}}
+          <button type="submit" {{bind-attr disabled="shouldDisableSubmit"}} class="btn btn-info">Save</button>
+          <button {{action 'close'}} class="btn btn-default">Cancel</button>
         </div>
         </form>
       </div>
@@ -70,12 +70,12 @@
             </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" {{bind-attr disabled="shouldDisableSubmit"}} class="btn btn-info">Save</button>
-          <button {{action 'close'}} class="btn btn-default">Cancel</button>
           {{#if isSaving}}
-            <img src="{{unbound App.AJAX_LOADER_IMG}}" alt="Loading..." class="ajax-loader">
+            <img src="{{unbound EnlightenmentApp.AJAX_LOADER_IMG}}" alt="Loading..." class="ajax-loader">
             Saving...
           {{/if}}
+          <button type="submit" {{bind-attr disabled="shouldDisableSubmit"}} class="btn btn-info">Save</button>
+          <button {{action 'close'}} class="btn btn-default">Cancel</button>
         </div>
         </form>
       </div>

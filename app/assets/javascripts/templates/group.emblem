@@ -2,9 +2,18 @@
   .col-sm-6
     .panel.panel-default
       .panel-heading
-        h4 = name
+        i class=icon
         button.btn.btn-danger.pull-right{ action "destroy" } delete
+        h4 = name
+
       .panel-body
+        .icons data-logo=view.hello
+          | Icon: 
+          i class="icon fa fa-bicycle fa-lg" data-name="fa fa-bicycle fa-lg"
+          i class="icon fa fa-bolt fa-lg" data-name="fa fa-bolt fa-lg"
+          i class="icon fa fa-bank fa-lg" data-name="fa fa-bank fa-lg"
+          i class="icon fa fa-laptop fa-lg" data-name="fa fa-laptop fa-lg"
+          i class="icon fa fa-music fa-lg" data-name="fa fa-music fa-lg"
         br
         | Participants:
         ul

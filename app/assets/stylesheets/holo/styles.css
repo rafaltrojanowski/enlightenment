@@ -251,3 +251,7 @@ textarea {
 .panel.panel-default {
   border-radius: 5px;
 }
+
+.icon {
+  padding: 7px;
+}
