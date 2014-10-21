@@ -24,11 +24,6 @@
 
 <div class="panel panel-default">
   <div class="panel-body">
-    <ul class="nav nav-tabs">
-      {{#link-to 'links' (query-params type="published") tagName="li" }}<a {{bindAttr href="view.href"}} data-toggle="tab">Published</a>{{/link-to}}
-      {{#link-to 'links' (query-params type="inbox") tagName="li" }}<a {{bindAttr href="view.href"}} data-toggle="tab">Inbox</a>{{/link-to}}
-    </ul>
-
     <div class="list-group">
   {{#each link in paginatedContent}}
     <div id="link_note">

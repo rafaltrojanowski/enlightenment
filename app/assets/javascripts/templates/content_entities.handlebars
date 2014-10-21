@@ -13,12 +13,6 @@
 
 <div class="panel panel-default">
   <div class="panel-body">
-    <ul class="nav nav-tabs">
-<!--       {{#link-to 'content_entities' tagName="li" }}<a {{bindAttr href="view.href"}} data-toggle="tab">All</a>{{/link-to}} -->
-      {{#link-to 'content_entities' (query-params type="link") tagName="li" }}<a {{bindAttr href="view.href"}} data-toggle="tab">Link</a>{{/link-to}}
-      {{#link-to 'content_entities' (query-params type="note") tagName="li" }}<a {{bindAttr href="view.href"}} data-toggle="tab">Note</a>{{/link-to}}
-    </ul>
-
     <div class="list-group">
   {{#each content_entity in paginatedContent itemController="ContentEntity"}}
     <div id="link_note">
