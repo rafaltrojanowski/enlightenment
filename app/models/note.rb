@@ -13,6 +13,10 @@ class Note < ActiveRecord::Base
 
   def set_title
     ignore_html = body.gsub( %r{</?[^>]+?>}, '' )
-    self.title = ignore_html[0..TITLE_LENGTH].concat('...')
+    if ignore_html.length <= TITLE_LENGTH
+      self.title = ignore_html
+    else
+      self.title = ignore_html[0..TITLE_LENGTH].concat('...')
+    end
   end
 end
