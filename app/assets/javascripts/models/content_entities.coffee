@@ -22,4 +22,8 @@ EnlightenmentApp.ContentEntity = DS.Model.extend(
   formatedDate: (->
     @get("updated_at").toString()
   ).property("updated_at")
+
+  groupChanged: (->
+    console.log(@get('group_id'))
+  ).observes('group_id')
 )
