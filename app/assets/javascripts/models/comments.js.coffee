@@ -8,6 +8,6 @@ EnlightenmentApp.Comment = DS.Model.extend(
   content_entity: DS.belongsTo('content_entity', { async: true })
   user: DS.belongsTo('user', { async: true })
   formatedDate: (->
-    @get("updated_at").toString()
+    @get("updated_at").toLocaleString();
   ).property("updated_at")
 )

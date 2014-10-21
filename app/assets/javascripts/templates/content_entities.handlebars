@@ -11,9 +11,7 @@
   </div>
 </div>
 
-<div class="panel panel-default">
-  <div class="panel-body">
-    <div class="list-group">
+<div class="list-group">
   {{#each content_entity in paginatedContent itemController="ContentEntity"}}
     <div id="link_note">
       <div id="content_entity" class='list-group-item'>
@@ -21,7 +19,7 @@
         {{#if content_entity.isNote}}
           {{#link-to "content_entity" content_entity}}
             <i class="fa fa-newspaper-o fa-2x"></i>
-            <b>{{content_entity.body}}</b>
+            <b>{{content_entity.title}}</b>
           {{/link-to}}
           {{#if content_entity.group.name }}
             <i class="fa fa-users"> {{{content_entity.group.name}}}</i>
@@ -50,7 +48,5 @@
 </div>
 
 {{pagination-links page=page pages=pages}}
-  </div>
-</div>
 
 
