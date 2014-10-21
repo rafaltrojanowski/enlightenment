@@ -11,10 +11,10 @@ EnlightenmentApp.Router.map ()->
     @resource 'comments', ->
       @route 'new'
     @route 'comment', path: '/comments/:comment_id'
-  @resource 'links', path: 'content_entities?type=link'
+  @resource 'links', path: 'links'
   @resource 'link', path: 'links/:link_id' #, ->
     # @resource 'comments'
-  @resource 'notes', path: 'content_entities?type=note'
+  @resource 'notes', path: 'notes'
   @resource 'note', path: 'notes/:note_id'
   @resource 'groups', ->
     @route 'new'
