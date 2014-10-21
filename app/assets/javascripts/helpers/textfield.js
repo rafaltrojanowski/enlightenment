@@ -1,12 +1,11 @@
 EnlightenmentApp.ButtonInputComponent = Ember.TextArea.extend({
   setAutosize: function() {
     $('textarea').autosize();
-    // $('#add_button').css({'height':($("textarea").height()+'px')});
-    // $('textarea').on('keyup', function(e){
-    //   e.preventDefault();
-    //   var textareaHeight = $(this).css('height');
-    //   $('#add_button').css('height', textareaHeight);
-    // })
+    $('textarea').keyup(function(e) {
+      if (e.ctrlKey == true && e.keyCode == 13) {
+        $(this).submit();
+      }
+    });
   }.on('didInsertElement')
 
 });
