@@ -2,7 +2,17 @@ class Api::V1::ContentEntitiesController < ApplicationController
   respond_to :json
 
   def index
-    respond_with ContentEntity.all
+    scope = ContentEntity.all
+
+    if params[:type].present?
+      scope = scope.where(contentable_type: params[:type].humanize)
+    end
+
+    if params[:inbox].present?
+      scope = scope.where(inbox: true)
+    end
+
+    respond_with scope
   end
 
   def inbox
