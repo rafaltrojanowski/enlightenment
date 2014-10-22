@@ -23,6 +23,8 @@ EnlightenmentApp.Router.map ()->
   @resource 'comments'
   @resource 'inbox', path: 'inbox'
 
+# EnlightenmentApp.Router.reopen location: "history"
+
 EnlightenmentApp.ModalView = Ember.View.extend(
   didInsertElement: ->
     Ember.run.next this, ->
