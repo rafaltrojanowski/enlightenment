@@ -14,6 +14,5 @@ EnlightenmentApp.ModalView = Em.View.extend(
     $("body").off "keyup.modal"
     return
 )
-EnlightenmentApp.ContentEntitiesModalView = EnlightenmentApp.ModalView.extend({})
-EnlightenmentApp.ConfirmDeleteView = EnlightenmentApp.ModalView.extend();
-
+EnlightenmentApp.ContentEntitiesModalView = EnlightenmentApp.ModalView.extend()
+EnlightenmentApp.ConfirmDeleteView = EnlightenmentApp.ModalView.extend()
