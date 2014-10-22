@@ -1,32 +1,34 @@
 nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
-  .container-fluid
-    .navbar-header
-      button.navbar-toggle.collapsed data-toggle='collapse' type='button' data-target='.dupa'
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      link-to 'home' class='navbar-brand' | <i class="fa fa-sun-o fa-1x"> getE</i>
-    if isAuthenticated
-      div.collapse.navbar-collapse.dupa
-        ul.nav.navbar-nav.navbar-right.pull-right id='dropdown_auth'
-          li.dropdown
-            a.dropdown-toggle data-toggle='dropdown' href='#' 
-              | <i class='fa fa-user'></i> {{ hiName }}
-              span.caret
-            ul.dropdown-menu role='menu' 
-              li
-                span{action 'logout'}
-                  li
-                    link-to '' action='logout' role="menuitem" | Profile
-              li
-                span{action 'logout'}
-                  li
-                    link-to '' action='logout' role="menuitem" | Edit account
-              li.divider
-              li
-                / button{action 'logout'} Logout
-                / or
-                / # HACK - link doesnt work without span
-                span{action 'logout'}
-                  li
-                    link-to '' action='logout' role="menuitem" | Logout
+  / .container-fluid
+  .navbar-header
+    button.navbar-toggle data-toggle="offcanvas" type="button" data-target="#sidebar-nav"
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+    button.navbar-toggle data-toggle="collapse" type="button" data-target="#navbar-nav"
+      | <i class='fa fa-user'></i>
+    link-to 'home' class='navbar-brand' | <i class="fa fa-sun-o fa-1x"> getE</i>
+  if isAuthenticated
+    div.collapse.navbar-collapse id="navbar-nav"
+      ul.nav.navbar-nav.navbar-right.pull-right id='dropdown_auth'
+        li.dropdown
+          a.dropdown-toggle data-toggle='dropdown' href='#' 
+            | <i class='fa fa-user'></i> {{ hiName }}
+            span.caret
+          ul.dropdown-menu role='menu' 
+            li
+              span{action 'logout'}
+                li
+                  link-to '' action='logout' role="menuitem" | Profile
+            li
+              span{action 'logout'}
+                li
+                  link-to '' action='logout' role="menuitem" | Edit account
+            li.divider
+            li
+              / button{action 'logout'} Logout
+              / or
+              / # HACK - link doesnt work without span
+              span{action 'logout'}
+                li
+                  link-to '' action='logout' role="menuitem" | Logout

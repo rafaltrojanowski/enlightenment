@@ -1,16 +1,16 @@
 / if isAuthenticated
 / ul.nav id="sidebar-nav"
-ul.nav
+/ div.collapse.navbar-collapse id="sidebar"
+ul.nav id="sidebar-nav"
   li
     link-to 'content_entities' | <i class="fa fa-tachometer"></i> Dashboard
   li
     link-to 'links' | <i class="fa fa-globe"></i> My Links
   li
     link-to 'notes' | <i class="fa fa-newspaper-o"></i> My Notes
-  li
-    link-to 'inbox' | <i class="fa fa-inbox"></i> Inbox
   hr/
-  link-to 'groups' | <i class="fa fa-cog pull-right"></i>
+  li
+    link-to 'groups' | <i class="fa fa-cog pull-right"></i>
   br
   each group in groups
     li#group-link
