@@ -16,9 +16,14 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
       var model = this.get('model');
       groupId = model.get('group_id');
 
-      this.store.find('group', groupId).then(function(group) {
-        model.set('group', group);
-      });
+      if (groupId != null) {
+        this.store.find('group', groupId).then(function(group) {
+          model.set('group', group);
+        });
+      } else {
+        model.set('group', null);
+      }
+      
 
       this.get('model').save().then(function(){
         alertify.success("Record updated!");
