@@ -9,7 +9,5 @@ EnlightenmentApp.NotesController = Ember.ArrayController.extend EnlightenmentApp
       record = this.store.createRecord('content_entity',{
         body: @get('newEntryName')
       });
-
       record.save()
-
       @set('newEntryName', "")
