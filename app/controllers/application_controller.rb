@@ -1,33 +1,21 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   layout :layout_by_resource
-
-  before_action :configure_permitted_parameters, if: :devise_controller?
   respond_to :html, :json
 
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_path, alert: exception.message
-  end
+  before_action :authenticate_user_from_token!
 
-  def current_user_json
-    if current_user
-      UserSerializer.new(current_user, scope: current_user, root: false).to_json
-    else
-      {}.to_json
-    end
-  end
-  helper_method :current_user_json
-
+  # before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
 
-  def configure_permitted_parameters
-    account_update_params = %w(username avatar)
-    devise_parameter_sanitizer.for(:account_update) << account_update_params
-    devise_parameter_sanitizer.for(:sign_up) do |u|
-      u.permit(:username, :email, :password, :password_confirmation)
-    end
-  end
+  # def configure_permitted_parameters
+    # account_update_params = %w(username avatar)
+    # devise_parameter_sanitizer.for(:account_update) << account_update_params
+    # devise_parameter_sanitizer.for(:sign_up) do |u|
+      # u.permit(:username, :email, :password, :password_confirmation)
+    # end
+  # end
 
   private
 
@@ -36,6 +24,17 @@ class ApplicationController < ActionController::Base
       'admin_auth'
     else
       'application'
+    end
+  end
+
+  def authenticate_user_from_token!
+    authenticate_with_http_token do |token, options|
+      user_email = options[:user_email].presence
+      user       = user_email && User.find_by_email(user_email)
+
+      if user && Devise.secure_compare(user.authentication_token, token)
+        sign_in user, store: false
+      end
     end
   end
 end

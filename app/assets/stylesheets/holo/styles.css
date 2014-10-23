@@ -72,21 +72,32 @@ a {
   width:220px;
 }
 
+#sidebar hr {
+  border-color:#bcbcbc;
+}
+
+/*#sidebar .affix-top {
+  width:90%;
+}*/
+
 #sidebar .affix-bottom {
   position:fixed;
   top:55;
-  width:220px;
+  width:16%;
 }
 
 #sidebar .nav {
-  width: 95%;
+  /*width: 40%;*/
 }
 #sidebar li {
   border:0 #1e1e1e solid;
   border-bottom-width:1px;
+  /*width: 250px;*/
+  /*width: 100%;*/
 }
 #sidebar li a {
   padding-left:1px;
+  word-wrap: break-word;
 }
 #sidebar li a:hover {
   background-color:#222222;
@@ -124,6 +135,17 @@ a {
   #sidebar {
     background-color:#3b3b3b;
     padding-top:0;
+    height:100%;
+  }
+
+  #dropdown_auth {
+    color: red;
+  }
+
+  #sidebar .affix-bottom {
+    position:fixed;
+    top:55;
+    width:38%;
   }
   #sidebar .nav>li {
     color: #ddd;
@@ -131,9 +153,11 @@ a {
     border-top: 1px solid #484848;
     border-bottom: 1px solid #2E2E2E;
     padding-left:10px;
+    /*width: 100%;*/
   }
   #sidebar .nav>li:first-child {
     border-top:0;
+    padding-top: 10px;
   }
   #sidebar .nav>li>a {
     color: #ddd;
@@ -186,6 +210,25 @@ a {
      
 h3,h4,h5,.panel {
    color:#555555;
+}
+
+.white-gradient {
+  position: relative;
+}
+.white-gradient:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(75px, rgba(255,255,255,1)), color-stop(100%, rgba(255,255,255,0)));
+  background: -webkit-linear-gradient(right, rgba(255,255,255,1) 75px,rgba(255,255,255,0) 100%);
+  background:    -moz-linear-gradient(right, rgba(255,255,255,1) 75px, rgba(255,255,255,0) 100%);
+  background:     -ms-linear-gradient(right, rgba(255,255,255,1) 75px, rgba(255,255,255,0) 100%);
+  background:      -o-linear-gradient(right, rgba(255,255,255,1) 75px, rgba(255,255,255,0) 100%);
+  background:         linear-gradient(right, rgba(255,255,255,1) 75px, rgba(255,255,255,0) 100%);
 }
 .panel hr {
    border-color:#efefef;

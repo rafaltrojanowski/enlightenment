@@ -14,6 +14,14 @@ class User < ActiveRecord::Base
   has_many :notes, through: :content_entities, source: :contentable, source_type: 'Note'
   has_and_belongs_to_many :groups, join_table: :participants
 
+  before_save :ensure_authentication_token
+
+  def ensure_authentication_token
+    if authentication_token.blank?
+      self.authentication_token = generate_authentication_token
+    end
+  end
+
   def name
     username
   end
@@ -21,4 +29,13 @@ class User < ActiveRecord::Base
   def nickname
     username.presence || email
   end
+
+  private
+
+    def generate_authentication_token
+      loop do
+        token = Devise.friendly_token
+        break token unless User.where(authentication_token: token).first
+      end
+    end
 end

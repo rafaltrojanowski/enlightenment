@@ -52,6 +52,5 @@ EnlightenmentApp.GroupController = Ember.ObjectController.extend
       @set('isEditing', false)
     cancelEditing: ->
       @set('isEditing', false)
-      console.log('cancel editing')
     editGroup: ->
       @set('isEditing', true)

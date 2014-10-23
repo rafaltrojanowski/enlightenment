@@ -4,6 +4,10 @@ class Api::V1::ContentEntitiesController < ApplicationController
   def index
     scope = ContentEntity.all
 
+    if params[:user_id].present?
+      scope = scope.where(user_id: params[:user_id])
+    end
+
     if params[:type].present?
       scope = scope.where(contentable_type: params[:type].humanize)
     end
@@ -22,7 +26,7 @@ class Api::V1::ContentEntitiesController < ApplicationController
   def create
     attrs = {
       content: params[:contentEntity][:body],
-      user_id: current_user.id
+      user_id: params[:contentEntity][:user_id],
     }
 
     respond_with :api, :v1, ContentEntity.create(attrs)
