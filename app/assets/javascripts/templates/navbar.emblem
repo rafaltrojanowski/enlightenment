@@ -7,10 +7,13 @@ nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
       span.icon-bar
       span.icon-bar
       span.icon-bar
-    link-to 'home' class='navbar-brand' | <i class="fa fa-sun-o fa-1x"> getE</i>
+    if session.isAuthenticated
+      link-to 'content_entities' class='navbar-brand' | <i class="fa fa-sun-o fa-1x"> getE</i>
+    else
+      link-to 'home' class='navbar-brand' | <i class="fa fa-sun-o fa-1x"> getE</i>
   if session.isAuthenticated
     div.collapse.navbar-collapse id="navbar-nav"
-      ul.nav.navbar-nav.navbar-right.pull-right id='dropdown_auth'
+      ul.nav.navbar-nav.navbar-right id='dropdown_auth'
         li.dropdown
           a.dropdown-toggle data-toggle='dropdown' href='#' 
             | <i class='fa fa-user'></i> {{session.user_email}}
