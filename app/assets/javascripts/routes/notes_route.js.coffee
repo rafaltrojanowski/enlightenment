@@ -1,4 +1,4 @@
-EnlightenmentApp.NotesRoute = Ember.Route.extend
+EnlightenmentApp.NotesRoute = Ember.Route.extend SimpleAuth.AuthenticatedRouteMixin,
   model: ->
     # trigger a find
     @store.find "content_entity",

@@ -1,10 +1,4 @@
-EnlightenmentApp.ContentEntitiesRoute = Ember.Route.extend
-  # beforeModel: (transition) ->
-    # unless @controllerFor("auth").get("isAuthenticated")
-      # loginController = @controllerFor("auth")
-      # loginController.set "previousTransition", transition
-      # @transitionTo "login"
-
+EnlightenmentApp.ContentEntitiesRoute = Ember.Route.extend SimpleAuth.AuthenticatedRouteMixin,
   model: ->
     @get('store').find('content_entity')
 
@@ -17,6 +11,4 @@ EnlightenmentApp.ContentEntitiesRoute = Ember.Route.extend
       @controllerFor('confirm.delete').send('confirmDelete', content_entity, 'content_entity.index');
       @send 'openModal', 'confirm.delete'
 
-EnlightenmentApp.ContentEntityEditRoute = Ember.Route.extend
-  test: true # TODO
-
+EnlightenmentApp.ContentEntityRoute = Ember.Route.extend SimpleAuth.AuthenticatedRouteMixin
