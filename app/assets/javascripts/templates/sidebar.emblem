@@ -1,17 +1,18 @@
 / if isAuthenticated
 / ul.nav id="sidebar-nav"
-/ div.collapse.navbar-collapse id="sidebar"
 if session.isAuthenticated
-  ul.nav id="sidebar-nav"
+  ul.nav
     li
       link-to 'content_entities' | <i class="fa fa-tachometer"></i> Dashboard
     li
       link-to 'links' | <i class="fa fa-globe"></i> My Links
     li
       link-to 'notes' | <i class="fa fa-newspaper-o"></i> My Notes
-    hr
+    li
+      link-to 'inbox' | <i class="fa fa-inbox"></i> Inbox
+    hr/
     link-to 'groups' | <i class="fa fa-cog pull-right"></i>
-    br
+    | <div style="color:#bcbcbc; padding-bottom: 10px;"><i class="fa fa-users"></i> Groups</div>
     each group in groups
       li#group-link
         link-to 'wall' group | <i {{bind-attr class='group.icon'}}></i> #{group.name}
