@@ -6,6 +6,7 @@
 
 {{#if isLink}}
   <h1 id="section1">{{title}}</h1>
+  <hr>
   <p>{{description}}</p>
   <a target='_blank' {{bind-attr href='fullAddress'}}>
     <img {{bind-attr src=image}}/>
@@ -15,7 +16,8 @@
   <p><a target="_blank" {{bind-attr href='fullAddress'}} class="btn btn-primary">{{fullAddress}}</a></p>
 {{else}}
   <h1 id="section1">{{title}}</h1>
-  <p>{{{formattedBody}}}</p>
+  <hr>
+  <p>{{{body}}}</p>
 {{/if}}
 
 <hr/>

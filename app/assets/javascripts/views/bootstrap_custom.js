@@ -1,6 +1,10 @@
 EnlightenmentApp.ApplicationView = Ember.View.extend({
   didInsertElement: function() {
     // $(document).foundation('section'); // this will only load the section component
+    // var self = this;
+    // Ember.run.schedule('afterRender', function() {
+    //   self.$('#sidebar').affix({ top: 10, bottom: 5 });
+    // });
     $('[data-toggle=offcanvas]').click(function() {
       $('.row-offcanvas').toggleClass('active');
     });
