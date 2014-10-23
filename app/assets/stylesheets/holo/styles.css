@@ -135,11 +135,7 @@ a {
   #sidebar {
     background-color:#3b3b3b;
     padding-top:0;
-    position: fixed;
-    width: 150px;
-    overflow-y: scroll;
-    top: 0;
-    bottom: 0;
+    height:100%;
   }
 
   #sidebar .affix-bottom {
@@ -210,6 +206,29 @@ a {
      
 h3,h4,h5,.panel {
    color:#555555;
+}
+
+h2 {
+  font-size: 40px;
+  font-weight: normal;
+}
+.white-gradient {
+  position: relative;
+}
+.white-gradient:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(100%, rgba(255,255,255,0)));
+  background: -webkit-linear-gradient(right, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+  background:    -moz-linear-gradient(right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+  background:     -ms-linear-gradient(right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+  background:      -o-linear-gradient(right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+  background:         linear-gradient(right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
 }
 .panel hr {
    border-color:#efefef;
