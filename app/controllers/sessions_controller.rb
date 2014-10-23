@@ -1,9 +1,17 @@
 class SessionsController < Devise::SessionsController
-  def destroy
-    signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
-    render json: {
-      'csrf-param' => request_forgery_protection_token,
-      'csrf-token' => form_authenticity_token
-    }
+  def create
+    respond_to do |format|
+      format.html { super }
+      format.json do
+        self.resource = warden.authenticate!(auth_options)
+        sign_in(resource_name, resource)
+        data = {
+          user_token: self.resource.authentication_token,
+          user_email: self.resource.email,
+          user_id: self.resource.id
+        }
+        render json: data, status: 201
+      end
+    end
   end
 end

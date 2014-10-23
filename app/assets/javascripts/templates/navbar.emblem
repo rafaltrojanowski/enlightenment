@@ -6,12 +6,13 @@ nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
         span.icon-bar
         span.icon-bar
       link-to 'home' class='navbar-brand' | <i class="fa fa-sun-o fa-1x"> getE</i>
-    if isAuthenticated
+    = currentUser
+    if session.isAuthenticated
       div.collapse.navbar-collapse.dupa
         ul.nav.navbar-nav.navbar-right.pull-right id='dropdown_auth'
           li.dropdown
-            a.dropdown-toggle data-toggle='dropdown' href='#' 
-              | <i class='fa fa-user'></i> {{ hiName }}
+            a.dropdown-toggle data-toggle='dropdown' href='#'
+              | <i class='fa fa-user'></i> {{session.user_email}}
               span.caret
             ul.dropdown-menu role='menu' 
               li
@@ -24,9 +25,14 @@ nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
                     link-to '' action='logout' role="menuitem" | Edit account
               li.divider
               li
-                / button{action 'logout'} Logout
+                button{action 'invalidateSession'} Logout
                 / or
                 / # HACK - link doesnt work without span
-                span{action 'logout'}
+                span{action 'invalidateSession'}
                   li
-                    link-to '' action='logout' role="menuitem" | Logout
+                    link-to '' action='invalidateSession' role="menuitem" | Logout
+    else
+      div.collapse.navbar-collapse.dupa
+        ul.nav.navbar-nav.navbar-right.pull-right id='dropdown_auth'
+          li.dropdown
+            button{ action 'authenticateSession' } Login

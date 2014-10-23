@@ -22,7 +22,7 @@ class Api::V1::ContentEntitiesController < ApplicationController
   def create
     attrs = {
       content: params[:contentEntity][:body],
-      user_id: current_user.id
+      user_id: params[:contentEntity][:user_id],
     }
 
     respond_with :api, :v1, ContentEntity.create(attrs)
