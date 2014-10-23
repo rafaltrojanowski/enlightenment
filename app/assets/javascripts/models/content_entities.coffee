@@ -9,7 +9,7 @@ EnlightenmentApp.ContentEntity = DS.Model.extend(
   group: DS.belongsTo('group', {async: true})
   group_id: DS.attr('number')
   user_id: DS.attr('number')
-  inbox: DS.attr('string')
+  inbox: DS.attr('boolean')
   isLink: (->
     if @get("type") == 'link'
       true
