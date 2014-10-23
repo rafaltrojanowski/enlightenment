@@ -15,7 +15,7 @@ class ContentEntity < ActiveRecord::Base
 
   delegate :to_s, :inbox?, to: :contentable
 
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
 
   def self.inbox
     select { |r| r.contentable.inbox? }
