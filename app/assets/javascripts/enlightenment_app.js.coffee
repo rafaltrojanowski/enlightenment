@@ -10,5 +10,6 @@
 #= require_tree ./routes
 #= require_tree ./utils
 #= require_tree ./etc
+#= require_tree ./initializers
 #= require ./router
 #= require_self
