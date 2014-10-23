@@ -8,7 +8,7 @@ ul.nav id="sidebar-nav"
     link-to 'links' | <i class="fa fa-globe"></i> My Links
   li
     link-to 'notes' | <i class="fa fa-newspaper-o"></i> My Notes
-  hr/
+  hr
     link-to 'groups' | <i class="fa fa-cog pull-right"></i>
   br
   each group in groups

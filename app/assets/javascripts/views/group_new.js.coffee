@@ -9,4 +9,3 @@ EnlightenmentApp.GroupsNewView = Em.View.extend
       icon = $(this).data('name')
       icon = "fa fa-" + icon + " fa-lg"
       controller.send('setIconName', icon)
-

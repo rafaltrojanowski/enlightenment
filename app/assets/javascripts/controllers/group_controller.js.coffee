@@ -2,7 +2,9 @@ EnlightenmentApp.GroupController = Ember.ObjectController.extend
   urlPath: (->
     "http://" + location.host + "/api/v1/groups/" + @get('id') + "/other_users.json"
   ).property('id')
-  hej: 1
+  isEditing: false
+  bufferedName: Ember.computed.oneWay('name')
+
   actions:
     update: ->
       tokens = $("#members").tokenInput("get").mapBy("id")
@@ -37,3 +39,19 @@ EnlightenmentApp.GroupController = Ember.ObjectController.extend
     setIcon: (name) ->
       @set('icon', name)
       @get('model').save()
+    editGroup: ->
+      @set('isEditing', true)
+    doneEditing: ->
+      bufferedName = @get('bufferedName').trim()
+
+      unless Ember.isEmpty(bufferedName)
+        group = @get('model')
+        group.set('name', bufferedName)
+        group.save()
+
+      @set('isEditing', false)
+    cancelEditing: ->
+      @set('isEditing', false)
+      console.log('cancel editing')
+    editGroup: ->
+      @set('isEditing', true)
