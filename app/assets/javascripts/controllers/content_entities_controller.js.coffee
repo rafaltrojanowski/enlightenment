@@ -35,9 +35,10 @@ EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend Enligh
 
   actions:
     addEntry: ->
-      record = this.store.createRecord('content_entity',{
+      record = @store.createRecord('content_entity',{
         body: @get('newEntryName')
         user_id: @get('session.user_id')
+        group_id: @controllerFor('wall').get('currentGroupId');
       });
 
       record.save().then ((result) ->
@@ -46,6 +47,5 @@ EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend Enligh
         alertify.success("New record added!")
       ).bind(this), ->
         alertify.error("Your record is invalid!")
-
       @set('newEntryName', "")
 

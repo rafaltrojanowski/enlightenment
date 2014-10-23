@@ -27,6 +27,7 @@ class Api::V1::ContentEntitiesController < ApplicationController
     attrs = {
       content: params[:contentEntity][:body],
       user_id: params[:contentEntity][:user_id],
+      group_id: params[:contentEntity][:group_id],
     }
 
     respond_with :api, :v1, ContentEntity.create(attrs)
