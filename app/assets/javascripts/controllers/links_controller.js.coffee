@@ -1,6 +1,6 @@
-EnlightenmentApp.NotesController = Ember.ArrayController.extend EnlightenmentApp.PaginatableMixin,
+EnlightenmentApp.LinksController = Ember.ArrayController.extend EnlightenmentApp.PaginatableMixin,
   page:           1
-  perPage:        1
+  perPage:        10
   sortAscending: false,
   sortProperties: ['updated_at']
 
@@ -14,7 +14,7 @@ EnlightenmentApp.NotesController = Ember.ArrayController.extend EnlightenmentApp
     end     = page * perPage
 
     type = @get("type")
-    notes = @get("model")
+    links = @get("model")
 
     if type == 'inbox'
       length = @get('arrangedContent').filterBy("inbox", true).length
@@ -33,6 +33,8 @@ EnlightenmentApp.NotesController = Ember.ArrayController.extend EnlightenmentApp
         body: @get('newEntryName')
       });
 
-      record.save()
+      record.save().then ((result) ->
+        @transitionToRoute "content_entity.edit", result
+      ).bind(this)
 
       @set('newEntryName', "")

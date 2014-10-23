@@ -6,5 +6,6 @@ module Inbox
 
   def leave_inbox!
     update_column(:inbox, false)
+    content_entity.update_column(:inbox, false)
   end
 end

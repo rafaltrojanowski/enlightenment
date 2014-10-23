@@ -12,10 +12,6 @@
 </div>
 
 <div class="list-group">
-
-  {{#link-to 'content_entities' (query-params type="link")}}Link{{/link-to}}
-  {{#link-to 'content_entities' (query-params type="note")}}Note{{/link-to}}
-
   {{#each content_entity in paginatedContent itemController="ContentEntity"}}
     <div id="link_note">
       <div id="content_entity" class='list-group-item'>
@@ -23,7 +19,7 @@
         {{#if content_entity.isNote}}
           {{#link-to "content_entity" content_entity}}
             <i class="fa fa-newspaper-o fa-2x"></i>
-            <b>{{showTitle content_entity.body}}</b>
+            <b>{{content_entity.title}}</b>
           {{/link-to}}
           {{#if content_entity.group.name }}
             <i class="fa fa-users"> {{{content_entity.group.name}}}</i>
@@ -52,3 +48,5 @@
 </div>
 
 {{pagination-links page=page pages=pages}}
+
+

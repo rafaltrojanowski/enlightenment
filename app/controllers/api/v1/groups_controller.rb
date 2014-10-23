@@ -7,10 +7,7 @@ class Api::V1::GroupsController < ApplicationController
   end
 
   def create
-    attrs = {
-      name: params[:group][:name],
-      owner_id: current_user.id
-    }
+    attrs = params[:group]
 
     respond_with :api, :v1, Group.create(attrs)
     Group.last.users << current_user
@@ -20,6 +17,7 @@ class Api::V1::GroupsController < ApplicationController
     # need refactoring
     @group.user_ids = params[:group][:users]
     @group.icon = params[:group][:icon]
+    @group.name = params[:group][:name]
     @group.save
     respond_with :api, :v1, @group
   end

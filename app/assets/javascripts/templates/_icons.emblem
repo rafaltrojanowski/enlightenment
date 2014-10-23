@@ -1,0 +1,15 @@
+.icons
+  | Select Icon:
+  i class="icon fa fa-bicycle fa-lg" data-name="bicycle"
+  i class="icon fa fa-bolt fa-lg" data-name="bolt"
+  i class="icon fa fa-bank fa-lg" data-name="bank"
+  i class="icon fa fa-laptop fa-lg" data-name="laptop"
+  i class="icon fa fa-music fa-lg" data-name="music"
+  i class="icon fa fa-eyedropper fa-lg" data-name="eyedropper"
+  i class="icon fa fa-camera fa-lg" data-name="camera"
+  i class="icon fa fa-cutlery fa-lg" data-name="cutlery"
+  i class="icon fa fa-male fa-lg" data-name="male"
+  i class="icon fa fa-paw fa-lg" data-name="paw"
+  i class="icon fa fa-smile-o fa-lg" data-name="smile-o"  
+  i class="icon fa fa-car fa-lg" data-name="car"
+  i class="icon fa fa-glass fa-lg" data-name="glass"

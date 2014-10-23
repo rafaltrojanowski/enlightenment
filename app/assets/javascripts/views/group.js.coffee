@@ -1,5 +1,4 @@
 EnlightenmentApp.GroupView = Ember.View.extend
-  attributeBindings: ['data-logo']
 
   didInsertElement: ->
     controller = @get('controller')
@@ -13,12 +12,9 @@ EnlightenmentApp.GroupView = Ember.View.extend
         preventDuplicates: true
       ))
     $('.icon').click ->
-      logo = $(this).data('name')      
+      logo = $(this).data('name')
+      logo = "fa fa-" + logo + " fa-lg"
       controller.send('setIcon', logo)
       $('.icon').css("border", "none")
       $(this).css('border', "solid 2px green")
       $(this).css("border-radius", "7px")
-
-
-
-

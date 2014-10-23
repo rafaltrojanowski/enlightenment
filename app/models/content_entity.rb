@@ -1,6 +1,7 @@
 class ContentEntity < ActiveRecord::Base
   attr_accessor :content
   validates :content, presence: true
+  validates :user, presence: true
 
   default_scope { includes(:contentable, :user, :comments).
                   order(created_at: :desc) }
@@ -14,7 +15,7 @@ class ContentEntity < ActiveRecord::Base
 
   delegate :to_s, :inbox?, to: :contentable
 
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
 
   def self.inbox
     select { |r| r.contentable.inbox? }

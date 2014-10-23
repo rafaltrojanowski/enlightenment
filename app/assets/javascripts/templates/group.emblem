@@ -2,18 +2,13 @@
   .col-sm-6
     .panel.panel-default
       .panel-heading
-        i class=icon
         button.btn.btn-danger.pull-right{ action "destroy" } delete
-        h4 = name
-
+        if isEditing
+          edit-group type="text" class="edit" value=bufferedName focus-out="doneEditing" insert-newline="doneEditing" escape-press="cancelEditing"
+        else
+          h4 click="editGroup" = name
       .panel-body
-        .icons data-logo=view.hello
-          | Icon: 
-          i class="icon fa fa-bicycle fa-lg" data-name="fa fa-bicycle fa-lg"
-          i class="icon fa fa-bolt fa-lg" data-name="fa fa-bolt fa-lg"
-          i class="icon fa fa-bank fa-lg" data-name="fa fa-bank fa-lg"
-          i class="icon fa fa-laptop fa-lg" data-name="fa fa-laptop fa-lg"
-          i class="icon fa fa-music fa-lg" data-name="fa fa-music fa-lg"
+        partial 'icons'
         br
         | Participants:
         ul
@@ -23,7 +18,7 @@
         link-to .btn.btn-success 'groups' | Back
   .col-sm-5
     .well
-      h4 Add new member
+      h4 Manage members
       form submit="update"
         = input id="members" data-url=urlPath data-id=id
         button.btn.btn-success Update

@@ -2,6 +2,8 @@ EnlightenmentApp.GroupController = Ember.ObjectController.extend
   urlPath: (->
     "http://" + location.host + "/api/v1/groups/" + @get('id') + "/other_users.json"
   ).property('id')
+  isEditing: false
+  bufferedName: Ember.computed.oneWay('name')
 
   actions:
     update: ->
@@ -25,10 +27,30 @@ EnlightenmentApp.GroupController = Ember.ObjectController.extend
       alertify.success("Group updated!")
     destroy: ->
       group = @get('model')
-      group.deleteRecord()
-      group.save()
-      @transitionToRoute('groups')
-      alertify.success('group destroyed!')
+      alertify.confirm "Delete group?", (e) ->
+        if e
+          group.deleteRecord()
+          group.save()
+          @transitionToRoute('groups')
+          alertify.success('group destroyed!')
+        else
+          alertify.error "You've clicked Cancel"
+        return
     setIcon: (name) ->
       @set('icon', name)
       @get('model').save()
+    editGroup: ->
+      @set('isEditing', true)
+    doneEditing: ->
+      bufferedName = @get('bufferedName').trim()
+
+      unless Ember.isEmpty(bufferedName)
+        group = @get('model')
+        group.set('name', bufferedName)
+        group.save()
+
+      @set('isEditing', false)
+    cancelEditing: ->
+      @set('isEditing', false)
+    editGroup: ->
+      @set('isEditing', true)

@@ -1,0 +1,37 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close pull-right" {{action 'close'}}>&times;</button>
+    <h4 class="white-gradient ellipsis block"><i class="fa fa-globe"> {{ title }}</i></h4>
+  </div>
+  <form {{action save on="submit"}}>
+  <div class="modal-body">
+      <div {{bind-attr class="errors.title:error :field"}}>
+        {{view Ember.TextField valueBinding="title" class="form-control" placeholder="Title"}}
+        {{#each error in errors.title}}{{error.message}}{{/each}}
+      </div>
+      <div {{bind-attr class="errors.description:error :field"}}>
+        {{autosize-textarea valueBinding="description" class="form-control" placeholder="Description"}}
+        {{#each error in errors.description}}{{error.message}}{{/each}}
+      </div>
+
+      <div {{bind-attr class="errors.group:error :field"}}>
+        {{view Ember.Select content = groups
+           optionValuePath="content.id"
+           optionLabelPath="content.name"
+           valueBinding="group_id"
+           class="form-control"
+           prompt="Choose one of the following."
+        }}
+        {{#each error in errors.group}}{{error.message}}{{/each}}
+      </div>
+  </div>
+  <div class="modal-footer">
+    {{#if isSaving}}
+      <img src="{{unbound EnlightenmentApp.AJAX_LOADER_IMG}}" alt="Loading..." class="ajax-loader">
+      Saving...
+    {{/if}}
+    <button type="submit" {{bind-attr disabled="shouldDisableSubmit"}} class="btn btn-info">Save</button>
+    <button {{action 'close'}} class="btn btn-default">Cancel</button>
+  </div>
+  </form>
+</div>

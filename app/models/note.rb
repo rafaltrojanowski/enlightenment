@@ -1,5 +1,6 @@
 class Note < ActiveRecord::Base
   include Inbox
+  before_create :set_title
 
   TITLE_LENGTH = 20
 
@@ -8,5 +9,14 @@ class Note < ActiveRecord::Base
 
   def to_s
     body
+  end
+
+  def set_title
+    ignore_html = body.gsub( %r{</?[^>]+?>}, '' )
+    if ignore_html.length <= TITLE_LENGTH
+      self.title = ignore_html
+    else
+      self.title = ignore_html[0..TITLE_LENGTH].concat('...')
+    end
   end
 end

@@ -26,9 +26,6 @@ EnlightenmentApp.ContentEntityController = Ember.ObjectController.extend
     confirmDelete: (content_entity) ->
       @controllerFor('confirm.delete').send('confirmDelete', content_entity, 'content_entities');
       @send 'openModal', 'confirm.delete'
-    # TODO remove gotoEdit
-    gotoEdit: (model) ->
-      this.transitionTo('content_entity.edit', model);
 
     addComment: (param) ->
       contententity = @get('content_entity.content')
@@ -53,20 +50,3 @@ EnlightenmentApp.ContentEntityController = Ember.ObjectController.extend
         else
           alertify.error "You've clicked Cancel"
         return
-
-
-EnlightenmentApp.ContentEntityEditController = Ember.ObjectController.extend({
-  needs: [ 'content_entity' ]
-
-  isEditing: true
-
-  actions:
-    update: ->
-      newTitle = @get('title')
-      record = @get('content');
-      record.set("title", newTitle);
-      record.save();
-      this.transitionTo( 'content_entities' );
-      # EnlightenmentApp.get("flash").success "Record updated!"
-      alertify.success("Record updated!")
-});
