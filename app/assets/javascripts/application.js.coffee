@@ -5,6 +5,8 @@
 #= require handlebars
 #= require ember
 #= require ember-data
+#= require ember-simple-auth-0.6.7
+#= require ember-simple-auth-devise-0.6.7
 #= require_self
 #= require enlightenment_app
 #= require jquery.tokeninput

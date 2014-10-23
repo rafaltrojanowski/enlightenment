@@ -135,6 +135,11 @@ a {
   #sidebar {
     background-color:#3b3b3b;
     padding-top:0;
+    position: fixed;
+    width: 150px;
+    overflow-y: scroll;
+    top: 0;
+    bottom: 0;
   }
 
   #sidebar .affix-bottom {

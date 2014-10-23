@@ -1,4 +1,4 @@
-EnlightenmentApp.LinksRoute = Ember.Route.extend
+EnlightenmentApp.LinksRoute = Ember.Route.extend SimpleAuth.AuthenticatedRouteMixin,
   # TODO current user notes
 
   model: ->

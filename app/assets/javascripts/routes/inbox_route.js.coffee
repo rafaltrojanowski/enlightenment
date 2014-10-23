@@ -1,4 +1,4 @@
-EnlightenmentApp.InboxRoute = Ember.Route.extend
+EnlightenmentApp.InboxRoute = Ember.Route.extend SimpleAuth.AuthenticatedRouteMixin,
   model: ->
     # trigger a find
     @store.find "content_entity",

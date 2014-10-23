@@ -1,6 +1,5 @@
 .page-container
   render 'navbar'
-  / = render 'welcome_msg'
   .container-fluid
     .row.row-offcanvas.row-offcanvas-left
       .col-xs-6.col-sm-2.sidebar-offcanvas id="sidebar" role="navigation"
@@ -9,3 +8,7 @@
       .col-xs-12.col-sm-10 data-spy="scroll" data-target="#sidebar-nav"
         = outlet
         = outlet modal
+
+
+
+
