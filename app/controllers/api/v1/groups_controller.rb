@@ -7,7 +7,11 @@ class Api::V1::GroupsController < ApplicationController
   end
 
   def create
-    attrs = params[:group]
+    attrs = {
+      name: params[:group][:name],
+      icon: params[:group][:icon],
+      owner_id: params[:group][:owner_id]
+    }
 
     respond_with :api, :v1, Group.create(attrs)
     Group.last.users << current_user
