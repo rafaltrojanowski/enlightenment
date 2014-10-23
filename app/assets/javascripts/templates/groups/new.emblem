@@ -6,4 +6,11 @@
       .panel-body
         form submit="addGroup" class="form-horizontal"
           = view .form-control.input-sm Ember.TextField name="group[name]" valueBinding="newGroup" required="true"
+          .icons
+            | select icon:
+            i class="icon fa fa-bicycle fa-lg" data-name="bicycle"
+            i class="icon fa fa-bolt fa-lg" data-name="bolt"
+            i class="icon fa fa-bank fa-lg" data-name="bank"
+            i class="icon fa fa-laptop fa-lg" data-name="laptop"
+            i class="icon fa fa-music fa-lg" data-name="music"
           button.btn.btn-success Create

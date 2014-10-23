@@ -47,12 +47,6 @@ ActiveRecord::Schema.define(version: 20141022101216) do
   add_index "administrators", ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true, using: :btree
   add_index "administrators", ["unlock_token"], name: "index_administrators_on_unlock_token", unique: true, using: :btree
 
-  create_table "categories", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "comments", force: true do |t|
     t.text     "content"
     t.integer  "user_id"
@@ -136,7 +130,6 @@ ActiveRecord::Schema.define(version: 20141022101216) do
     t.datetime "updated_at"
     t.string   "username"
     t.string   "avatar"
-    t.string   "authentication_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

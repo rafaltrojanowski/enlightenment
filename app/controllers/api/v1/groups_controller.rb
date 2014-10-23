@@ -9,6 +9,7 @@ class Api::V1::GroupsController < ApplicationController
   def create
     attrs = {
       name: params[:group][:name],
+      icon: params[:group][:icon],
       owner_id: current_user.id
     }
 

@@ -2,7 +2,7 @@ EnlightenmentApp.GroupController = Ember.ObjectController.extend
   urlPath: (->
     "http://" + location.host + "/api/v1/groups/" + @get('id') + "/other_users.json"
   ).property('id')
-
+  hej: 1
   actions:
     update: ->
       tokens = $("#members").tokenInput("get").mapBy("id")
@@ -34,3 +34,6 @@ EnlightenmentApp.GroupController = Ember.ObjectController.extend
         else
           alertify.error "You've clicked Cancel"
         return
+    setIcon: (name) ->
+      @set('icon', name)
+      @get('model').save()

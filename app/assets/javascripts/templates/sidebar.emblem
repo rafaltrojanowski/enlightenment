@@ -9,12 +9,11 @@ ul.nav id="sidebar-nav"
   li
     link-to 'notes' | <i class="fa fa-newspaper-o"></i> My Notes
   hr/
-  li
     link-to 'groups' | <i class="fa fa-cog pull-right"></i>
   br
   each group in groups
     li#group-link
-      link-to 'wall' group | <i class="fa fa-group"></i> #{group.name}
+      link-to 'wall' group | <i {{bind-attr class='group.icon'}}></i> #{group.name}
 
 / .destination
 / / else

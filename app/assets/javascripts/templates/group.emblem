@@ -2,29 +2,28 @@
   .col-sm-6
     .panel.panel-default
       .panel-heading
-        i class=icon
-        button.btn.btn-danger.pull-right{ action "destroy" } Delete
+        button.btn.btn-danger.pull-right{ action "destroy" } delete
         h4 = name
 
       .panel-body
-        .icons data-logo=view.hello
-          | Icon: 
-          i class="icon fa fa-bicycle fa-lg" data-name="fa fa-bicycle fa-lg"
-          i class="icon fa fa-bolt fa-lg" data-name="fa fa-bolt fa-lg"
-          i class="icon fa fa-bank fa-lg" data-name="fa fa-bank fa-lg"
-          i class="icon fa fa-laptop fa-lg" data-name="fa fa-laptop fa-lg"
-          i class="icon fa fa-music fa-lg" data-name="fa fa-music fa-lg"
+        .icons
+          | Icon:
+          i class="icon fa fa-bicycle fa-lg" data-name="bicycle"
+          i class="icon fa fa-bolt fa-lg" data-name="bolt"
+          i class="icon fa fa-bank fa-lg" data-name="bank"
+          i class="icon fa fa-laptop fa-lg" data-name="laptop"
+          i class="icon fa fa-music fa-lg" data-name="music"
         br
         | Participants:
         ul
           each users
             li
               = email
-        link-to .btn.btn-default 'groups' | Back
+        link-to .btn.btn-success 'groups' | Back
   .col-sm-5
     .well
       h4 Add new member
       form submit="update"
         = input id="members" data-url=urlPath data-id=id
-        button.btn.btn-primary Update
-        button.btn.btn-success{ action "save" } Save
+        button.btn.btn-success Update
+      button.btn.btn-success{ action "save" } SaVe
