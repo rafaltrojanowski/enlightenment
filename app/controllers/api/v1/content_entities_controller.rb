@@ -4,6 +4,10 @@ class Api::V1::ContentEntitiesController < ApplicationController
   def index
     scope = ContentEntity.all
 
+    if params[:user_id].present?
+      scope = scope.where(user_id: params[:user_id])
+    end
+
     if params[:type].present?
       scope = scope.where(contentable_type: params[:type].humanize)
     end
