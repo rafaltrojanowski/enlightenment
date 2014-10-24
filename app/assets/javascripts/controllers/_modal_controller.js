@@ -1,7 +1,13 @@
 EnlightenmentApp.ModalController = Em.ObjectController.extend({
   me: null,
 
+  init: function() {
+    alert ('dasdasdasd');
+  },
+
   groups: function() {
+    alert ('load')
+
       return this.get('store').find('group');
   }.property(),
 
@@ -22,6 +28,20 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
   }.property(),
 
   edit: function(record) {
+
+
+    gr_id = record.get('group_id');
+
+    alert(gr_id);
+
+    // var gr = this.store.find('group', gr_id);
+
+    self = this
+    // return this.get('store').find('group', 3);
+    var gr = this.store.find('group', gr_id).then(function(group) {
+      self.set('me', group);
+    });
+
     record.one('didUpdate', this, function() {
       this.send('close');
     });
