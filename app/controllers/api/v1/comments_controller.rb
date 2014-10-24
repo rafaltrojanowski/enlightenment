@@ -10,7 +10,7 @@ class Api::V1::CommentsController < ApplicationController
     # raise params.inspect
     attrs = {
       content: params[:comment][:content],
-      user_id: current_user.id,
+      user_id: params[:comment][:user_id],
       commentable_id: params[:comment][:commentable_id],
       commentable_type: params[:comment][:commentable_type]
     }

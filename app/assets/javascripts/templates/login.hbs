@@ -2,14 +2,6 @@
   <h2 class="form-signin-heading">Please sign in</h2>
   <form {{action 'authenticate' on='submit'}}>
 
-    {{#if errorMessage}}
-      <div class="alert alert-danger">
-        <p>
-          <strong>Login failed:</strong> <code>{{errorMessage}}</code>
-        </p>
-      </div>
-    {{/if}}
-
     <div class="form-group">
       <div class="col-lg-5">
         {{view Ember.TextField id='identification' valueBinding='identification' placeholder='Enter Login' class="form-control"}}

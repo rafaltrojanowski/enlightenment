@@ -8,6 +8,7 @@ class ContentEntitySerializer < ActiveModel::Serializer
              :avatar,
              :image,
              :group_id,
+             :user_id,
              :group,
              :inbox
 

@@ -15,5 +15,4 @@ EnlightenmentApp.AuthController = Ember.ObjectController.extend SimpleAuth.Appli
           password: route.currentModel.password
         alertify.success("Welcome to EnlightenmentApp, enjoy!");
       error: (jqXHR, textStatus, errorThrown) ->
-        route.controllerFor('registration').set "errorMsg", "That email/password combo didn't work.  Please try again"
         alertify.error("That email/password combo didn't work. Please try again");

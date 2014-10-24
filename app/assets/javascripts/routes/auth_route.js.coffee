@@ -20,4 +20,3 @@ EnlightenmentApp.RegistrationRoute = Ember.Route.extend
     cancel: ->
       log.info "cancelling registration"
       @transitionTo 'home'
-
