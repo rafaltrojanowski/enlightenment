@@ -28,11 +28,12 @@ EnlightenmentApp.ContentEntityController = Ember.ObjectController.extend
       @send 'openModal', 'confirm.delete'
 
     addComment: (param) ->
-      contententity = @get('content_entity.content')
+      # contententity = @get('content_entity.content')
       comment = @get("store").createRecord("comment",{
         commentable_type: "ContentEntity",
         commentable_id: param.id,
         content: @get("commentBody")
+        user_id: @get('session.user_id')
       });
 
       comment.save().then ((result) ->

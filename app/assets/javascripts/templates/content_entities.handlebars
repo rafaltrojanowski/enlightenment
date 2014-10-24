@@ -22,7 +22,7 @@
             <b>{{content_entity.title}}</b>
           {{/link-to}}
           {{#if content_entity.group.name }}
-            <i class="fa fa-users"> {{{content_entity.group.name}}}</i>
+            <i {{bind-attr class='content_entity.group.icon'}}> {{{content_entity.group.name}}}</i>
           {{/if}}
           <i class="fa fa-clock-o pull-right" id="show_date" data-toggle="tooltip" data-placement="top" {{bind-attr title=content_entity.formatedDate}}> {{{date content_entity.updated_at}}}</i>
           <button {{action confirmDelete content_entity}} class="btn btn-large btn-danger pull-right" id="destroy_button" style="display:none;"><i class="fa fa-trash"></i></button>
@@ -33,7 +33,7 @@
             <b>{{content_entity.title}}</b>
           {{/link-to}}
           {{#if content_entity.group.name }}
-            <i class="fa fa-users"> {{{content_entity.group.name}}}</i>
+            <i {{bind-attr class='content_entity.group.icon'}}> {{{content_entity.group.name}}}</i>
           {{/if}}
           <i class="fa fa-clock-o pull-right" id="show_date" data-toggle="tooltip" data-placement="top" {{bind-attr title=content_entity.formatedDate}}> {{{date content_entity.updated_at}}}</i>
           <button {{action 'confirmDelete' content_entity}} class="btn btn-large btn-danger pull-right" id="destroy_button" style="display:none;"><i class="fa fa-trash"></i></button>
