@@ -16,6 +16,10 @@ class Api::V1::ContentEntitiesController < ApplicationController
       scope = scope.where(inbox: true)
     end
 
+    if params[:group_id].present?
+      scope = scope.where(group_id: params[:group_id])
+    end
+
     respond_with scope
   end
 
