@@ -4,7 +4,6 @@ EnlightenmentApp.GroupsNewController = Ember.Controller.extend
     addGroup: ->
       if @get('newGroup').trim()
         user_id = @get('session.user_id')
-        console.log(user_id)
         record = this.store.createRecord('group',{
           name: @get('newGroup')
           icon: @get('logo')
@@ -21,5 +20,7 @@ EnlightenmentApp.GroupsNewController = Ember.Controller.extend
         @set('newGroup')
         @transitionToRoute('groups')
         alertify.success("New group added!")
+      else
+        alertify.error("incorrect name!")
     setIconName: (name) ->
       @set('logo', name)

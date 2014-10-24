@@ -7,5 +7,5 @@ EnlightenmentApp.GroupsNewView = Em.View.extend
       $(this).css('border', "solid 2px green")
       $(this).css("border-radius", "7px")
       icon = $(this).data('name')
-      icon = "fa fa-" + icon + " fa-lg"
+      icon = "fa fa-" + icon
       controller.send('setIconName', icon)
