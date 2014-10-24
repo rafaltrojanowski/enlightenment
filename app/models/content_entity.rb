@@ -3,7 +3,7 @@ class ContentEntity < ActiveRecord::Base
   validates :content, presence: true
   validates :user, presence: true
 
-  default_scope { includes(:contentable, :user, :comments).
+  default_scope { includes(:user, :comments).
                   order(created_at: :desc) }
 
   belongs_to :contentable, polymorphic: true
