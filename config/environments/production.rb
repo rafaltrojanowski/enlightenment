@@ -29,7 +29,7 @@ Rails.application.configure do
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = true
   config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.svg *.eot *.woff *.ttf *.ico)
-  config.assets.precompile += %w(application.css application.js sb-admin/admin.css sb-admin/admin.js holo/holo.css.scss holo/holo.js)
+  config.assets.precompile += %w(application.css application.js.coffee sb-admin/admin.css sb-admin/admin.js holo/holo.css.scss holo/holo.js)
 
   # Generate digests for assets URLs.
   config.assets.digest = true
