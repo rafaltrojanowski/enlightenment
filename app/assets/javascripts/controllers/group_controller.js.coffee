@@ -2,6 +2,9 @@ EnlightenmentApp.GroupController = Ember.ObjectController.extend
   urlPath: (->
     "http://" + location.host + "/api/v1/groups/" + @get('id') + "/other_users.json"
   ).property('id')
+  iconLarge: (->
+    @get('icon') + ' fa-lg'
+  ).property('icon')
   isEditing: false
   bufferedName: Ember.computed.oneWay('name')
 

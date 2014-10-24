@@ -4,8 +4,10 @@
   .panel-body
     each itemController="group"
       .list-group-item.myfloater
-        = name
+        if isEditing
+          edit-group type="text" class="edit" value=bufferedName focus-out="doneEditing" insert-newline="doneEditing" escape-press="cancelEditing"
+        else
+          span click="editGroup" = name
         .btn-group.pull-right
           button.btn.btn-danger{ action "destroy" } Delete
-          link-to .btn.btn-info 'group' this | Show
-
+          link-to .btn.btn-info 'group' this | Settings
