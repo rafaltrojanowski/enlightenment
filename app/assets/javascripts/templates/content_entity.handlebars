@@ -51,7 +51,7 @@
       <img {{bind-attr src=comment.avatar}} style="width:60px;height:60px" class="img-circle"/>
       {{comment.commenter_name}}
       <i class="fa fa-clock-o date" id="show_date" data-toggle="tooltip" data-placement="top" {{bind-attr title=comment.formatedDate}}> {{{date comment.updated_at}}}</i>
-      <p class="ellipsis block" style="padding-left:60px;">
+      <p class="ellipsis block" style="white-space: pre-wrap;">
         {{{comment.content}}}
       </p>
     </div>
