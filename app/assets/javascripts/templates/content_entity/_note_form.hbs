@@ -15,18 +15,7 @@
         {{#each error in errors.body}}{{error.message}}{{/each}}
       </div>
 
-      XXXXXXXXXX
-      {{ dupa }}
-      XXXXXXXXXX
-
-
-      {{ log group_id }}
-      {{ group_id }}
-      {{ group }}
       {{ selected }}
-      {{ me }}
-      {{ log me }}
-      {{ me.name }}
 
       <div {{bind-attr class="errors.group:error :field"}}>
         {{view Ember.Select content = groups
@@ -35,6 +24,7 @@
            valueBinding="group_id"
            selectionBinding="me"
            prompt='check something'
+           class='form-control'
         }}
         {{#each error in errors.group}}{{error.message}}{{/each}}
       </div>

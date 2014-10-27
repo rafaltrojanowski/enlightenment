@@ -10,10 +10,14 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
     gr_id = this.get('model').get('group_id');
 
     self = this
-    var gr = this.store.find('group', gr_id).then(function(group) {
-      self.set('me', group);
-    });
 
+    if (gr_id != null) {
+      var gr = this.store.find('group', gr_id).then(function(group) {
+        self.set('me', group);
+      });
+    } else {
+      self.set('me', null);
+    }
   }.property('id', 'group_id'),
 
   edit: function(record) {
@@ -48,7 +52,7 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
       var model = this.get('model');
       // var groupId = model.get('group_id');
 
-      // model.rollback();
+      model.rollback();
 
       // this.set('model', model);
       // this.set('group_id', groupId);
