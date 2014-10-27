@@ -6,4 +6,5 @@
       .panel-body
         form submit="addGroup" class="form-horizontal"
           = view .form-control.input-sm Ember.TextField name="group[name]" valueBinding="newGroup" required="true"
+          partial 'icons'
           button.btn.btn-success Create

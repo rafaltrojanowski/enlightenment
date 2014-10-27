@@ -2,13 +2,36 @@ class Api::V1::ContentEntitiesController < ApplicationController
   respond_to :json
 
   def index
-    respond_with ContentEntity.all
+    scope = ContentEntity.all
+
+    if params[:user_id].present?
+      scope = scope.where(user_id: params[:user_id])
+    end
+
+    if params[:type].present?
+      scope = scope.where(contentable_type: params[:type].humanize)
+    end
+
+    if params[:inbox].present?
+      scope = scope.where(inbox: true)
+    end
+
+    if params[:group_id].present?
+      scope = scope.where(group_id: params[:group_id])
+    end
+
+    respond_with scope
+  end
+
+  def inbox
+    respond_with current_user.content_entities.inbox, root: false
   end
 
   def create
     attrs = {
       content: params[:contentEntity][:body],
-      user_id: current_user.id
+      user_id: params[:contentEntity][:user_id],
+      group_id: params[:contentEntity][:group_id],
     }
 
     respond_with :api, :v1, ContentEntity.create(attrs)

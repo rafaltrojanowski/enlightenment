@@ -1,10 +1,12 @@
-#= require moment
 #= require jquery
 #= require jquery_ujs
 #= require jquery.autosize
+#= require jquery.timeago
 #= require handlebars
 #= require ember
 #= require ember-data
+#= require ember-simple-auth-0.6.7
+#= require ember-simple-auth-devise-0.6.7
 #= require_self
 #= require enlightenment_app
 #= require jquery.tokeninput
@@ -19,4 +21,3 @@ window.EnlightenmentApp = Ember.Application.create(
 
 Ember.TextField.reopen
   attributeBindings: ["data-url", "data-pre", "data-id"]
-

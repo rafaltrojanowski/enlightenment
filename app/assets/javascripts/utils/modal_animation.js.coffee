@@ -3,11 +3,11 @@ EnlightenmentApp.animateModalClose = ->
     Ember.run.later (->
       resolve msg: "Hold Your Horses"
       return
-    ), 250
+    ), EnlightenmentApp.DEFAULT_CSS_TRANSITION_DURATION_MS
     return
   )
-  # $(".modal.in").removeClass "in"
-  # $(".modal-backdrop.in").removeClass "in"
+  $(".modal.in").removeClass "in"
+  $(".modal-backdrop.in").removeClass "in"
   promise
 
 EnlightenmentApp.animateModalOpen = ->
@@ -15,7 +15,7 @@ EnlightenmentApp.animateModalOpen = ->
     Ember.run.later (->
       resolve msg: "Hold Your Horses"
       return
-    ), 250
+    ), EnlightenmentApp.DEFAULT_CSS_TRANSITION_DURATION_MS
     return
   )
   $(".modal").addClass "in"

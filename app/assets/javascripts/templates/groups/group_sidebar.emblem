@@ -1,0 +1,3 @@
+ul.nav
+  li#group-link
+    link-to 'wall' group | <i {{bind-attr class='group.icon'}} style="padding-left:10px;"></i> #{group.name}

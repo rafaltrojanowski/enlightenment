@@ -2,16 +2,23 @@
   .col-sm-6
     .panel.panel-default
       .panel-heading
-        h4 = name
+        button.btn.btn-danger.pull-right{ action "destroy" } delete
+        if isEditing
+          edit-group type="text" class="edit" value=bufferedName focus-out="doneEditing" insert-newline="doneEditing" escape-press="cancelEditing"
+        else
+          h4 click="editGroup" = name
       .panel-body
+        partial 'icons'
+        br
         | Participants:
         ul
           each users
             li
               = email
-  .col-sm-6
+        link-to .btn.btn-success 'groups' | Back
+  .col-sm-5
     .well
-      h4 Add new member
+      h4 Manage members
       form submit="update"
         = input id="members" data-url=urlPath data-id=id
         button.btn.btn-success Update

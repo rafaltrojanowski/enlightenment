@@ -6,8 +6,11 @@ EnlightenmentApp.Comment = DS.Model.extend(
   # link: DS.belongsTo('link'c)
   # note: DS.belongsTo('note', {async: true})
   content_entity: DS.belongsTo('content_entity', { async: true })
-  user: DS.belongsTo('user', { async: true })
+  # user_id: DS.belongsTo('user', { async: true })
+  user_id: DS.attr('number')
+  avatar: DS.attr('string')
+  commenter_name: DS.attr('string')
   formatedDate: (->
-    @get("updated_at").toString()
+    @get("updated_at").toLocaleString();
   ).property("updated_at")
 )

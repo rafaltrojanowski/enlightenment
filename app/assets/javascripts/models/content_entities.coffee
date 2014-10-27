@@ -8,7 +8,8 @@ EnlightenmentApp.ContentEntity = DS.Model.extend(
   image: DS.attr('string')
   group: DS.belongsTo('group', {async: true})
   group_id: DS.attr('number')
-  inbox: DS.attr('string')
+  user_id: DS.attr('number')
+  inbox: DS.attr('boolean')
   isLink: (->
     if @get("type") == 'link'
       true
@@ -19,7 +20,8 @@ EnlightenmentApp.ContentEntity = DS.Model.extend(
   formattedBody: (->
     @get("body").replace /\n\r?/g, "<br />"
   ).property("body")
+  
   formatedDate: (->
-    @get("updated_at").toString()
+    @get("updated_at").toLocaleString();
   ).property("updated_at")
 )

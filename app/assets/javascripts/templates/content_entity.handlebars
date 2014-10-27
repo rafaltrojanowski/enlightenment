@@ -6,6 +6,7 @@
 
 {{#if isLink}}
   <h1 id="section1">{{title}}</h1>
+  <hr>
   <p>{{description}}</p>
   <a target='_blank' {{bind-attr href='fullAddress'}}>
     <img {{bind-attr src=image}}/>
@@ -14,13 +15,15 @@
   <br/>
   <p><a target="_blank" {{bind-attr href='fullAddress'}} class="btn btn-primary">{{fullAddress}}</a></p>
 {{else}}
-  <p>{{{formattedBody}}}</p>
+  <h1 id="section1">{{title}}</h1>
+  <hr>
+  <p style="white-space: pre-wrap;">{{{body}}}</p>
 {{/if}}
 
 <hr/>
 
 <i class="fa fa-clock-o pull-right" id="show_date" data-toggle="tooltip" data-placement="top" {{bind-attr title=formatedDate}}> {{{date updated_at}}}</i>
-<i class="fa fa-users"></i> {{{group.name}}}</i><br>
+<i {{bind-attr class='group.icon'}}></i> {{{group.name}}}</i><br>
 <i class="fa fa-tag"></i> TAGS HERE</i>
 <i class="fa fa-tag"></i> #TAG2</i>
 </div>
@@ -43,11 +46,12 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <small style="font-family:courier,'new courier';" class="text-muted pull-right">
+        <button {{action 'deleteComment' comment}} class="btn btn-large btn-danger" id="destroy_button"><i class="fa fa-trash"></i></button>
       </small>
-      <img {{bind-attr src=comment.user.avatar}} style="width:60px;height:60px" class="img-circle"/>
-      {{comment.user.nickname}}
+      <img {{bind-attr src=comment.avatar}} style="width:60px;height:60px" class="img-circle"/>
+      {{comment.commenter_name}}
       <i class="fa fa-clock-o date" id="show_date" data-toggle="tooltip" data-placement="top" {{bind-attr title=comment.formatedDate}}> {{{date comment.updated_at}}}</i>
-      <p class="ellipsis block" style="padding-left:60px;">
+      <p class="ellipsis block" style="white-space: pre-wrap;">
         {{{comment.content}}}
       </p>
     </div>
