@@ -1,3 +1,5 @@
+alert('3');
+
 EnlightenmentApp.ModalController = Em.ObjectController.extend({
   groups: function() {
       return this.get('store').find('group');
