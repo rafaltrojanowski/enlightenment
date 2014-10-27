@@ -13,5 +13,3 @@
 #= require_tree ./initializers
 #= require ./router
 #= require_self
-
-alert '1'

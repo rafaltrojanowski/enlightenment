@@ -1,5 +1,3 @@
-alert '4'
-
 EnlightenmentApp.AuthController = Ember.ObjectController.extend SimpleAuth.ApplicationRouteMixin,
   register: (route) ->
     me = @
