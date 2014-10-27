@@ -55,9 +55,11 @@ class Api::V1::ContentEntitiesController < ApplicationController
   private
 
   def update_link(record)
+    # raise params[:contentEntity][:group_id].inspect
     record.content_entity.update_column(:group_id, params[:contentEntity][:group_id])
     record.update_attributes(title: params[:contentEntity][:title],
                              description: params[:contentEntity][:description])
+    raise record.content_entity.inspect
   end
 
   def update_note(record)
