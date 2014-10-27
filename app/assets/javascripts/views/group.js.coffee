@@ -13,7 +13,7 @@ EnlightenmentApp.GroupView = Ember.View.extend
       ))
     $('.icon').click ->
       logo = $(this).data('name')
-      logo = "fa fa-" + logo + " fa-lg"
+      logo = "fa fa-" + logo
       controller.send('setIcon', logo)
       $('.icon').css("border", "none")
       $(this).css('border', "solid 2px green")
