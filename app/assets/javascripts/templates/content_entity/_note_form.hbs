@@ -15,13 +15,16 @@
         {{#each error in errors.body}}{{error.message}}{{/each}}
       </div>
 
+      {{ selected }}
+
       <div {{bind-attr class="errors.group:error :field"}}>
         {{view Ember.Select content = groups
            optionValuePath="content.id"
            optionLabelPath="content.name"
            valueBinding="group_id"
-           class="form-control"
+           selectionBinding="me"
            prompt="Choose one of the following."
+           class='form-control'
         }}
         {{#each error in errors.group}}{{error.message}}{{/each}}
       </div>
