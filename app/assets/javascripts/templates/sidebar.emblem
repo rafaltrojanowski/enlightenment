@@ -9,7 +9,7 @@ if session.isAuthenticated
     li
       link-to 'notes' | <i class="fa fa-newspaper-o"></i> My Notes
     li
-      link-to 'inbox' | <i class="fa fa-inbox"></i> Inbox
+      link-to 'inbox' | <i class="fa fa-inbox"></i> Inbox ({{atInbox}})
     hr/
     link-to 'groups'
       i.fa.fa-cog.pull-right style="padding-right:8px;"

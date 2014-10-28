@@ -32,6 +32,7 @@ EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend Enligh
   perPage:        10
   sortAscending: false,
   sortProperties: ['updated_at']
+  title: 'Dashboard'
 
   actions:
     addEntry: ->

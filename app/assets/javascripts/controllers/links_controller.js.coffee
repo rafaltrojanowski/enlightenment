@@ -7,6 +7,8 @@ EnlightenmentApp.LinksController = Ember.ArrayController.extend EnlightenmentApp
   queryParams: ['type']
   type: null
 
+  title: 'My Links'
+
   paginatedContent: (->
     page    = @get('page')
     perPage = @get('perPage')
@@ -21,7 +23,6 @@ EnlightenmentApp.LinksController = Ember.ArrayController.extend EnlightenmentApp
       @set('contentLength', length)
       @get('arrangedContent').filterBy("inbox", true).slice(start, end)
     else
-
       length = @get('arrangedContent').filterBy("inbox", false).length
       @set('contentLength', length)
       @get('arrangedContent').filterBy("inbox", false).slice(start, end)
