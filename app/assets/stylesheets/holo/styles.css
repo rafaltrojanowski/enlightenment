@@ -306,3 +306,13 @@ textarea {
 .myfloater {
     line-height: 30px;
 }
+
+.form-control::-moz-placeholder {
+  color: rgb(191, 191, 191);
+}
+.form-control:-ms-input-placeholder {
+  color: rgb(191, 191, 191);
+}
+.form-control::-webkit-input-placeholder {
+  color: rgb(191, 191, 191);
+}
