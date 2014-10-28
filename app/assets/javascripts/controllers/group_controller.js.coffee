@@ -7,6 +7,7 @@ EnlightenmentApp.GroupController = Ember.ObjectController.extend
   ).property('icon')
   isEditing: false
   bufferedName: Ember.computed.oneWay('name')
+  title: 'Groups'
 
   actions:
     update: ->
