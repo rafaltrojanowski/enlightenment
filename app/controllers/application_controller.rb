@@ -5,18 +5,6 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user_from_token!
 
-  # before_action :configure_permitted_parameters, if: :devise_controller?
-
-  protected
-
-  # def configure_permitted_parameters
-    # account_update_params = %w(username avatar)
-    # devise_parameter_sanitizer.for(:account_update) << account_update_params
-    # devise_parameter_sanitizer.for(:sign_up) do |u|
-      # u.permit(:username, :email, :password, :password_confirmation)
-    # end
-  # end
-
   private
 
   def layout_by_resource
