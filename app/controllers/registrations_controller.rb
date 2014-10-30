@@ -7,16 +7,17 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    # add custom create logic here
+    super
   end
 
   def update
     resource = resource_class.find(params[:id])
-    if resource.update_without_password(resource_params)
+    resource_updated = update_resource(resource, account_update_params)
+    if resource_updated
       render json: resource, status: 201
     else
       clean_up_passwords resource
-      render json: { errors: resource.errors.full_messages[0] }, status: 422
+      render json: { error: resource.errors.full_messages[0] }, status: 422
     end
   end
 end

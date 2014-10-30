@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   respond_to :html, :json
 
   before_action :authenticate_user_from_token!
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   private
 
@@ -24,5 +25,9 @@ class ApplicationController < ActionController::Base
         sign_in user, store: false
       end
     end
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :username, :current_password, :password, :password_confirmation) }
   end
 end

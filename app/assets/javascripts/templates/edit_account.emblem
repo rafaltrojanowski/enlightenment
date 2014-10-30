@@ -2,22 +2,23 @@
   .panel-heading
     h2 Edit account
   .panel-body
-    form
-      br Email:
-      br
-      view Ember.TextField valueBinding='email' name='email'
-      br Username:
-      br
-      view Ember.TextField valueBinding='username' name='username'
-      br Current password:
-      br
-      view Ember.TextField type="password" valueBinding='current_password' name='current_password'
-      br New password:
-      br
-      view Ember.TextField type="password" valueBinding='password' name='password'
-      br New password confirmation:
-      br
-      view Ember.TextField type="password" valueBinding='password_confirmation' name='password_confirmation'
-      br
-      button.btn{ action "update" } Save
+    form.form-horizontal role="form"
+      .form-group
+        label.col-sm-3.control-label Email:
+        view Ember.TextField valueBinding='email' name='email'
+      .form-group
+        label.col-sm-3.control-label Username:
+        view Ember.TextField valueBinding='username' name='username'
+      .form-group
+        label.col-sm-3.control-label Current password:
+        view Ember.TextField type="password" valueBinding='current_password' name='current_password'
+      .form-group
+        label.col-sm-3.control-label New password:
+        view Ember.TextField type="password" valueBinding='password' name='password'
+      .form-group
+        label.col-sm-3.control-label Password confirmation:
+        view Ember.TextField type="password" valueBinding='password_confirmation' name='password_confirmation'
+      button.btn.col-sm-offset-3.btn-success{ action "update" } Save
       button.btn{ action "cancel" } Cancel
+      each errors.messages
+        = message
