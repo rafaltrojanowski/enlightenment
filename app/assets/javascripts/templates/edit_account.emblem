@@ -1,0 +1,23 @@
+.panel.panel-default
+  .panel-heading
+    h2 Edit account
+  .panel-body
+    form
+      br Email:
+      br
+      view Ember.TextField valueBinding='email' name='email'
+      br Username:
+      br
+      view Ember.TextField valueBinding='username' name='username'
+      br Current password:
+      br
+      view Ember.TextField type="password" valueBinding='current_password' name='current_password'
+      br New password:
+      br
+      view Ember.TextField type="password" valueBinding='password' name='password'
+      br New password confirmation:
+      br
+      view Ember.TextField type="password" valueBinding='password_confirmation' name='password_confirmation'
+      br
+      button.btn{ action "update" } Save
+      button.btn{ action "cancel" } Cancel

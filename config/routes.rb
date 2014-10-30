@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: 'sessions' }
+  devise_for :users, controllers: { sessions: 'sessions', registrations: 'registrations' }
+  devise_scope :user do
+    put 'api/v1/users/:id', to: 'registrations#update'
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   get 'dashboard', to: 'dashboard#index'

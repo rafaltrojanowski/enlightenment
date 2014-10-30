@@ -21,3 +21,4 @@ EnlightenmentApp.Router.map ()->
   @resource 'wall', path: 'groups/:group_id/wall'
   @resource 'comments'
   @resource 'inbox', path: 'inbox'
+  @resource 'edit_account', path: '/edit_account'
