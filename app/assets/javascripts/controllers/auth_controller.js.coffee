@@ -13,6 +13,9 @@ EnlightenmentApp.AuthController = Ember.ObjectController.extend SimpleAuth.Appli
         me.get("session").authenticate "simple-auth-authenticator:devise",
           identification: route.currentModel.email
           password: route.currentModel.password
-        # alertify.success("Welcome to EnlightenmentApp, enjoy!");
       error: (jqXHR, textStatus, errorThrown) ->
-        alertify.error("That email/password combo didn't work. Please try again");
+        output = JSON.parse(jqXHR.responseText)
+        if output.errors.email
+          alertify.error('email ' + output.errors.email)
+        if output.errors.password
+          alertify.error('password ' + output.errors.password)
