@@ -9,13 +9,13 @@ if session.isAuthenticated
     li
       link-to 'notes' | <i class="fa fa-newspaper-o"></i> My Notes
     li
-      link-to 'inbox' | <i class="fa fa-inbox"></i> Inbox
+      link-to 'inbox' | <i class="fa fa-inbox"></i> Inbox ({{atInbox}})
     hr/
-    link-to 'groups' | <i class="fa fa-cog pull-right"></i>
+    link-to 'groups'
+      i.fa.fa-cog.pull-right style="padding-right:8px;"
     | <div style="color:#bcbcbc; padding-bottom: 10px;"><i class="fa fa-users"></i> Groups</div>
-    each group in groups itemController="group"
-      li#group-link
-        link-to 'wall' group | <i {{bind-attr class='group.iconLarge'}}></i> #{group.name}
+    each group in groups
+      EnlightenmentApp.GroupSidebarView contentBinding="group"
 
 / .destination
 / / else

@@ -19,6 +19,8 @@ class Api::V1::GroupsController < ApplicationController
   end
 
   def update
+    # raise params.inspect
+    # raise params[:group][:users].inspect
     @group.user_ids = params[:group][:users]
     @group.icon = params[:group][:icon]
     @group.name = params[:group][:name]
@@ -28,7 +30,7 @@ class Api::V1::GroupsController < ApplicationController
 
   def other_users
     @group = Group.find(params[:id])
-    respond_with User.filtering(params[:q]).not_members(@group.user_ids), root: false
+    respond_with User.all, root: false#.filtering(params[:q]).not_members(@group.user_ids), root: false
   end
 
   def members

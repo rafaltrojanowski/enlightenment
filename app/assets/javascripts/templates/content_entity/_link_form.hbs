@@ -13,12 +13,15 @@
         {{autosize-textarea valueBinding="description" class="form-control" placeholder="Description"}}
         {{#each error in errors.description}}{{error.message}}{{/each}}
       </div>
+      
+      {{ selected }}
 
       <div {{bind-attr class="errors.group:error :field"}}>
         {{view Ember.Select content = groups
            optionValuePath="content.id"
            optionLabelPath="content.name"
            valueBinding="group_id"
+           selectionBinding="me"
            class="form-control"
            prompt="Choose one of the following."
         }}

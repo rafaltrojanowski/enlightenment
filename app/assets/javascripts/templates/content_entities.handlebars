@@ -13,37 +13,7 @@
 
 <div class="list-group">
   {{#each content_entity in paginatedContent itemController="ContentEntity"}}
-    <div id="link_note">
-      <div id="content_entity" class='list-group-item'>
-        <img {{bind-attr src=content_entity.avatar}} style="width:60px;height:60px" class="img-circle">
-        {{#if content_entity.isNote}}
-          {{#link-to "content_entity" content_entity}}
-            <i class="fa fa-newspaper-o fa-2x"></i>
-            <b>{{content_entity.title}}</b>
-          {{/link-to}}
-          {{#if content_entity.group.name }}
-            <i {{bind-attr class='content_entity.group.icon'}}> {{{content_entity.group.name}}}</i>
-          {{/if}}
-          <i class="fa fa-clock-o pull-right" id="show_date" data-toggle="tooltip" data-placement="top" {{bind-attr title=content_entity.formatedDate}}> {{{date content_entity.updated_at}}}</i>
-          <button {{action confirmDelete content_entity}} class="btn btn-large btn-danger pull-right" id="destroy_button" style="display:none;"><i class="fa fa-trash"></i></button>
-          <button {{action edit content_entity}} class="btn btn-large btn-warning pull-right" id="edit_button" style="display:none;"><i class="fa fa-pencil"></i></button>
-        {{else }}
-          {{#link-to "content_entity" content_entity}}
-            <i class="fa fa-globe fa-2x"></i>
-            <b>{{content_entity.title}}</b>
-          {{/link-to}}
-          {{#if content_entity.group.name }}
-            <i {{bind-attr class='content_entity.group.icon'}}> {{{content_entity.group.name}}}</i>
-          {{/if}}
-          <i class="fa fa-clock-o pull-right" id="show_date" data-toggle="tooltip" data-placement="top" {{bind-attr title=content_entity.formatedDate}}> {{{date content_entity.updated_at}}}</i>
-          <button {{action 'confirmDelete' content_entity}} class="btn btn-large btn-danger pull-right" id="destroy_button" style="display:none;"><i class="fa fa-trash"></i></button>
-          <button {{action edit content_entity}} class="btn btn-large btn-warning pull-right" id="edit_button" style="display:none;"><i class="fa fa-pencil"></i></button>
-          <p class="ellipsis block" style="padding-left:70px;">
-            {{{content_entity.body}}}
-          </p>
-          {{/if }}
-      </div>
-    </div>
+    {{view EnlightenmentApp.ContentEntityItemView contentBinding="content_entity"}}
   {{/each}}
 </div>
 
