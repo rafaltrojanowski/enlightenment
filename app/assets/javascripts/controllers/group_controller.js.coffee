@@ -7,23 +7,28 @@ EnlightenmentApp.GroupController = Ember.ObjectController.extend
   ).property('icon')
   isEditing: false
   bufferedName: Ember.computed.oneWay('name')
+  title: 'Groups'
+
+  init: ->
+    allUsers = @store.find('user')
+    users = @get('users')
 
   actions:
     update: ->
-      tokens = $("#members").tokenInput("get").mapBy("id")
+      userIds = $("#members").tokenInput("get").mapBy("id")
+      model = @get('model')
+      users = @get('users')
+
       user_ids = @get('user_ids').split(',').map( Number )
 
-      for old_member in user_ids
-        unless tokens.contains old_member
-          usr = @store.getById('user', old_member)
-          @get('users').removeObject(usr)
-          console.log(usr)
+      for id in user_ids
+        @store.find("user", id).then (user) ->
+          users.removeObject(user)
 
-      for new_member in tokens
-        unless user_ids.contains new_member
-          @store.find('user', new_member)
-          usr = @store.getById('user', new_member)
-          @get('users').pushObject(usr)
+      for id in userIds
+        @store.find("user", id).then (user) ->
+          users.pushObject(user)
+      model.save()
 
     save: ->
       @get('model').save()

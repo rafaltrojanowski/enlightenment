@@ -22,4 +22,3 @@
       form submit="update"
         = input id="members" data-url=urlPath data-id=id
         button.btn.btn-success Update
-      button.btn.btn-success{ action "save" } SaVe

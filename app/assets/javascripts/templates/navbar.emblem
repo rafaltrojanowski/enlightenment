@@ -8,25 +8,21 @@ nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
       span.icon-bar
       span.icon-bar
     if session.isAuthenticated
-      link-to 'content_entities' class='navbar-brand' | <i class="fa fa-sun-o fa-1x"> getE</i>
+      link-to 'content_entities' class='navbar-brand' | <i class="fa fa-sun-o fa-1x"> getE</i> | {{ getTitle }}
     else
       link-to 'home' class='navbar-brand' | <i class="fa fa-sun-o fa-1x"> getE</i>
   if session.isAuthenticated
     div.collapse.navbar-collapse id="navbar-nav"
       ul.nav.navbar-nav.navbar-right id='dropdown_auth'
         li.dropdown
-          a.dropdown-toggle data-toggle='dropdown' href='#' 
+          a.dropdown-toggle data-toggle='dropdown' href='#'
             | <i class='fa fa-user'></i> {{session.user_email}}
             span.caret
-          ul.dropdown-menu role='menu' 
+          ul.dropdown-menu role='menu'
             li
               span{action 'logout'}
                 li
-                  link-to '' action='logout' role="menuitem" | Profile
-            li
-              span{action 'logout'}
-                li
-                  link-to '' action='logout' role="menuitem" | Edit account
+                  link-to 'edit_account' role="menuitem" | Edit account
             li.divider
             li
               span

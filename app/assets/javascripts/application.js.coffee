@@ -19,5 +19,15 @@ window.EnlightenmentApp = Ember.Application.create(
   rootElement: '#ember-app' # temporary solution for rendering layout
 )
 
+window.ENV = window.ENV || {}
+window.ENV["simple-auth"] = authorizer: "simple-auth-authorizer:devise"
+
+
+EnlightenmentApp.isInRoute = (name) ->
+    EnlightenmentApp.Router.router.currentHandlerInfos.mapProperty('name').contains(name)
+
+
 Ember.TextField.reopen
   attributeBindings: ["data-url", "data-pre", "data-id"]
+
+

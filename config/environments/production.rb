@@ -83,4 +83,14 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.ember.variant = :production
+
+  config.action_mailer.default_url_options = { host: ENV['ENLIGHTENMENT_DEFAULT_HOST'] }
+  config.action_mailer.default_options = { from: ENV['ENLIGHTENMENT_EMAIL_ADDRESS'] }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:               ENV['ENLIGHTENMENT_SMTP_ADDRESS'],
+    port:                  ENV['ENLIGHTENMENT_SMTP_PORT'],
+    domain:                ENV['ENLIGHTENMENT_SMTP_DOMAIN'],
+    user_name:             ENV['ENLIGHTENMENT_SMTP_USER_NAME'],
+    password:              ENV['ENLIGHTENMENT_SMTP_PASSWORD']
 end

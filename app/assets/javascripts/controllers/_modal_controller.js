@@ -1,7 +1,24 @@
 EnlightenmentApp.ModalController = Em.ObjectController.extend({
+  me: null,
+
   groups: function() {
-      return this.get('store').find('group');
+    return this.get('store').find('group');
   }.property(),
+
+  selected: function() {
+    console.log(this.get('model').get('group_id'));
+    gr_id = this.get('model').get('group_id');
+
+    self = this
+
+    if (gr_id != null) {
+      var gr = this.store.find('group', gr_id).then(function(group) {
+        self.set('me', group);
+      });
+    } else {
+      self.set('me', null);
+    }
+  }.property('id', 'group_id'),
 
   edit: function(record) {
     record.one('didUpdate', this, function() {
@@ -33,19 +50,17 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
 
     close: function() {
       var model = this.get('model');
-      // var transaction = model.get('transaction');
+      // var groupId = model.get('group_id');
 
-      // if (transaction) model.rollback();
-      // if (model.get('errors'))
       model.rollback();
 
+      // this.set('model', model);
+      // this.set('group_id', groupId);
 
-      // console.log(model.get('title'));
       this.send("closeModal");
       // this.set('title', model.get('title'));
       // this.set('description', model.get('description'));
       // this.set('group_id', model.get('group_id'));
-      this.set('model', model);
     },
 
     shouldDisableSubmit: function() {
