@@ -36,6 +36,7 @@ EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend Enligh
 
   actions:
     addEntry: ->
+
       record = @store.createRecord('content_entity',{
         body: @get('newEntryName')
         user_id: @get('session.user_id')

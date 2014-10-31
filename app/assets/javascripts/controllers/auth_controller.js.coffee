@@ -17,5 +17,7 @@ EnlightenmentApp.AuthController = Ember.ObjectController.extend SimpleAuth.Appli
         output = JSON.parse(jqXHR.responseText)
         if output.errors.email
           alertify.error('email ' + output.errors.email)
-        if output.errors.password
+        else if output.errors.password
           alertify.error('password ' + output.errors.password)
+        else if output.errors.password_confirmation
+          alertify.error("password confirmation doesn't match")

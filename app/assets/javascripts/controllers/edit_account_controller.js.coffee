@@ -1,5 +1,4 @@
 EnlightenmentApp.EditAccountController = Ember.ObjectController.extend SimpleAuth.ApplicationRouteMixin,
-  hello: "witam"
 
   actions:
     update: (route) ->
@@ -10,6 +9,4 @@ EnlightenmentApp.EditAccountController = Ember.ObjectController.extend SimpleAut
         alertify.error(error)
 
     cancel: ->
-      @content.rollback()
-      console.log('cancel')
       @transitionToRoute('content_entities')
