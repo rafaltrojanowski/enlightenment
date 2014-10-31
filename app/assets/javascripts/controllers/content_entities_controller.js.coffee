@@ -36,11 +36,13 @@ EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend Enligh
 
   actions:
     addEntry: ->
+      if EnlightenmentApp.isInRoute('wall')
+        group_id = @controllerFor('wall').get('currentGroupId')
 
       record = @store.createRecord('content_entity',{
         body: @get('newEntryName')
         user_id: @get('session.user_id')
-        group_id: @controllerFor('wall').get('currentGroupId');
+        group_id: group_id
       });
 
       record.save().then ((result) ->

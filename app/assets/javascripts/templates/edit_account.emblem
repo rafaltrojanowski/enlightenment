@@ -4,11 +4,11 @@
   .panel-body
     form.form-horizontal role="form"
       .form-group
-        label.col-sm-3.control-label Email:
-        view Ember.TextField valueBinding='email' name='email'
-      .form-group
         label.col-sm-3.control-label Username:
         view Ember.TextField valueBinding='username' name='username'
+      .form-group
+        label.col-sm-3.control-label Email:
+        view Ember.TextField valueBinding='email' name='email'
       .form-group
         label.col-sm-3.control-label Current password:
         view Ember.TextField type="password" valueBinding='current_password' name='current_password'
