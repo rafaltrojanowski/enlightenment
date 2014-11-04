@@ -1,6 +1,11 @@
 EnlightenmentApp.ApplicationController = Ember.Controller.extend(
-  # needs: ['currentPath']
   title: ''
+
+  currentUser: (->
+    sessionId =  @get('session.user_id')
+    currentUser = @store.find "user", sessionId
+  ).property()
+
   groups: (->
     @get("store").find "group"
   ).property()
