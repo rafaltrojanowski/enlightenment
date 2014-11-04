@@ -2,8 +2,11 @@ EnlightenmentApp.EditAccountController = Ember.ObjectController.extend SimpleAut
 
   actions:
     update: (route) ->
+      self = this
+
       @get('model').save().then ((response)->
-        alertify.success("account update succesful")
+        self.transitionToRoute('content_entities');
+        alertify.success("Account updated succesfully")
       ), (response) ->
         error = response.responseJSON.error
         alertify.error(error)
