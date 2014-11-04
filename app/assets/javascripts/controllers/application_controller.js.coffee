@@ -7,7 +7,7 @@ EnlightenmentApp.ApplicationController = Ember.Controller.extend(
   ).property()
 
   groups: (->
-    @get("store").find "group"
+    @get("store").find("group")
   ).property()
 
   content_entities: (->

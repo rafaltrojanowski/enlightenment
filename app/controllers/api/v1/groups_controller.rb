@@ -3,7 +3,7 @@ class Api::V1::GroupsController < ApplicationController
   before_action :set_group, except: [:index, :create]
 
   def index
-    respond_with Group.all
+    respond_with current_user.groups
   end
 
   def create
