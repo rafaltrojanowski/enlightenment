@@ -1,6 +1,7 @@
 EnlightenmentApp.ContentEntitiesRoute = Ember.Route.extend SimpleAuth.AuthenticatedRouteMixin,
   model: ->
-    @get('store').find('content_entity')
+    @get('store').filter 'content_entity', {}, (content_entity) ->
+      return content_entity.get('inbox') is false
 
   actions:
     edit: (content_entity) ->
