@@ -26,6 +26,7 @@ EnlightenmentApp.ApplicationController = Ember.Controller.extend(
 
       @store.find("group", group_id).then (group) ->
         model.set("group", group)
+        model.set("inbox", false)
         model.set("group_id", group_id).then (model) ->
           model.save().then ->
             alertify.success("Group changed!")
