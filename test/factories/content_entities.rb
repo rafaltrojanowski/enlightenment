@@ -5,7 +5,5 @@ FactoryGirl.define do
     content 'MyText'
     user
     group
-    # contentable_id 1
-    # contentable_type "MyString"
   end
 end
