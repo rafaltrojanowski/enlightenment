@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user_from_token!
   before_action :configure_permitted_parameters, if: :devise_controller?
-
   private
 
   def layout_by_resource

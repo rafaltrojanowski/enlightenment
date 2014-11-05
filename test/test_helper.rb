@@ -89,3 +89,19 @@ VCR.configure do |c|
   c.hook_into :webmock # or :fakeweb
   c.ignore_localhost = true
 end
+
+class ApiTestCase < ActionDispatch::IntegrationTest
+  include ApiHelpers
+  include Minitest::Metadata
+end
+
+MiniTest::Spec.register_spec_type /^Api::/i, ApiTestCase
+
+def api_call(http_method, url, auth_data, query_params={})
+  token = auth_data[:token]
+  email = auth_data[:email]
+  auth_data = 'token="' + token + '", user_email="' + email+ '"'
+
+  send http_method, "/api/v1/#{url}.json?#{query_params.to_query}", nil,
+    "HTTP_AUTHORIZATION"=>"Token #{auth_data}"
+end

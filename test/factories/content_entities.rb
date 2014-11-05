@@ -5,5 +5,6 @@ FactoryGirl.define do
     content 'MyText'
     user
     group
+    inbox false
   end
 end
