@@ -123,7 +123,7 @@ GEM
     dotenv (0.10.0)
     dotenv-rails (0.10.0)
       dotenv (= 0.10.0)
-    ember-data-source (1.0.0.beta.10)
+    ember-data-source (1.0.0.beta.11)
       ember-source
     ember-rails (0.15.0)
       active_model_serializers
@@ -134,7 +134,7 @@ GEM
       handlebars-source (> 1.0.0)
       jquery-rails (>= 1.0.17)
       railties (>= 3.1)
-    ember-source (1.7.0)
+    ember-source (1.8.0)
       handlebars-source (~> 1.0)
     emblem-rails (0.2.1)
       barber-emblem (~> 0.1.1)
@@ -401,7 +401,7 @@ DEPENDENCIES
   devise (>= 3.0.0)
   dotenv-rails
   ember-rails
-  ember-source (= 1.7.0)
+  ember-source (= 1.8.0)
   emblem-rails
   factory_girl_rails
   font-awesome-sass

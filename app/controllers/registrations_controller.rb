@@ -12,6 +12,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update
     resource = resource_class.find(params[:id])
+    fail account_update_params.inspect
     resource_updated = update_resource(resource, account_update_params)
     if resource_updated
       render json: resource, status: 201
