@@ -19,12 +19,6 @@ EnlightenmentApp.GroupController = Ember.ObjectController.extend
       model = @get('model')
       users = @get('users')
 
-      user_ids = @get('user_ids').split(',').map( Number )
-
-      for id in user_ids
-        @store.find("user", id).then (user) ->
-          users.removeObject(user)
-
       for id in userIds
         @store.find("user", id).then (user) ->
           users.pushObject(user)
