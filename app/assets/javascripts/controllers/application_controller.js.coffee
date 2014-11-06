@@ -10,15 +10,15 @@ EnlightenmentApp.ApplicationController = Ember.Controller.extend(
     @get("store").find("group")
   ).property()
 
-  content_entities: (->
-    @get("store"). find "content_entity"
+  inboxed: (->
+    @store.filter 'content_entity', {inbox: true}, (content_entity) ->
+      content_entity.get('inbox')
   ).property()
 
   atInbox: (->
-    user_id = @get 'session.user_id'
-    content_entities = @get("content_entities")
-    content_entities.filterBy("inbox", true).filterBy("user_id", user_id).get "length"
-  ).property('content_entities.@each.inbox')
+    inboxed = @get("inboxed")
+    inboxed.get "length"
+  ).property('inboxed.@each.inbox')
 
   actions:
     changeGroup: (content_entity_id, group_id) ->
