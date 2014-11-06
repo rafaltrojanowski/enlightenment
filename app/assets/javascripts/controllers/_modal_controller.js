@@ -70,4 +70,6 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
 
     shouldDisableSubmit: function() {
       return !this.get('isDirty') || this.get('isSaving');
+    }
+  }
 });
