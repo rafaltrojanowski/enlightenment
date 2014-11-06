@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :note do
     body "MyText"
+    content_entity
   end
 end

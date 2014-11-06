@@ -2,10 +2,9 @@
 
 FactoryGirl.define do
   factory :content_entity do
-    user_id 1
-    group_id 1
     content 'MyText'
-    # contentable_id 1
-    # contentable_type "MyString"
+    user
+    group
+    inbox false
   end
 end

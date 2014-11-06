@@ -3,9 +3,11 @@ EnlightenmentApp.EditAccountController = Ember.ObjectController.extend SimpleAut
   previewAvatar: Em.computed.alias('avatar')
   actions:
     update: (route) ->
-      console.log(@get('model'))
+      self = this
+
       @get('model').save().then ((response)->
-        alertify.success("account update succesful")
+        self.transitionToRoute('content_entities');
+        alertify.success("Account updated succesfully")
       ), (response) ->
         error = response.responseJSON.error
         alertify.error(error)
@@ -17,3 +19,4 @@ EnlightenmentApp.EditAccountController = Ember.ObjectController.extend SimpleAut
       console.log('in setAvatar')
       @set 'avatar', avatar
       console.log(@get('avatar'))
+

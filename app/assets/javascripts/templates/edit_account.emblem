@@ -12,7 +12,7 @@
       .form-group
         label.col-sm-3.control-label Avatar:
         img id='avatar' src=blank alt='avatar'
-        view Ember.UploadFile id='file_browse'
+        view EnlightenmentApp.UploadFile id='file_browse'
         view Ember.TextField type='hidden' id='avatarValue' valueBinding='avatar'
       .form-group
         label.col-sm-3.control-label Current password:

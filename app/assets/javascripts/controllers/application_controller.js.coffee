@@ -1,8 +1,13 @@
 EnlightenmentApp.ApplicationController = Ember.Controller.extend(
-  # needs: ['currentPath']
   title: ''
+
+  currentUser: (->
+    sessionId =  @get('session.user_id')
+    currentUser = @store.find "user", sessionId
+  ).property()
+
   groups: (->
-    @get("store").find "group"
+    @get("store").find("group")
   ).property()
 
   content_entities: (->
@@ -21,6 +26,7 @@ EnlightenmentApp.ApplicationController = Ember.Controller.extend(
 
       @store.find("group", group_id).then (group) ->
         model.set("group", group)
+        model.set("inbox", false)
         model.set("group_id", group_id).then (model) ->
           model.save().then ->
             alertify.success("Group changed!")
