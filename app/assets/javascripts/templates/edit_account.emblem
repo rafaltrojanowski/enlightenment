@@ -11,9 +11,8 @@
         view Ember.TextField valueBinding='email' name='email'
       .form-group
         label.col-sm-3.control-label Avatar:
-        img id='avatar' src=blank alt='avatar'
-        view EnlightenmentApp.UploadFile id='file_browse'
-        view Ember.TextField type='hidden' id='avatarValue' valueBinding='avatar'
+        img id='avatar' src=avatar alt='avatar'
+        view EnlightenmentApp.UploadFile id='file_browse' valueBinding='avatar' name='image'
       .form-group
         label.col-sm-3.control-label Current password:
         view Ember.TextField type="password" valueBinding='current_password' name='current_password'

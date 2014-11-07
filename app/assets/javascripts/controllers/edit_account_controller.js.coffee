@@ -4,8 +4,11 @@ EnlightenmentApp.EditAccountController = Ember.ObjectController.extend SimpleAut
   actions:
     update: (route) ->
       self = this
+      model = @get('model')
+      image_data = $('#avatar').attr('src')
+      model.set('avatar', image_data)
 
-      @get('model').save().then ((response)->
+      model.save().then ((response)->
         self.transitionToRoute('content_entities');
         alertify.success("Account updated succesfully")
       ), (response) ->
@@ -14,9 +17,4 @@ EnlightenmentApp.EditAccountController = Ember.ObjectController.extend SimpleAut
 
     cancel: ->
       @transitionToRoute('content_entities')
-
-    setAvatar: (avatar) ->
-      console.log('in setAvatar')
-      @set 'avatar', avatar
-      console.log(@get('avatar'))
 
