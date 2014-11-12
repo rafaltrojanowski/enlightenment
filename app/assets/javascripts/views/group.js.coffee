@@ -1,16 +1,27 @@
 EnlightenmentApp.GroupView = Ember.View.extend
-
   didInsertElement: ->
     controller = @get('controller')
-    getUrl = (id) ->
-      "/api/v1/groups/" + id + "/members.json"
-    group_id = $("#members").data("id")
-    $.getJSON(getUrl(group_id), (members) ->
-      $("#members").data("pre", members)
-      $("#members").tokenInput( $("#members").data("url") ,
-        propertyToSearch: "email",
-        preventDuplicates: true
-      ))
+    select2_options =
+      multiple: true
+      width: 300
+      ajax:
+        url: "/api/v1/groups/14/other_users.json",
+        dataType: "json"
+        type: "GET"
+        quietMillis: 50
+        data: (term) ->
+          term: term
+
+        results: (data) ->
+          results: $.map(data, (item) ->
+            text: item.text
+            id: item.id
+          )
+
+    @$("input").select2(select2_options).on "change", ((obj) ->
+        return
+      ).bind(this)
+
     $('.icon').click ->
       logo = $(this).data('name')
       logo = "fa fa-" + logo

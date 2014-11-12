@@ -20,5 +20,5 @@
     .well
       h4 Manage members
       form submit="update"
-        = input id="members" data-url=urlPath data-id=id
+        = input valueBinding="user_ids"
         button.btn.btn-success Update

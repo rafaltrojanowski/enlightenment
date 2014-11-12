@@ -12,5 +12,5 @@ if session.isAuthenticated
     link-to 'groups'
       i.fa.fa-cog.pull-right style="padding-right:8px;"
     | <div style="color:#bcbcbc; padding-bottom: 10px;"><i class="fa fa-users"></i> Groups</div>
-    each group in groups
+    each group in currentUser.groups
       EnlightenmentApp.GroupSidebarView contentBinding="group"
