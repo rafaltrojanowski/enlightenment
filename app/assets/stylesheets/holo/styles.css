@@ -316,3 +316,7 @@ textarea {
 .form-control::-webkit-input-placeholder {
   color: rgb(191, 191, 191);
 }
+
+#file_browse{
+  display: none;
+}

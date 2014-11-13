@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.5'
+gem 'rails', '4.1.7'
 
 gem 'pg'
 
@@ -11,7 +11,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'ember-rails'
-gem 'ember-source', '1.7.0'
+gem 'ember-source', '1.8.0'
 gem 'emblem-rails' # Now any templates ending in .emblem will be compiled as Ember-Handlebars templates.
 
 gem 'haml'

@@ -10,6 +10,10 @@
         label.col-sm-3.control-label Email:
         view Ember.TextField valueBinding='email' name='email'
       .form-group
+        label.col-sm-3.control-label Avatar:
+        img id='avatar' src=avatar alt='avatar' style="width:160px"
+        view EnlightenmentApp.UploadFile id='file_browse' name='image'
+      .form-group
         label.col-sm-3.control-label Current password:
         view Ember.TextField type="password" valueBinding='current_password' name='current_password'
       .form-group

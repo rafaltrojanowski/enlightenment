@@ -1,19 +1,24 @@
 EnlightenmentApp.ApplicationController = Ember.Controller.extend(
-  # needs: ['currentPath']
   title: ''
-  groups: (->
-    @get("store").find "group"
+
+  currentUser: (->
+    sessionId =  @get('session.user_id')
+    currentUser = @store.find "user", sessionId
   ).property()
 
-  content_entities: (->
-    @get("store"). find "content_entity"
+  groups: (->
+    @get("store").find("group")
+  ).property()
+
+  inboxed: (->
+    @store.filter 'content_entity', {inbox: true}, (content_entity) ->
+      content_entity.get('inbox')
   ).property()
 
   atInbox: (->
-    user_id = @get 'session.user_id'
-    content_entities = @get("content_entities")
-    content_entities.filterBy("inbox", true).filterBy("user_id", user_id).get "length"
-  ).property('content_entities.@each.inbox')
+    inboxed = @get("inboxed")
+    inboxed.get "length"
+  ).property('inboxed.@each.inbox')
 
   actions:
     changeGroup: (content_entity_id, group_id) ->
@@ -21,6 +26,7 @@ EnlightenmentApp.ApplicationController = Ember.Controller.extend(
 
       @store.find("group", group_id).then (group) ->
         model.set("group", group)
+        model.set("inbox", false)
         model.set("group_id", group_id).then (model) ->
           model.save().then ->
             alertify.success("Group changed!")

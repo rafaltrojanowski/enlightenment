@@ -5,7 +5,7 @@ describe ContentEntity do
   describe 'create' do
     context 'content contains url only' do
       it 'must create content entity and link' do
-        cn = ContentEntity.create!(content: 'http://www.wykop.pl')
+        cn = FactoryGirl.create(:content_entity, content: 'http://www.wykop.pl')
 
         Link.count.must_equal 1
         Note.count.must_equal 0
@@ -17,7 +17,7 @@ describe ContentEntity do
 
     context 'content contains url and text' do
       it 'must create content entity and note' do
-        cn = ContentEntity.create!(content: 'http://www.wykop.pl lorem ipsum')
+        cn = FactoryGirl.create(:content_entity, content: 'http://www.wykop.pl lorem ipsum')
 
         Link.count.must_equal 0
         Note.count.must_equal 1
@@ -29,7 +29,7 @@ describe ContentEntity do
 
     context 'text only' do
       it 'must create note' do
-        cn = ContentEntity.create!(content: '/wwwwykoppl/')
+        cn = FactoryGirl.create(:content_entity, content: '/wwwwykoppl/')
 
         Link.count.must_equal 0
         Note.count.must_equal 1

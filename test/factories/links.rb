@@ -6,5 +6,6 @@ FactoryGirl.define do
     title nil
     description "MyText"
     image "MyString"
+    content_entity
   end
 end

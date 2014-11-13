@@ -40,10 +40,15 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
       } else {
         model.set('group', null);
       }
-      
 
       this.get('model').save().then(function(){
         alertify.success("Record updated!");
+
+        var hasGroup = model.get('group_id');
+
+        if (hasGroup != null) {
+          model.set('inbox', false);
+        }
       },function(response){
       });
     },
@@ -65,7 +70,6 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
 
     shouldDisableSubmit: function() {
       return !this.get('isDirty') || this.get('isSaving');
-    }.property('isDirty', 'isSaving')
+    }
   }
 });
-
