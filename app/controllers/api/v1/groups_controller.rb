@@ -51,4 +51,8 @@ class Api::V1::GroupsController < ApplicationController
   def set_group
     @group = Group.find(params[:id])
   end
+
+  def group_params
+    params.require(:group).permit(group: [:name, :icon])
+  end
 end
