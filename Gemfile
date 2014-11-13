@@ -37,6 +37,7 @@ gem 'carrierwave'
 gem 'webshot'
 gem 'font-awesome-sass'
 gem 'autosize-rails'
+gem 'fog', github: 'fog/fog'
 
 group :development, :test do
   gem 'spring'
