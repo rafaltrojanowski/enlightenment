@@ -16,7 +16,7 @@ nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
       ul.nav.navbar-nav.navbar-right id='dropdown_auth'
         li.dropdown
           a.dropdown-toggle data-toggle='dropdown' href='#'
-            | <i class='fa fa-user'></i> {{currentUser.name}}
+            | <img {{bind-attr src="currentUser.avatar"}} alt="avatar" style="height:25px" class="img-circle"> {{currentUser.name}}
             span.caret
           ul.dropdown-menu role='menu'
             li
