@@ -10,10 +10,10 @@ class Api::V1::GroupsController < ApplicationController
     attrs = {
       name: params[:group][:name],
       icon: params[:group][:icon],
-      owner_id: params[:group][:owner_id]
+      owner_id: current_user.id
     }
     group = Group.new(attrs)
-    group.user_ids = params[:group][:user_ids]
+    group.users << current_user
     group.save
     respond_with :api, :v1, group
   end
