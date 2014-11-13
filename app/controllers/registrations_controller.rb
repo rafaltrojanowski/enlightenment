@@ -12,11 +12,15 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update
     resource = resource_class.find(params[:id])
-    parse_avatar_data(account_update_params[:avatar])
-    param = account_update_params
-    param[:avatar] = File.open(@tempfile)
-    clean_tempfile
-    resource_updated = update_resource(resource, param)
+    new_params = account_update_params
+
+    if account_update_params[:avatar].include? 'data'
+      parse_avatar_data(account_update_params[:avatar])
+      new_params[:avatar] = File.open(@tempfile)
+      clean_tempfile
+    end
+
+    resource_updated = update_resource(resource, new_params)
     if resource_updated
       render json: resource, status: 201
     else
