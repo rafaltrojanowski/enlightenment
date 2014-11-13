@@ -19,10 +19,20 @@ EnlightenmentApp.GroupController = Ember.ObjectController.extend
       model = @get('model')
       users = @get('users')
 
+      store = @store
+
+      console.log @get('users').map (u) ->
+        store.find("user", u.id).then (user) ->
+          users.removeObject(user)
+
       for id in userIds
         @store.find("user", id).then (user) ->
           users.pushObject(user)
-      model.save()
+
+       json = model.asJSON()
+       json.group.userIds = userIds
+
+       $.ajax("api/v1/groups/" + @get('id'), method: 'PUT', data: json)
 
     save: ->
       @get('model').save()
