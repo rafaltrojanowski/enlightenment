@@ -30,8 +30,7 @@ class Api::V1::GroupsController < ApplicationController
 
   def other_users
     @group = Group.find(params[:id])
-    respond_with User.all.map{ |user| {:id => user.id, :text => user.name}}, root: false
-    # , root: false#.filtering(params[:q]).not_members(@group.user_ids), root: false
+    respond_with User.all, root: false#.filtering(params[:q]).not_members(@group.user_ids), root: false
   end
 
   def members
