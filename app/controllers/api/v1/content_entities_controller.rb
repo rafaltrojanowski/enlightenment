@@ -2,23 +2,28 @@ class Api::V1::ContentEntitiesController < ApplicationController
   respond_to :json
 
   def index
-    group_ids = current_user.group_ids
+    group_ids = User.first.group_ids
     scope = ContentEntity.where(group_id: group_ids, inbox: false)
+    
 
     if params[:type].present?
       scope = scope.where(user_id: current_user.id,
                           contentable_type: params[:type].humanize)
     end
 
+    total = scope.count
+
     if params[:inbox].present?
       scope = current_user.content_entities.where(inbox: true)
     end
 
-    # if params[:group_id].present?
-      # scope = scope.where(group_id: params[:group_id])
-    # end
+    if params[:pagi].present?
+      scope = scope.paginate(page: params[:pagi])
+    end
 
-    respond_with scope
+    num = 27
+    # fail 'tak' if total.is_a? Integer
+    respond_with scope, meta: { total: total }
   end
 
   def create
@@ -63,4 +68,12 @@ class Api::V1::ContentEntitiesController < ApplicationController
     record.update_attributes(body: params[:contentEntity][:body],
                              title: params[:contentEntity][:title])
   end
+
+  def page_resources(resources)
+    {
+      total: 50,
+      test: 'wiksa'
+    }
+  end
+
 end
