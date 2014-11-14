@@ -30,7 +30,7 @@ EnlightenmentApp.PaginatableMixin = Em.Mixin.create
 EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend EnlightenmentApp.PaginatableMixin,
   page:           1
   perPage:        10
-  sortAscending: false,
+  sortAscending:  false
   sortProperties: ['updated_at']
   title: 'Dashboard'
 
@@ -52,4 +52,7 @@ EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend Enligh
       ).bind(this), ->
         alertify.error("Your record is invalid!")
       @set('newEntryName', "")
+    test: ->
+      meta = @store.metadataFor('content_entity')
+      console.log(meta.total)
 
