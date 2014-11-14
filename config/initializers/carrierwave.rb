@@ -7,7 +7,7 @@ CarrierWave.configure do |config|
       region: 'eu-central-1'
     }
     config.fog_directory = ENV['ENLIGHTENMENT_S3_BUCKETS_DEV']
-  else
+  elsif Rails.env.production?
     config.fog_credentials = {
       provider: 'AWS',
       aws_access_key_id: ENV['ENLIGHTENMENT_S3_ID'],
