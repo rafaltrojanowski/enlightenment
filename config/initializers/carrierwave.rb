@@ -1,5 +1,9 @@
 CarrierWave.configure do |config|
-  if Rails.env.development?
+  if Rails.env.test?
+    config.storage :file
+  elsif Rails.env.development?
+    config.storage :fog
+
     config.fog_credentials = {
       provider: 'AWS',
       aws_access_key_id: ENV['ENLIGHTENMENT_S3_ID_DEV'],
@@ -8,6 +12,8 @@ CarrierWave.configure do |config|
     }
     config.fog_directory = ENV['ENLIGHTENMENT_S3_BUCKETS_DEV']
   elsif Rails.env.production?
+    config.storage :fog
+
     config.fog_credentials = {
       provider: 'AWS',
       aws_access_key_id: ENV['ENLIGHTENMENT_S3_ID'],
