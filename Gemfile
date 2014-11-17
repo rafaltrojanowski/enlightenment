@@ -38,6 +38,7 @@ gem 'webshot'
 gem 'font-awesome-sass'
 gem 'autosize-rails'
 gem 'fog', github: 'fog/fog'
+gem 'will_paginate'
 
 group :development, :test do
   gem 'spring'
