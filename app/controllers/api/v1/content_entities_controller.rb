@@ -18,10 +18,7 @@ class Api::V1::ContentEntitiesController < ApplicationController
       scope = scope.paginate(page: params[:pagi])
     end
 
-    total = scope.count
-    num = 27
-    # fail 'tak' if total.is_a? Integer
-    respond_with scope, meta: { total: total }
+    respond_with scope
   end
 
   def create
@@ -36,9 +33,9 @@ class Api::V1::ContentEntitiesController < ApplicationController
 
   def update
     record = ContentEntity.find(params[:id]).contentable
-    do_update = record.is_a?(Link) ? update_link(record) : update_note(record)
+    object = record.is_a?(Link) ? update_link(record) : update_note(record)
 
-    if object = do_update
+    if object
       render json: object
     else
       render json: object, status: 422
@@ -55,6 +52,7 @@ class Api::V1::ContentEntitiesController < ApplicationController
 
   private
 
+  # @TODO move to model
   def update_link(record)
     record.content_entity.update_column(:group_id, params[:contentEntity][:group_id])
     record.update_attributes(title: params[:contentEntity][:title],
@@ -66,12 +64,4 @@ class Api::V1::ContentEntitiesController < ApplicationController
     record.update_attributes(body: params[:contentEntity][:body],
                              title: params[:contentEntity][:title])
   end
-
-  def page_resources(resources)
-    {
-      total: 50,
-      test: 'wiksa'
-    }
-  end
-
 end
