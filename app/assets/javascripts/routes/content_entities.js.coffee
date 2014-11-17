@@ -1,6 +1,6 @@
 EnlightenmentApp.ContentEntitiesRoute = Ember.Route.extend SimpleAuth.AuthenticatedRouteMixin,
   model: ->
-    @get('store').filter 'content_entity', { }, (content_entity) ->    
+    @get('store').filter 'content_entity', {}, (content_entity) ->    
       return content_entity.get('inbox') is false
 
   actions:
@@ -9,7 +9,7 @@ EnlightenmentApp.ContentEntitiesRoute = Ember.Route.extend SimpleAuth.Authentica
       @send 'openModal', 'content_entities.modal'
       return
     confirmDelete: (content_entity) ->
-      @controllerFor('confirm.delete').send('confirmDelete', content_entity, 'content_entity.index');
+      @controllerFor('confirm.delete').send('confirmDelete', content_entity, 'content_entity.index')
       @send 'openModal', 'confirm.delete'
 
 EnlightenmentApp.ContentEntityRoute = Ember.Route.extend SimpleAuth.AuthenticatedRouteMixin
