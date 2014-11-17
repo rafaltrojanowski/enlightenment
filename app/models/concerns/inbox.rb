@@ -4,8 +4,11 @@ module Inbox
     after_commit :leave_inbox_if_need!
   end
 
+  delegate :inbox, :inbox?, :body, to: :content_entity
+
+  private
+
   def leave_inbox_if_need!
-    update_column(:inbox, "#{!content_entity.group.present?}")
     content_entity.update_column(:inbox, "#{!content_entity.group.present?}")
   end
 end

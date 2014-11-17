@@ -1,8 +1,13 @@
 class Group < ActiveRecord::Base
-  has_and_belongs_to_many :users, join_table: :participants
-  before_destroy { users.clear }
-  belongs_to :owner, class_name: 'User'
-  validates :name, presence: true
-  has_many :content_entities
   attr_reader :user_tokens
+
+  belongs_to :owner, class_name: 'User'
+  has_many :content_entities
+  has_and_belongs_to_many :users, join_table: :participants
+
+  validates :name, presence: true
+
+  after_destroy do
+    content_entities.update_all(inbox: true, group_id: nil)
+  end
 end
