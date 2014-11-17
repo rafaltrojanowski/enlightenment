@@ -14,10 +14,6 @@ class Api::V1::ContentEntitiesController < ApplicationController
       scope = current_user.content_entities.where(inbox: true)
     end
 
-    if params[:pagi].present?
-      scope = scope.paginate(page: params[:pagi])
-    end
-
     respond_with scope
   end
 

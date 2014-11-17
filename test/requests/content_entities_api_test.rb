@@ -42,43 +42,35 @@ describe 'Api::V1::ContentEntities' do
   it 'must retrieve entities that belongs to user groups' do
     api_call :get, 'contentEntities', @auth_data
 
-    response.status.must_equal 200
+    expected_ids = json['content_entities'].map { |m| m['id'] }.sort
 
-    body = JSON.parse(response.body)
-    ids = body['content_entities'].map { |m| m['id'] }
-
-    ids.sort.must_equal [@my_link_rails_entity.id,
-                         @my_note_rails_entity.id,
-                         @my_ember_entity.id,
-                         @other_user_rails_entity.id].sort
+    expected_ids.must_equal [@my_link_rails_entity.id,
+                             @my_note_rails_entity.id,
+                             @my_ember_entity.id,
+                             @other_user_rails_entity.id].sort
   end
 
   it 'must retrieve user notes' do
     api_call :get, 'contentEntities', @auth_data, type: 'note'
+    expected_ids = json['content_entities'].map { |m| m['id'] }.sort
 
-    body = JSON.parse(response.body)
-    ids = body['content_entities'].map { |m| m['id'] }
-
-    ids.sort.must_equal [@my_note_rails_entity.id, @my_ember_entity.id].sort
+    expected_ids.must_equal [@my_note_rails_entity.id, @my_ember_entity.id].sort
   end
 
   it 'must retrieve user links' do
-
     api_call :get, 'contentEntities', @auth_data, type: 'link'
 
-    body = JSON.parse(response.body)
-    ids = body['content_entities'].map { |m| m['id'] }
+    expected_ids = json['content_entities'].map { |m| m['id'] }.sort
 
-    ids.sort.must_equal [@my_link_rails_entity.id].sort
+    expected_ids.must_equal [@my_link_rails_entity.id].sort
   end
 
   it 'must retrieve user inbox' do
     api_call :get, 'contentEntities', @auth_data, inbox: true
 
-    body = JSON.parse(response.body)
-    ids = body['content_entities'].map { |m| m['id'] }
+    expected_ids = json['content_entities'].map { |m| m['id'] }.sort
 
-    ids.sort.must_equal [@my_inbox.id].sort
+    expected_ids.sort.must_equal [@my_inbox.id].sort
   end
 
   context 'create' do
