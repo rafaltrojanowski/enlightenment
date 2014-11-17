@@ -4,14 +4,11 @@ class GroupSerializer < ActiveModel::Serializer
              :owner_id,
              :icon,
              :users,
-             :user_ids,
-             :content_entities
+             :user_ids
 
   def users
     object.user_ids
   end
 
-  def content_entities
-    object.content_entity_ids
-  end
+  has_many :content_entities
 end
