@@ -2,9 +2,8 @@ class Api::V1::ContentEntitiesController < ApplicationController
   respond_to :json
 
   def index
-    group_ids = User.first.group_ids
+    group_ids = User.first.group_ids # TODO
     scope = ContentEntity.where(group_id: group_ids, inbox: false)
-    
 
     if params[:type].present?
       scope = scope.where(user_id: current_user.id,
