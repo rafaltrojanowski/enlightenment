@@ -1,16 +1,14 @@
 class Api::V1::ContentEntitiesController < ApplicationController
+  load_and_authorize_resource
   respond_to :json
 
   def index
-    group_ids = current_user.group_ids
-    scope = ContentEntity.where(group_id: group_ids, inbox: false)
+    scope = @content_entities
 
     if params[:type].present?
       scope = scope.where(user_id: current_user.id,
                           contentable_type: params[:type].humanize)
     end
-
-    total = scope.count
 
     if params[:inbox].present?
       scope = current_user.content_entities.where(inbox: true)
@@ -20,6 +18,7 @@ class Api::V1::ContentEntitiesController < ApplicationController
       scope = scope.paginate(page: params[:pagi])
     end
 
+    total = scope.count
     num = 27
     # fail 'tak' if total.is_a? Integer
     respond_with scope, meta: { total: total }
@@ -28,8 +27,8 @@ class Api::V1::ContentEntitiesController < ApplicationController
   def create
     attrs = {
       content: params[:contentEntity][:body],
-      user_id: params[:contentEntity][:user_id],
       group_id: params[:contentEntity][:group_id],
+      user_id: current_user.try(:id)
     }
 
     respond_with :api, :v1, ContentEntity.create(attrs)

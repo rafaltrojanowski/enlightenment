@@ -5,6 +5,11 @@ class Ability
     user ||= User.new
 
     if user.is_a? User
+      # ContentEntities
+      can :create, ContentEntity
+      can :update, ContentEntity, user_id: user.id
+      can :destroy, ContentEntity, user_id: user.id
+      can :read, ContentEntity, group_id: user.group_ids
       # Groups
       can :create, Group
       can :manage, Group, owner_id: user.id
