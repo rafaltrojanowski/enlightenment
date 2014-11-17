@@ -38,7 +38,7 @@ gem 'webshot'
 gem 'font-awesome-sass'
 gem 'autosize-rails'
 gem 'fog', github: 'fog/fog'
-gem 'will_paginate'
+gem 'acts-as-taggable-on', '~> 3.4'
 
 group :development, :test do
   gem 'spring'
