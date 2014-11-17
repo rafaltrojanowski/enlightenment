@@ -4,7 +4,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
+
+  process resize_to_fill: [200, 200]
 
   def default_url
     ActionController::Base.helpers.asset_path('blank-avatar.png')

@@ -55,4 +55,3 @@ EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend Enligh
     test: ->
       meta = @store.metadataFor('content_entity')
       console.log(meta.total)
-
