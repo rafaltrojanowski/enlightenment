@@ -98,12 +98,9 @@ end
 MiniTest::Spec.register_spec_type /^Api::/i, ApiTestCase
 
 def api_call(http_method, url, auth_data={}, query_params={})
-  if auth_data.present?
-    token = auth_data[:token]
-    email = auth_data[:email]
-    auth_data = 'token="' + token + '", user_email="' + email + '"'
-  end
+  token = auth_data[:token] || nil
+  options = auth_data.except(:token) || nil
 
   send http_method, "/api/v1/#{url}.json?#{query_params.to_query}", nil,
-    "HTTP_AUTHORIZATION"=>"Token #{auth_data}"
+                    'HTTP_AUTHORIZATION' => ActionController::HttpAuthentication::Token.encode_credentials(token, options)
 end

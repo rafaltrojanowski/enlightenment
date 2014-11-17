@@ -26,7 +26,7 @@ describe 'Api::V1::ContentEntities' do
     @user = FactoryGirl.create(:user)
     @other_user = FactoryGirl.create(:user)
 
-    @auth_data = { token: @user.authentication_token, email: @user.email }
+    @auth_data = { token: @user.authentication_token, user_email: @user.email }
 
     @rails_group = FactoryGirl.create(:group, name: 'Rails')
     @ember_group = FactoryGirl.create(:group, name: 'Ember')
