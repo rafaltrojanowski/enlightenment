@@ -52,6 +52,3 @@ EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend Enligh
       ).bind(this), ->
         alertify.error("Your record is invalid!")
       @set('newEntryName', "")
-    test: ->
-      meta = @store.metadataFor('content_entity')
-      console.log(meta.total)
