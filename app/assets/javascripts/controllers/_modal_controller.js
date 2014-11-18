@@ -55,17 +55,12 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
 
     close: function() {
       var model = this.get('model');
-      // var groupId = model.get('group_id');
+      var groupId = model.get('group_id');
 
       model.rollback();
 
-      // this.set('model', model);
-      // this.set('group_id', groupId);
-
+      this.set('group_id', groupId);
       this.send("closeModal");
-      // this.set('title', model.get('title'));
-      // this.set('description', model.get('description'));
-      // this.set('group_id', model.get('group_id'));
     },
 
     shouldDisableSubmit: function() {
