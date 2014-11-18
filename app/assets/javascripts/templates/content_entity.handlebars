@@ -45,9 +45,11 @@
 {{#each comment in comments}}
   <div class="panel panel-default">
     <div class="panel-heading">
-      <small style="font-family:courier,'new courier';" class="text-muted pull-right">
-        <button {{action 'deleteComment' comment}} class="btn btn-large btn-danger" id="destroy_button"><i class="fa fa-trash"></i></button>
-      </small>
+      {{#if comment.can_destroy}}
+        <small style="font-family:courier,'new courier';" class="text-muted pull-right">
+          <button {{action 'deleteComment' comment}} class="btn btn-large btn-danger" id="destroy_button"><i class="fa fa-trash"></i></button>
+        </small>
+      {{/if}}
       <img {{bind-attr src=comment.avatar}} style="width:60px;height:60px" class="img-circle"/>
       {{comment.commenter_name}}
       <i class="fa fa-clock-o date" id="show_date" data-toggle="tooltip" data-placement="top" {{bind-attr title=comment.formatedDate}}> {{{date comment.updated_at}}}</i>

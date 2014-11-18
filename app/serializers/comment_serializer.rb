@@ -2,31 +2,23 @@ class CommentSerializer < ActiveModel::Serializer
   attributes :id,
              :content,
              :user_id,
-             # :user,
              :commentable_id,
              :commentable_type,
              :updated_at,
              :avatar,
-             :commenter_name
+             :commenter_name,
+             :can_destroy
 
-  # def user
-  #   object.user_id
-  # end
   def avatar
-    user = User.find_by_id(object.user_id)
-    if user.try(:avatar?)
-      user.avatar_url
-    else
-      'https://dl.dropboxusercontent.com/u/57582960/doge.png'
-    end
+    object.user.avatar_url
   end
 
   def commenter_name
-    user = User.find_by_id(object.user_id)
-    if user.try(:username?)
-      user.username
-    else
-      user.email
-    end
+    object.user.name
+  end
+
+  def can_destroy
+    # @TODO possibility to use cancan here?
+    object.user_id == scope.current_user.try(:id)
   end
 end
