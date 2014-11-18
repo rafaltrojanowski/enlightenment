@@ -19,6 +19,10 @@ class Ability
       end
       # Users
       can :update, User, id: user.id
+      # Comments
+      can :create, Comment
+      can :read, Comment
+      can :destroy, Comment, user_id: user.id
     end
     # Define abilities for the passed in user here. For example:
     #
