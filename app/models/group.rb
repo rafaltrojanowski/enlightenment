@@ -6,6 +6,8 @@ class Group < ActiveRecord::Base
   has_and_belongs_to_many :users, join_table: :participants
 
   validates :name, presence: true
+  validates :name, uniqueness: true
+  validates :icon, presence: true
 
   after_destroy do
     content_entities.update_all(inbox: true, group_id: nil)
