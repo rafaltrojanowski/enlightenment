@@ -1,8 +1,12 @@
 {{ outlet }}
 <div class="well">
 
-<button {{action 'confirmDelete' this}} class="btn btn-large btn-danger pull-right" id="destroy_button">Delete <i class="fa fa-trash"></i></button>
-<button {{action edit this}} class="btn btn-large btn-warning pull-right" id="edit_button">Edit <i class="fa fa-pencil"></i></button>
+{{#if can_destroy}}
+  <button {{action 'confirmDelete' this}} class="btn btn-large btn-danger pull-right" id="destroy_button">Delete <i class="fa fa-trash"></i></button>
+{{/if}}
+{{#if can_edit}}
+  <button {{action edit this}} class="btn btn-large btn-warning pull-right" id="edit_button">Edit <i class="fa fa-pencil"></i></button>
+{{/if}}
 
 {{#if isLink}}
   <h1 id="section1">{{title}}</h1>
