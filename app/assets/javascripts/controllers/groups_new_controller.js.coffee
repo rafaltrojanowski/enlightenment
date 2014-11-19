@@ -7,9 +7,11 @@ EnlightenmentApp.GroupsNewController = Ember.Controller.extend
         name: @get('newGroup')
         icon: @get('logo')
       })
+
+      self = this
+
       record.save().then ((response) ->
-        @set('newGroup')
-        @transitionToRoute('groups')
+        self.transitionToRoute('groups')
         alertify.success("New group added!")
       ), (response) ->
         record.deleteRecord()

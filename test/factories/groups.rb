@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :group do
-    name 'religious'
+    sequence(:name) { |n| ("religious_#{n}") }
+    icon 'awesome-religious'
   end
 end
