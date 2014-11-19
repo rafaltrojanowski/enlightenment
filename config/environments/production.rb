@@ -93,4 +93,5 @@ Rails.application.configure do
     domain:                ENV['ENLIGHTENMENT_SMTP_DOMAIN'],
     user_name:             ENV['ENLIGHTENMENT_SMTP_USER_NAME'],
     password:              ENV['ENLIGHTENMENT_SMTP_PASSWORD']
+  }
 end
