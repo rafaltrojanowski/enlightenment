@@ -1,7 +1,9 @@
 class ContentEntity < ActiveRecord::Base
   attr_accessor :content
-  validates :content, presence: true
+  validates :content, presence: true, on: :create
   validates :user, presence: true
+
+  acts_as_taggable
 
   default_scope { includes(:user, :comments).
                   order(created_at: :desc) }

@@ -18,10 +18,7 @@ class Api::V1::ContentEntitiesController < ApplicationController
       scope = scope.paginate(page: params[:pagi])
     end
 
-    total = scope.count
-    num = 27
-    # fail 'tak' if total.is_a? Integer
-    respond_with scope, meta: { total: total }
+    respond_with scope
   end
 
   def create
@@ -65,13 +62,6 @@ class Api::V1::ContentEntitiesController < ApplicationController
     record.content_entity.update_column(:group_id, params[:contentEntity][:group_id])
     record.update_attributes(body: params[:contentEntity][:body],
                              title: params[:contentEntity][:title])
-  end
-
-  def page_resources(resources)
-    {
-      total: 50,
-      test: 'wiksa'
-    }
   end
 
 end
