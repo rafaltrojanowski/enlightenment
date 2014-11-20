@@ -25,6 +25,7 @@ class Api::V1::GroupsController < ApplicationController
       @group.user_ids = ids.push(@group.owner_id).uniq
     end
     @group.save
+
     respond_with :api, :v1, @group
   end
 

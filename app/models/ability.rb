@@ -12,9 +12,7 @@ class Ability
       can :read, ContentEntity, group_id: user.group_ids
       # Groups
       can :create, Group
-      can :update, Group, owner_id: user.id
-      can :update_users, Group, owner_id: user.id
-      can :destroy, Group, owner_id: user.id
+      can :manage, Group, owner_id: user.id
       can :read, Group do |group|
         group.user_ids.include? user.id
       end
