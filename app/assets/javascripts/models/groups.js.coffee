@@ -5,6 +5,7 @@ EnlightenmentApp.Group = DS.Model.extend(
   content_entities: DS.hasMany('content_entity', { async: true })
   icon: DS.attr('string')
   can_update: DS.attr('boolean')
+  can_destroy: DS.attr('boolean')
 
   asJSON: ->
     group:

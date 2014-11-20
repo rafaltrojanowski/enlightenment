@@ -5,7 +5,8 @@ class GroupSerializer < ActiveModel::Serializer
              :icon,
              :users,
              :user_ids,
-             :can_update
+             :can_update,
+             :can_destroy
 
   has_many :content_entities
 
@@ -14,6 +15,10 @@ class GroupSerializer < ActiveModel::Serializer
   end
 
   def can_update
+    object.owner_id == scope.current_user.try(:id)
+  end
+
+  def can_destroy
     object.owner_id == scope.current_user.try(:id)
   end
 end
