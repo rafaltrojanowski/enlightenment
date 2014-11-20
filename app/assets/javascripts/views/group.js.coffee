@@ -4,13 +4,17 @@ EnlightenmentApp.GroupView = Ember.View.extend
     controller = @get('controller')
     getUrl = (id) ->
       "/api/v1/groups/" + id + "/members.json"
+
     group_id = $("#members").data("id")
-    $.getJSON(getUrl(group_id), (members) ->
-      $("#members").data("pre", members)
-      $("#members").tokenInput( $("#members").data("url") ,
-        propertyToSearch: "email",
-        preventDuplicates: true
-      ))
+
+    if group_id
+      $.getJSON(getUrl(group_id), (members) ->
+        $("#members").data("pre", members)
+        $("#members").tokenInput( $("#members").data("url") ,
+          propertyToSearch: "email",
+          preventDuplicates: true
+        ))
+
     $('.icon').click ->
       logo = $(this).data('name')
       logo = "fa fa-" + logo
