@@ -13,7 +13,7 @@
 
 <div class="list-group">
   {{#each content_entity in paginatedContent itemController="ContentEntity"}}
-    {{view EnlightenmentApp.ContentEntityItemView contentBinding="content_entity"}}
+    {{view 'content_entity_item' contentBinding="content_entity"}}
   {{/each}}
 </div>
 

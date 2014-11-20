@@ -13,4 +13,4 @@ if session.isAuthenticated
       i.fa.fa-cog.pull-right style="padding-right:8px;"
     | <div style="color:#bcbcbc; padding-bottom: 10px;"><i class="fa fa-users"></i> Groups</div>
     each group in groups
-      EnlightenmentApp.GroupSidebarView contentBinding="group"
+      view 'group_sidebar' contentBinding="group"
