@@ -51,7 +51,12 @@ EnlightenmentApp.GroupController = Ember.ObjectController.extend
 
     setIcon: (name) ->
       @set('icon', name)
-      @get('model').save()
+      group = @get('model')
+
+      group.save().then ((result) ->
+      ).bind(this), ->
+        group.rollback()
+        alertify.error("You are not authorized!")
 
     editGroup: ->
       @set('isEditing', true)

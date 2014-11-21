@@ -15,11 +15,11 @@ describe 'Api::V1::ContentEntities' do
     @other_user_rails_entity = FactoryGirl.create(:content_entity, group: @rails_group, user: @other_user)
     @other_user_angular_entity = FactoryGirl.create(:content_entity, group: @angular_group, user: @other_user)
 
-    @user_entity_without_group = FactoryGirl.create(:content_entity, group: nil, user: @user)
-    @other_user_entity_without_group = FactoryGirl.create(:content_entity, group: nil, user: @other_user)
+    @user_entity_without_group = FactoryGirl.create(:content_entity, group: nil, user: @user, inbox: false)
+    @other_user_entity_without_group = FactoryGirl.create(:content_entity, group: nil, user: @other_user, inbox: false)
 
-    @my_inbox = FactoryGirl.create(:content_entity, user: @user, inbox: true)
-    @other_user_inbox = FactoryGirl.create(:content_entity, user: @other_user, inbox: true)
+    @my_inbox = FactoryGirl.create(:content_entity, user: @user, inbox: true, group: nil)
+    @other_user_inbox = FactoryGirl.create(:content_entity, user: @other_user, inbox: true, group: nil)
   end
 
   before do
@@ -42,19 +42,32 @@ describe 'Api::V1::ContentEntities' do
   it 'must retrieve entities that belongs to user groups' do
     api_call :get, 'contentEntities', @auth_data
 
-    expected_ids = json['content_entities'].map { |m| m['id'] }.sort
+    returned_ids = json['content_entities'].map { |m| m['id'] }
 
-    expected_ids.must_equal [@my_link_rails_entity.id,
-                             @my_note_rails_entity.id,
-                             @my_ember_entity.id,
-                             @other_user_rails_entity.id].sort
+    not_permitted_ids = [ @other_user_angular_entity,
+                          @other_user_entity_without_group,
+                          @other_user_inbox,
+                        ].map(&:id)
+
+    returned_ids.each do |value|
+      not_permitted_ids.wont_include value
+    end
   end
 
   it 'must retrieve user notes' do
     api_call :get, 'contentEntities', @auth_data, type: 'note'
-    expected_ids = json['content_entities'].map { |m| m['id'] }.sort
+    returned_ids = json['content_entities'].map { |m| m['id'] }.sort
 
-    expected_ids.must_equal [@my_note_rails_entity.id, @my_ember_entity.id].sort
+    permitted_ids = [ @my_note_rails_entity,
+                      @my_ember_entity,
+                      @my_angular_entity,
+                      @user_entity_without_group,
+                      @my_inbox
+                    ].map(&:id)
+
+    returned_ids.each do |value|
+      permitted_ids.must_include value
+    end
   end
 
   it 'must retrieve user links' do
@@ -95,22 +108,38 @@ describe 'Api::V1::ContentEntities' do
   end
 
   context 'show' do
-    it 'must show my content entity' do
-      api_call :get, "contentEntities/#{@my_ember_entity.id}", @auth_data
+    context 'resource belongs to group' do
+      it 'must show my content entity' do
+        api_call :get, "contentEntities/#{@my_ember_entity.id}", @auth_data
 
-      response.status.must_equal 200
+        response.status.must_equal 200
+      end
+
+      it 'wont show others content entity' do
+        lambda do
+          api_call :get, "contentEntities/#{@other_user_angular_entity.id}", @auth_data
+        end.must_raise CanCan::AccessDenied
+      end
+
+      it 'wont show if not authorized' do
+        lambda do
+          api_call :get, "contentEntities/#{@my_ember_entity.id}", {}
+        end.must_raise CanCan::AccessDenied
+      end
     end
 
-    it 'wont show others content entity' do
-      lambda do
-        api_call :get, "contentEntities/#{@other_user_angular_entity.id}", @auth_data
-      end.must_raise CanCan::AccessDenied
-    end
+    context 'resource do not have any group (inbox)' do
+      it 'must show my inbox entities' do
+        api_call :get, "contentEntities/#{@my_inbox.id}", @auth_data
 
-    it 'wont show if not authorized' do
-      lambda do
-        api_call :get, "contentEntities/#{@my_ember_entity.id}", {}
-      end.must_raise CanCan::AccessDenied
+        response.status.must_equal 200
+      end
+
+      it 'wont show others inbox entities' do
+        lambda do
+          api_call :get, "contentEntities/#{@other_user_inbox.id}", @auth_data
+        end.must_raise CanCan::AccessDenied
+      end
     end
   end
 

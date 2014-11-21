@@ -19,7 +19,7 @@ class Api::V1::GroupsController < ApplicationController
   end
 
   def update
-    @group.icon = params[:group][:icon]
+    @group.icon = params[:group][:icon] if params[:group][:icon]
     @group.name = params[:group][:name]
     if ids = params[:group][:userIds]
       @group.user_ids = ids.push(@group.owner_id).uniq

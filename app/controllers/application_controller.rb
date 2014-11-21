@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
+  # https://github.com/rails-api/active_model_serializers/issues/622
+  include ActionController::Serialization
   serialization_scope :view_context
+  #################################
   protect_from_forgery
   layout :layout_by_resource
   respond_to :html, :json
