@@ -417,6 +417,10 @@ GEM
     timers (1.1.0)
     turbolinks (2.2.2)
       coffee-rails
+    twitter-typeahead-rails (0.10.5)
+      actionpack (>= 3.1)
+      jquery-rails
+      railties (>= 3.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.5.0)
@@ -500,6 +504,7 @@ DEPENDENCIES
   tagmanager-rails
   terminal-notifier-guard
   turbolinks
+  twitter-typeahead-rails
   uglifier (>= 1.3.0)
   unicorn
   vcr

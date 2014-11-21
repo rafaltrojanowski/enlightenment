@@ -29,7 +29,9 @@
         {{#each error in errors.group}}{{error.message}}{{/each}}
       </div>
 
-      {{view Ember.TextField class="tm-input"}}
+      <div id="prefetch">
+        {{view Ember.TextField class="tm-input typeahead"}}
+      </div>
 
   </div>
   <div class="modal-footer">

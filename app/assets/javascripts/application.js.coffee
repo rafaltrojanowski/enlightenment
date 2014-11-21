@@ -11,7 +11,7 @@
 #= require enlightenment_app
 #= require jquery.tokeninput
 #= require tagmanager
-#= require select2
+#= require twitter/typeahead
 #= require holo/holo
 
 # for more details see: http://emberjs.com/guides/application/

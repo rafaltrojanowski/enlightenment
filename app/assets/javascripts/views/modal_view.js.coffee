@@ -12,13 +12,38 @@ EnlightenmentApp.ModalView = Em.View.extend(
       return
     ).bind(this)
     @$("input[type=text]").first().focus()
+    
+    tags = new Bloodhound(
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace("name")
+      queryTokenizer: Bloodhound.tokenizers.whitespace
+      limit: 10
+      prefetch:
+        url: "api/v1/tags.json"
+        filter: (list) ->
+          $.map list, (tag) ->
+            name: tag
+    )
+
+    tags.initialize()
+
     $(".tm-input").tagsManager({
         prefilled: tag_array,
         hiddenTagListName: 'hidden_tags',
         hiddenTagListId: 'hid_tag',
         isClearInputOnEsc: true
     })
-    return
+
+    $(".tm-input").typeahead(null,
+      name: "tags"
+      displayKey: "name"
+      source: tags.ttAdapter()
+    )# .on('typeahead:selected', (obj, datum) ->
+     # $(".tm-input").tagsManager("pushTag", datum.name)
+     #)
+     # TODO poprawne czyszczenie inputa
+
+
+
 
   willDestroyElement: ->
     $("body").off "keyup.modal"
