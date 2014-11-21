@@ -1,0 +1,6 @@
+{{#if content_entity.can_destroy}}
+  <button {{action confirmDelete content_entity}} class="btn-minimal pull-right" id="destroy_button" style="display:none;"><i class="fa fa-trash"></i></button>
+{{/if}}
+{{#if content_entity.can_edit}}
+  <button {{action edit content_entity}} class="btn-minimal pull-right" id="edit_button" style="display:none;"><i class="fa fa-pencil"></i></button>
+{{/if}}

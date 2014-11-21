@@ -17,6 +17,8 @@ EnlightenmentApp.ContentEntityController = Ember.ObjectController.extend
       false
   ).property("type")
 
+  progress: "progress"
+
   actions:
     edit: (content_entity) ->
       @controllerFor("content_entities.modal").edit content_entity
@@ -42,12 +44,15 @@ EnlightenmentApp.ContentEntityController = Ember.ObjectController.extend
       ).bind(this), ->
         alertify.error("Comment cant be blank!")
       @set('commentBody', "")
+
     deleteComment: (comment) ->
       alertify.confirm "Delete comment?", (e) ->
         if e
           comment.deleteRecord()
-          comment.save()
-          alertify.success "Comment destroyed!"
+          comment.save().then (->
+            alertify.success "Comment destroyed!"
+          ), ->
+            alertify.error "Comment can't be destroyed!"
         else
           alertify.error "You've clicked Cancel"
         return

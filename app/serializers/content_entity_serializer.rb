@@ -10,7 +10,15 @@ class ContentEntitySerializer < ActiveModel::Serializer
              :group_id,
              :user_id,
              :group,
-             :inbox
+             :inbox,
+             :can_edit,
+             :can_destroy,
+             :tagIds
+  has_many   :tags, key: :tags
+
+  def tagIds
+    object.tag_ids
+  end
 
   def group_id
     object.group_id
@@ -44,11 +52,7 @@ class ContentEntitySerializer < ActiveModel::Serializer
   end
 
   def avatar
-    src = if object.try(:user).try(:avatar?)
-      object.user.avatar_url
-    else
-      'https://dl.dropboxusercontent.com/u/57582960/doge.png'
-    end
+    object.user.avatar_url
   end
 
   def image
@@ -61,5 +65,19 @@ class ContentEntitySerializer < ActiveModel::Serializer
 
   def inbox
     object.inbox?
+  end
+
+  def can_edit
+    check_permission
+  end
+
+  def can_destroy
+    check_permission
+  end
+
+  private
+
+  def check_permission
+    object.user_id == scope.current_user.try(:id)
   end
 end

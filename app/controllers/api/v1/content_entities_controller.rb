@@ -14,10 +14,6 @@ class Api::V1::ContentEntitiesController < ApplicationController
       scope = current_user.content_entities.where(inbox: true)
     end
 
-    if params[:pagi].present?
-      scope = scope.paginate(page: params[:pagi])
-    end
-
     respond_with scope
   end
 
@@ -32,13 +28,15 @@ class Api::V1::ContentEntitiesController < ApplicationController
   end
 
   def update
-    record = ContentEntity.find(params[:id]).contentable
-    do_update = record.is_a?(Link) ? update_link(record) : update_note(record)
+    record = ContentEntity.find(params[:id])
+    record.tag_list = params[:contentEntity][:tags_cache]
 
-    if object = do_update
-      render json: object
+    record.contentable.is_a?(Link) ? update_link(record.contentable) : update_note(record.contentable)
+
+    if record.save
+      render json: record
     else
-      render json: object, status: 422
+      render json: record, status: 422
     end
   end
 
@@ -52,6 +50,7 @@ class Api::V1::ContentEntitiesController < ApplicationController
 
   private
 
+  # @TODO move to model
   def update_link(record)
     record.content_entity.update_column(:group_id, params[:contentEntity][:group_id])
     record.update_attributes(title: params[:contentEntity][:title],
@@ -63,5 +62,4 @@ class Api::V1::ContentEntitiesController < ApplicationController
     record.update_attributes(body: params[:contentEntity][:body],
                              title: params[:contentEntity][:title])
   end
-
 end

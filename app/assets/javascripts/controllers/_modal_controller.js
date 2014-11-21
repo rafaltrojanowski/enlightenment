@@ -9,7 +9,7 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
     console.log(this.get('model').get('group_id'));
     gr_id = this.get('model').get('group_id');
 
-    self = this
+    self = this;
 
     if (gr_id != null) {
       var gr = this.store.find('group', gr_id).then(function(group) {
@@ -32,6 +32,8 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
     save: function() {
       var model = this.get('model');
       groupId = model.get('group_id');
+      tags_cache = $("input[name=hidden_tags]").val()
+      model.set('tags_cache', tags_cache)
 
       if (groupId != null) {
         this.store.find('group', groupId).then(function(group) {
@@ -55,17 +57,12 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
 
     close: function() {
       var model = this.get('model');
-      // var groupId = model.get('group_id');
+      var groupId = model.get('group_id');
 
       model.rollback();
 
-      // this.set('model', model);
-      // this.set('group_id', groupId);
-
+      this.set('group_id', groupId);
       this.send("closeModal");
-      // this.set('title', model.get('title'));
-      // this.set('description', model.get('description'));
-      // this.set('group_id', model.get('group_id'));
     },
 
     shouldDisableSubmit: function() {

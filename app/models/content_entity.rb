@@ -15,13 +15,9 @@ class ContentEntity < ActiveRecord::Base
   before_create :create_entity
   after_destroy :destroy_contentable
 
-  delegate :to_s, :inbox?, to: :contentable
+  delegate :to_s, :body, to: :contentable
 
   has_many :comments, as: :commentable, dependent: :destroy
-
-  def self.inbox
-    select { |r| r.contentable.inbox? }
-  end
 
   private
 

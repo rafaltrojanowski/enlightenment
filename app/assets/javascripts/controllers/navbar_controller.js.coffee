@@ -6,8 +6,5 @@ EnlightenmentApp.NavbarController = Ember.Controller.extend
     @controllerFor(controller).get("title")
   ).property("controllers.application.currentPath")
 
-  # TODO don't repeat yourself (defined in app cntrl also - use it!)
-  currentUser: (->
-    sessionId =  @get('session.user_id')
-    currentUser = @store.find "user", sessionId
-  ).property()
+  currentUser: Ember.computed.alias('controllers.application.currentUser')
+

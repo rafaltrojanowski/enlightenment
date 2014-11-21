@@ -1,13 +1,12 @@
 class Api::V1::CommentsController < ApplicationController
-  # before_action :load_commentable
+  load_and_authorize_resource
   respond_to :json
 
   def index
-    respond_with Comment.all.order('created_at DESC')
+    respond_with Comment.all.ordered
   end
 
   def create
-    # raise params.inspect
     attrs = {
       content: params[:comment][:content],
       user_id: params[:comment][:user_id],
@@ -28,10 +27,6 @@ class Api::V1::CommentsController < ApplicationController
 
   private
 
-  # def load_commentable
-  #   klass = [Link, Note].detect { |c| params["#{c.name.underscore}_id"] }
-  #   @commentable = klass.find(params["#{klass.name.underscore}_id"])
-  # end
   def comment_params
     params.require(:comment).permit(:content, :user_id, :commentable_id, :commentable_type)
   end

@@ -39,6 +39,7 @@ gem 'font-awesome-sass'
 gem 'autosize-rails'
 gem 'fog', github: 'fog/fog'
 gem 'acts-as-taggable-on', '~> 3.4'
+gem 'tagmanager-rails'
 
 group :development, :test do
   gem 'spring'

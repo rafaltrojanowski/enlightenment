@@ -13,12 +13,15 @@ class Ability
       # Groups
       can :create, Group
       can :manage, Group, owner_id: user.id
-      can :update_users, Group, owner_id: user.id
       can :read, Group do |group|
         group.user_ids.include? user.id
       end
       # Users
       can :update, User, id: user.id
+      # Comments
+      can :create, Comment
+      can :read, Comment
+      can :destroy, Comment, user_id: user.id
     end
     # Define abilities for the passed in user here. For example:
     #

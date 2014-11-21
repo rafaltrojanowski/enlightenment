@@ -16,7 +16,7 @@
       </div>
 
       {{ selected }}
-
+     
       <div {{bind-attr class="errors.group:error :field"}}>
         {{view Ember.Select content = groups
            optionValuePath="content.id"
@@ -28,6 +28,9 @@
         }}
         {{#each error in errors.group}}{{error.message}}{{/each}}
       </div>
+
+      {{view Ember.TextField class="tm-input"}}
+
   </div>
   <div class="modal-footer">
     {{#if isSaving}}

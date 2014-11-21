@@ -14,8 +14,7 @@ class Api::V1::GroupsController < ApplicationController
       owner_id: current_user.id
     }
     group = Group.new(attrs)
-    group.users << current_user
-    group.save
+    group.users << current_user if group.save
     respond_with :api, :v1, group
   end
 
@@ -26,6 +25,7 @@ class Api::V1::GroupsController < ApplicationController
       @group.user_ids = ids.push(@group.owner_id).uniq
     end
     @group.save
+
     respond_with :api, :v1, @group
   end
 

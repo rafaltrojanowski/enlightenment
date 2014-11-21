@@ -33,6 +33,8 @@ EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend Enligh
   sortAscending:  false
   sortProperties: ['updated_at']
   title: 'Dashboard'
+  tagList: ["raz", "dwa", "trzy"]
+  tagContener: null
 
   actions:
     addEntry: ->
@@ -52,6 +54,3 @@ EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend Enligh
       ).bind(this), ->
         alertify.error("Your record is invalid!")
       @set('newEntryName', "")
-    test: ->
-      meta = @store.metadataFor('content_entity')
-      console.log(meta.total)

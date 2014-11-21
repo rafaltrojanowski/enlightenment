@@ -10,6 +10,7 @@
 #= require_self
 #= require enlightenment_app
 #= require jquery.tokeninput
+#= require tagmanager
 #= require select2
 #= require holo/holo
 

@@ -42,67 +42,134 @@ describe 'Api::V1::ContentEntities' do
   it 'must retrieve entities that belongs to user groups' do
     api_call :get, 'contentEntities', @auth_data
 
-    response.status.must_equal 200
+    expected_ids = json['content_entities'].map { |m| m['id'] }.sort
 
-    body = JSON.parse(response.body)
-    ids = body['content_entities'].map { |m| m['id'] }
-
-    ids.sort.must_equal [@my_link_rails_entity.id,
-                         @my_note_rails_entity.id,
-                         @my_ember_entity.id,
-                         @other_user_rails_entity.id].sort
+    expected_ids.must_equal [@my_link_rails_entity.id,
+                             @my_note_rails_entity.id,
+                             @my_ember_entity.id,
+                             @other_user_rails_entity.id].sort
   end
 
   it 'must retrieve user notes' do
     api_call :get, 'contentEntities', @auth_data, type: 'note'
+    expected_ids = json['content_entities'].map { |m| m['id'] }.sort
 
-    body = JSON.parse(response.body)
-    ids = body['content_entities'].map { |m| m['id'] }
-
-    ids.sort.must_equal [@my_note_rails_entity.id, @my_ember_entity.id].sort
+    expected_ids.must_equal [@my_note_rails_entity.id, @my_ember_entity.id].sort
   end
 
   it 'must retrieve user links' do
-
     api_call :get, 'contentEntities', @auth_data, type: 'link'
 
-    body = JSON.parse(response.body)
-    ids = body['content_entities'].map { |m| m['id'] }
+    expected_ids = json['content_entities'].map { |m| m['id'] }.sort
 
-    ids.sort.must_equal [@my_link_rails_entity.id].sort
+    expected_ids.must_equal [@my_link_rails_entity.id].sort
   end
 
   it 'must retrieve user inbox' do
     api_call :get, 'contentEntities', @auth_data, inbox: true
 
-    body = JSON.parse(response.body)
-    ids = body['content_entities'].map { |m| m['id'] }
+    expected_ids = json['content_entities'].map { |m| m['id'] }.sort
 
-    ids.sort.must_equal [@my_inbox.id].sort
+    expected_ids.sort.must_equal [@my_inbox.id].sort
   end
 
-  it 'must create content entity if user signed in' do
-    before = ContentEntity.count
+  context 'create' do
+    it 'must create content entity if user signed in' do
+      params = { contentEntity: { body: 'w of wall' } }
 
-    data = { contentEntity: { body: 'w of wall', user_id: @user.id } }
+      assert_difference('ContentEntity.count', 1) do
+        api_call :post, 'contentEntities', @auth_data, params
+      end
 
-    api_call :post, 'contentEntities', @auth_data, data
+      expected_user = Note.where(body: 'w of wall').first.content_entity.user
+      expected_user.must_equal @user
+    end
 
-    after = ContentEntity.count
-    expected_user = Note.where(body: 'w of wall').first.content_entity.user
+    it 'wont create content entity if user signed in' do
+      data = { contentEntity: { body: 'test' } }
 
-    (before + 1).must_equal after
-
-    expected_user.must_equal @user
+      assert_difference('ContentEntity.count', 0) do
+        api_call :post, 'contentEntities', {}, data
+      end
+    end
   end
 
-  it 'wont create content entity if user signed in' do
-    data = { contentEntity: { body: 'test' } }
+  context 'show' do
+    it 'must show my content entity' do
+      api_call :get, "contentEntities/#{@my_ember_entity.id}", @auth_data
 
-    before = ContentEntity.count
-    api_call :post, 'contentEntities', {}, data
-    after = ContentEntity.count
+      response.status.must_equal 200
+    end
 
-    (before - after).must_equal 0
+    it 'wont show others content entity' do
+      lambda do
+        api_call :get, "contentEntities/#{@other_user_angular_entity.id}", @auth_data
+      end.must_raise CanCan::AccessDenied
+    end
+
+    it 'wont show if not authorized' do
+      lambda do
+        api_call :get, "contentEntities/#{@my_ember_entity.id}", {}
+      end.must_raise CanCan::AccessDenied
+    end
+  end
+
+  context 'update' do
+    before do
+      @update_params = { contentEntity: { body: 'Coffee' } }
+    end
+
+    it 'must update my note body' do
+      @my_ember_entity.body.must_equal 'MyText'
+
+      api_call :put, "contentEntities/#{@my_ember_entity.id}", @auth_data, @update_params
+
+      response.status.must_equal 200
+      @my_ember_entity.reload.body.must_equal 'Coffee'
+    end
+
+    it 'must update my link title' do
+      params = { contentEntity: { title: 'MyTitle' } }
+
+      api_call :put, "contentEntities/#{@my_link_rails_entity.id}", @auth_data, params
+
+      response.status.must_equal 200
+    end
+
+    it 'wont update others content entity' do
+      lambda do
+        api_call :put, "contentEntities/#{@other_user_angular_entity.id}", @auth_data, @update_params
+      end.must_raise CanCan::AccessDenied
+    end
+
+    it 'wont update if not authorized' do
+      lambda do
+        api_call :put, "contentEntities/#{@my_ember_entity.id}", {}, @update_params
+      end.must_raise CanCan::AccessDenied
+    end
+  end
+
+  context 'destroy' do
+    it 'must destroy my content entity' do
+      assert_difference('ContentEntity.count', -1) do
+        api_call :delete, "contentEntities/#{@my_ember_entity.id}", @auth_data
+      end
+    end
+
+    it 'wont destroy others content entity' do
+      assert_difference('ContentEntity.count', 0) do
+        lambda do
+          api_call :delete, "contentEntities/#{@other_user_angular_entity.id}", @auth_data
+        end.must_raise CanCan::AccessDenied
+      end
+    end
+
+    it 'wont destroy if not authorized' do
+      assert_difference('ContentEntity.count', 0) do
+        lambda do
+          api_call :delete, "contentEntities/#{@my_ember_entity.id}", {}
+        end.must_raise CanCan::AccessDenied
+      end
+    end
   end
 end

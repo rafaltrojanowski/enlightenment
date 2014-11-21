@@ -12,6 +12,10 @@ class Link < ActiveRecord::Base
     url
   end
 
+  def body
+    url
+  end
+
   private
 
   def fetch_title
