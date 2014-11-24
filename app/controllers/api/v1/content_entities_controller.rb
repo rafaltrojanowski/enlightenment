@@ -31,12 +31,12 @@ class Api::V1::ContentEntitiesController < ApplicationController
     record = @content_entity.contentable
     @content_entity.tag_list = params[:contentEntity][:tags_cache]
 
-    object = record.is_a?(Link) ? update_link(record) : update_note(record)
+    record.is_a?(Link) ? update_link(record) : update_note(record)
 
-    if record.save
-      render json: record
+    if @content_entity.save
+      render json: @content_entity
     else
-      render json: record, status: 422
+      render json: @content_entity, status: 422
     end
   end
 

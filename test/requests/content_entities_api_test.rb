@@ -155,6 +155,17 @@ describe 'Api::V1::ContentEntities' do
 
       response.status.must_equal 200
       @my_ember_entity.reload.body.must_equal 'Coffee'
+      json['content_entity'].wont_equal nil
+    end
+
+    it 'must add tags' do
+      tags_params = { contentEntity: { tags_cache: 'one, two, three' } }
+
+      api_call :put, "contentEntities/#{@my_ember_entity.id}", @auth_data, tags_params
+
+      @my_ember_entity.reload
+      @my_ember_entity.tag_list.sort.must_equal %w(one two three).sort
+      json['content_entity'].wont_equal nil
     end
 
     it 'must update my link title' do
