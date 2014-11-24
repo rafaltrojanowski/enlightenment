@@ -19,6 +19,13 @@ class ContentEntity < ActiveRecord::Base
 
   has_many :comments, as: :commentable, dependent: :destroy
 
+  def update_with_contentable(params)
+    attrs = params[:contentEntity]
+
+    update_contentable(contentable, attrs)
+    update_column(:group_id, attrs[:group_id])
+  end
+
   private
 
   def create_entity
@@ -34,6 +41,18 @@ class ContentEntity < ActiveRecord::Base
       logger.error error
       create_note
     end
+  end
+
+  def update_contentable(record, attrs)
+    assign_params = begin
+                      if record.is_a?(Link)
+                        { description: attrs[:description] }
+                      else
+                        { body: attrs[:body] }
+                      end
+                    end
+    assign_params = assign_params.merge(title: attrs[:title])
+    record.update_attributes(assign_params)
   end
 
   def destroy_contentable

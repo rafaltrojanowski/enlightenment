@@ -158,6 +158,14 @@ describe 'Api::V1::ContentEntities' do
       json['content_entity'].wont_equal nil
     end
 
+    it 'must update my link title' do
+      params = { contentEntity: { title: 'MyTitle' } }
+
+      api_call :put, "contentEntities/#{@my_link_rails_entity.id}", @auth_data, params
+
+      response.status.must_equal 200
+    end
+
     it 'must add tags' do
       tags_params = { contentEntity: { tags_cache: 'one, two, three' } }
 
@@ -166,14 +174,6 @@ describe 'Api::V1::ContentEntities' do
       @my_ember_entity.reload
       @my_ember_entity.tag_list.sort.must_equal %w(one two three).sort
       json['content_entity'].wont_equal nil
-    end
-
-    it 'must update my link title' do
-      params = { contentEntity: { title: 'MyTitle' } }
-
-      api_call :put, "contentEntities/#{@my_link_rails_entity.id}", @auth_data, params
-
-      response.status.must_equal 200
     end
 
     it 'wont update others content entity' do
