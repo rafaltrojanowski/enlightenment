@@ -31,7 +31,9 @@
 <i class="fa fa-tag"></i> tags: </i>
 
 {{#each tags}}
-  {{name}}
+  {{#link-to 'search.results'}}
+    {{name}}
+  {{/link-to}}
 {{/each}}
 
 </div>
