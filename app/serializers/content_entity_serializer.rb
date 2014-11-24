@@ -12,7 +12,13 @@ class ContentEntitySerializer < ActiveModel::Serializer
              :group,
              :inbox,
              :can_edit,
-             :can_destroy
+             :can_destroy,
+             :tagIds
+  has_many   :tags, key: :tags
+
+  def tagIds
+    object.tag_ids
+  end
 
   def group_id
     object.group_id

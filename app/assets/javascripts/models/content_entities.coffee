@@ -12,6 +12,9 @@ EnlightenmentApp.ContentEntity = DS.Model.extend(
   inbox: DS.attr('boolean')
   can_edit: DS.attr('boolean')
   can_destroy: DS.attr('boolean')
+  tags_cache: DS.attr('string')
+  tags: DS.hasMany('tag', {async: true})
+  tag_list: Ember.computed.mapBy('tags', 'name')
   isLink: (->
     if @get("type") == 'link'
       true

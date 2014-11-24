@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       end
       resources :links, only: [:index, :show]
       resources :notes, only: :index
+      resources :tags, only: [:index, :show]
       resources :users
       resources :groups do
         member do

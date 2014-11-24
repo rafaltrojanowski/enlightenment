@@ -22,3 +22,5 @@ EnlightenmentApp.Router.map ()->
   @resource 'comments'
   @resource 'inbox', path: 'inbox'
   @resource 'edit_account', path: '/edit_account'
+  @resource 'search', path: '/search', ->
+    @route 'results', path: ':keyword'
