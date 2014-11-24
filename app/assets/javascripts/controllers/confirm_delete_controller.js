@@ -1,8 +1,6 @@
 EnlightenmentApp.ConfirmDeleteController = Em.ObjectController.extend({
   actions: {
     confirmDelete: function(model, afterDeleteRoute) {
-      console.log(model);
-
       this.set('model', model);
       this.set('afterDeleteRoute', afterDeleteRoute);
     },

@@ -6,7 +6,6 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
   }.property(),
 
   selected: function() {
-    console.log(this.get('model').get('group_id'));
     gr_id = this.get('model').get('group_id');
 
     self = this;
@@ -32,6 +31,7 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
     save: function() {
       var model = this.get('model');
       groupId = model.get('group_id');
+
       tags_cache = $("input[name=hidden_tags]").val()
       model.set('tags_cache', tags_cache)
 
@@ -44,13 +44,11 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
       }
 
       this.get('model').save().then(function(){
-        alertify.success("Record updated!");
-
-        var hasGroup = model.get('group_id');
-
-        if (hasGroup != null) {
+        if (groupId != null) {
           model.set('inbox', false);
         }
+
+        alertify.success("Record updated!");
       },function(response){
       });
     },

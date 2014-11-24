@@ -9,7 +9,6 @@ EnlightenmentApp.UploadFile = Ember.TextField.extend
       reader = new FileReader()
       reader.onload = (e) ->
         fileToUpload = e.target.result
-        console.log(fileToUpload)
         Ember.run ->
           self.set('file', fileToUpload)
         $("#avatar").attr('src', fileToUpload)
