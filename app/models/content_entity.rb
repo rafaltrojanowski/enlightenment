@@ -22,8 +22,8 @@ class ContentEntity < ActiveRecord::Base
   def update_with_contentable(params)
     attrs = params[:contentEntity]
 
-    update_contentable(contentable, attrs)
     update_column(:group_id, attrs[:group_id])
+    update_contentable(contentable, attrs)
   end
 
   private
