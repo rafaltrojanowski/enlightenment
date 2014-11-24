@@ -6,22 +6,31 @@ class Ability
 
     if user.is_a? User
       # ContentEntities
-      can :create, ContentEntity
-      can :update, ContentEntity, user_id: user.id
+      can :create,  ContentEntity
+      can :update,  ContentEntity, user_id: user.id
       can :destroy, ContentEntity, user_id: user.id
-      can :read, ContentEntity, user_id: user.id
-      can :read, ContentEntity, group_id: user.group_ids
+      can :read,    ContentEntity, user_id: user.id
+      can :read,    ContentEntity, group_id: user.group_ids
       # Groups
-      can :create, Group
-      can :manage, Group, owner_id: user.id
-      can :read, Group do |group|
-        group.user_ids.include? user.id
+      alias_action :edit, :update, :destroy, :other_users, :members, to: :eudom
+      can :create,  Group
+      can :eudom,    Group, owner_id: user.id
+
+      # can :read,    Group, Group.all do |group|
+        # group.users.pluck(:id).include?(user.id)
+      # end
+      # ugly solution
+      can :index,   Group, Group.visible_for(user) do |scope|
+        scope
+      end
+      can :show,    Group, Group.all do |group|
+        group.users.pluck(:id).include?(user.id)
       end
       # Users
       can :update, User, id: user.id
       # Comments
-      can :create, Comment
-      can :read, Comment
+      can :create,  Comment
+      can :read,    Comment
       can :destroy, Comment, user_id: user.id
     end
     # Define abilities for the passed in user here. For example:

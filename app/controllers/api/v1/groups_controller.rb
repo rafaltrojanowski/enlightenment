@@ -1,17 +1,16 @@
 class Api::V1::GroupsController < ApplicationController
   load_and_authorize_resource
   respond_to :json
-  before_action :set_group, except: [:index, :create]
 
   def index
-    respond_with current_user.groups
+    respond_with @groups
   end
 
   def create
     attrs = {
       name: params[:group][:name],
       icon: params[:group][:icon],
-      owner_id: current_user.id
+      owner_id: current_user.try(:id)
     }
     group = Group.new(attrs)
     group.users << current_user if group.save
@@ -30,8 +29,7 @@ class Api::V1::GroupsController < ApplicationController
   end
 
   def other_users
-    @group = Group.find(params[:id])
-    respond_with User.filtering(params[:q]).not_members(@group.user_ids), root: false
+    respond_with @group.other_users(params[:q]), root: false
   end
 
   def members
@@ -47,10 +45,6 @@ class Api::V1::GroupsController < ApplicationController
   end
 
   private
-
-  def set_group
-    @group = Group.find(params[:id])
-  end
 
   def group_params
     params.require(:group).permit(group: [:name, :icon])

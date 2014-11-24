@@ -28,7 +28,7 @@ class Api::V1::ContentEntitiesController < ApplicationController
   end
 
   def update
-    record = ContentEntity.find(params[:id]).contentable
+    record = @content_entity.contentable
     object = record.is_a?(Link) ? update_link(record) : update_note(record)
 
     if object
@@ -39,11 +39,11 @@ class Api::V1::ContentEntitiesController < ApplicationController
   end
 
   def show
-    respond_with ContentEntity.find(params[:id])
+    respond_with @content_entity
   end
 
   def destroy
-    respond_with ContentEntity.find(params[:id]).destroy
+    respond_with @content_entity.destroy
   end
 
   private
