@@ -33,6 +33,8 @@ EnlightenmentApp.ContentEntitiesController = Ember.ArrayController.extend Enligh
   sortAscending:  false
   sortProperties: ['updated_at']
   title: 'Dashboard'
+  tagList: ["raz", "dwa", "trzy"]
+  tagContener: null
 
   actions:
     addEntry: ->

@@ -1,4 +1,5 @@
 EnlightenmentApp.ContentEntitiesModalController = EnlightenmentApp.ModalController.extend({
+
   create: function() {
     var widget = this.store.createRecord('widget');
 

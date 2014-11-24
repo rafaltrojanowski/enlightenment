@@ -27,6 +27,9 @@
         }}
         {{#each error in errors.group}}{{error.message}}{{/each}}
       </div>
+
+      {{view Ember.TextField class="tm-input"}}
+
   </div>
   <div class="modal-footer">
     {{#if isSaving}}

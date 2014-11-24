@@ -12,6 +12,7 @@
  *
  *= require_self
  *= require token-input
+ *= require tagmanager
  */
 
 div.p-top-8 { padding-top: 8px; }

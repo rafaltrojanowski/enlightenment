@@ -17,6 +17,8 @@ EnlightenmentApp.ContentEntityController = Ember.ObjectController.extend
       false
   ).property("type")
 
+  progress: "progress"
+
   actions:
     edit: (content_entity) ->
       @controllerFor("content_entities.modal").edit content_entity

@@ -28,8 +28,14 @@
 
 <i class="fa fa-clock-o pull-right" id="show_date" data-toggle="tooltip" data-placement="top" {{bind-attr title=formatedDate}}> {{{date updated_at}}}</i>
 <i {{bind-attr class='group.icon'}}></i> {{{group.name}}}</i><br>
-<i class="fa fa-tag"></i> TAGS HERE</i>
-<i class="fa fa-tag"></i> #TAG2</i>
+<i class="fa fa-tag"></i> tags: </i>
+
+{{#each tags}}
+  {{#link-to 'search.results'}}
+    {{name}}
+  {{/link-to}}
+{{/each}}
+
 </div>
 
 <div id="container">

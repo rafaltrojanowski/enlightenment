@@ -10,7 +10,8 @@
 #= require_self
 #= require enlightenment_app
 #= require jquery.tokeninput
-#= require select2
+#= require tagmanager
+#= require twitter/typeahead
 #= require holo/holo
 
 # for more details see: http://emberjs.com/guides/application/
