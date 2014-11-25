@@ -55,11 +55,11 @@ EnlightenmentApp.ModalController = Em.ObjectController.extend({
 
     close: function() {
       var model = this.get('model');
-      var groupId = model.get('group_id');
+      // var groupId = model.get('group_id');
 
       model.rollback();
 
-      this.set('group_id', groupId);
+      // this.set('group_id', groupId);
       this.send("closeModal");
     },
 
