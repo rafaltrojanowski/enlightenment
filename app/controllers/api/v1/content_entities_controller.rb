@@ -18,8 +18,16 @@ class Api::V1::ContentEntitiesController < ApplicationController
       keyword = params[:search]
       tag_part = scope.tagged_with(keyword).pluck(:id)
 
-      note_part = ContentEntity.joins("INNER JOIN notes ON content_entities.contentable_id = notes.id AND content_entities.contentable_type = 'Note'").where("(title like ? OR body like ?) AND group_id in (?)", "%#{keyword}%", "%#{keyword}%", current_user.group_ids).pluck(:id).uniq
-      link_part = ContentEntity.joins("INNER JOIN links ON content_entities.contentable_id = links.id AND content_entities.contentable_type = 'Like'").where("(title like ? OR url like ?) AND group_id in (?)", "%#{keyword}%", "%#{keyword}%", current_user.group_ids).pluck(:id).uniq
+      note_part = ContentEntity.joins("INNER JOIN notes 
+                                       ON content_entities.contentable_id = notes.id 
+                                       AND content_entities.contentable_type = 'Note'").where("(lower(title) like ? 
+                                                                                               OR lower(body) like ?) 
+                                                                                               AND group_id in (?)", "%#{keyword.downcase}%", "%#{keyword.downcase}%", current_user.group_ids).pluck(:id).uniq
+      link_part = ContentEntity.joins("INNER JOIN links 
+                                       ON content_entities.contentable_id = links.id 
+                                       AND content_entities.contentable_type = 'Link'").where("(lower(title) like ? 
+                                                                                               OR url like ?) 
+                                                                                               AND group_id in (?)", "%#{keyword.downcase}%", "%#{keyword.downcase}%", current_user.group_ids).pluck(:id).uniq
 
       merge_ids = (tag_part + note_part + link_part).uniq
       scope = ContentEntity.find(merge_ids)

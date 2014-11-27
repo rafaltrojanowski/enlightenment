@@ -361,7 +361,7 @@ textarea {
   margin: 0;
 }
 
-.search-field input[type=text]{
+.search input[type=text]{
   border: 1px solid #ccc;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -369,12 +369,12 @@ textarea {
   font-size: 12px;
   margin-top: 7px;
   margin-right: 7px;
-  padding: 10px 7px;
+  padding: 3px 7px;
   outline: 0;
-  height: 24px;
+  width: 160px;
   -webkit-appearance: none; 
 }
 
-.search-field input[type=text]:focus{
+.search input[type=text]:focus{
   border-color: #339933;
 }

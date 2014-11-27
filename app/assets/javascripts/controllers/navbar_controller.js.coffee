@@ -11,6 +11,10 @@ EnlightenmentApp.NavbarController = Ember.Controller.extend
 
   actions:
     search: ->
-      @transitionToRoute('search.results', @get('keyword'))
-      keyword = ''
+      if @get('keyword') is ''
+        alertify.error('empty search field')
+      else
+        @transitionToRoute('search.results', @get('keyword'))
+        @set('keyword', '')
+        
 
