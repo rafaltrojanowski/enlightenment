@@ -11,10 +11,11 @@ nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
       link-to 'content_entities' class='navbar-brand' | <i class="fa fa-sun-o fa-1x"> getE</i> | {{ getTitle }}
     else
       link-to 'home' class='navbar-brand' | <i class="fa fa-sun-o fa-1x"> getE</i>
+
   if session.isAuthenticated
     div.collapse.navbar-collapse id="navbar-nav"
       ul.nav.navbar-nav.navbar-right id='dropdown_auth'
-        li.dropdown
+        li.dropdown.pull-right
           a.dropdown-toggle data-toggle='dropdown' href='#'
             | <img {{bind-attr src="currentUser.avatar"}} alt="avatar" style="width:25x;height:25px" class="img-circle"> {{currentUser.name}}
             span.caret
@@ -28,3 +29,7 @@ nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
               span
                 li
                   a{action 'invalidateSession'} href="#" Logout
+      .navbar-form.navbar-right
+        .search
+          Ember.TextField required="required" valueBinding=keyword 
+          .trigger.btn.btn-default.btn-xs.button{action 'search'} search

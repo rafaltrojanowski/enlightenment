@@ -41,6 +41,8 @@ gem 'fog', github: 'fog/fog'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'tagmanager-rails'
 gem 'twitter-typeahead-rails'
+gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 
 group :development, :test do
   gem 'spring'
