@@ -1,3 +1,3 @@
 EnlightenmentApp.SearchResultsRoute = Ember.Route.extend
   model: (params) ->
-    @get('store').find('content_entity')
+    @get('store').find('content_entity', { search: params.keyword })
