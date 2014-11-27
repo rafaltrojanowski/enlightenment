@@ -31,5 +31,4 @@ nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
                   a{action 'invalidateSession'} href="#" Logout
       .navbar-form.navbar-right
         .search
-          Ember.TextField required="required" valueBinding=keyword 
-          .trigger.btn.btn-default.btn-xs.button{action 'search'} search
+          Ember.TextField valueBinding=keyword placeholder="Search"
