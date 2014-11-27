@@ -51,4 +51,18 @@ describe ContentEntity do
       end
     end
   end
+
+  describe 'update_with_contentable' do
+    it 'it must leave inbox if assigned to group' do
+      content_entity = FactoryGirl.create(:content_entity, inbox: true, group: nil)
+      group = FactoryGirl.create(:group)
+      update_params = { contentEntity: { group_id: group.id } }
+
+      content_entity.inbox?.must_equal true
+      content_entity.update_with_contentable(update_params)
+
+      content_entity.reload
+      content_entity.inbox?.must_equal false
+    end
+  end
 end

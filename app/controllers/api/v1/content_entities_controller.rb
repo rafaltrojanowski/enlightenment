@@ -39,10 +39,8 @@ class Api::V1::ContentEntitiesController < ApplicationController
   end
 
   def update
-    record = @content_entity.contentable
+    @content_entity.update_with_contentable(params) if params[:contentEntity].present?
     @content_entity.tag_list = params[:contentEntity][:tags_cache]
-
-    record.is_a?(Link) ? update_link(record) : update_note(record)
 
     if @content_entity.save
       render json: @content_entity
@@ -57,20 +55,5 @@ class Api::V1::ContentEntitiesController < ApplicationController
 
   def destroy
     respond_with @content_entity.destroy
-  end
-
-  private
-
-  # @TODO move to model
-  def update_link(record)
-    record.content_entity.update_column(:group_id, params[:contentEntity][:group_id])
-    record.update_attributes(title: params[:contentEntity][:title],
-                             description: params[:contentEntity][:description])
-  end
-
-  def update_note(record)
-    record.content_entity.update_column(:group_id, params[:contentEntity][:group_id])
-    record.update_attributes(body: params[:contentEntity][:body],
-                             title: params[:contentEntity][:title])
   end
 end
