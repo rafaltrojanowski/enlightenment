@@ -328,7 +328,8 @@ textarea {
 }
 
 .tt-hint {
-  color: #999
+  background:none!important;
+  display:none!important;
 }
 
 .tt-dropdown-menu {

@@ -37,13 +37,9 @@ EnlightenmentApp.ModalView = Em.View.extend(
       name: "tags"
       displayKey: "name"
       source: tags.ttAdapter()
-    )# .on('typeahead:selected', (obj, datum) ->
-     # $(".tm-input").tagsManager("pushTag", datum.name)
-     #)
-     # TODO poprawne czyszczenie inputa
-
-
-
+    ).on('typeahead:selected', (obj, datum) ->
+      $(".tm-input").val('')
+    )
 
   willDestroyElement: ->
     $("body").off "keyup.modal"
