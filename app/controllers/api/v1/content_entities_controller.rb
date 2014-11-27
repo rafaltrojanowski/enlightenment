@@ -14,6 +14,17 @@ class Api::V1::ContentEntitiesController < ApplicationController
       scope = current_user.content_entities.where(inbox: true)
     end
 
+    if params[:search].present?
+      keyword = params[:search]
+      tag_part = scope.tagged_with(keyword).pluck(:id)
+
+      note_part = ContentEntity.joins("INNER JOIN notes ON content_entities.contentable_id = notes.id AND content_entities.contentable_type = 'Note'").where("(title like ? OR body like ?) AND group_id in (?)", "%#{keyword}%", "%#{keyword}%", current_user.group_ids).pluck(:id).uniq
+      link_part = ContentEntity.joins("INNER JOIN links ON content_entities.contentable_id = links.id AND content_entities.contentable_type = 'Like'").where("(title like ? OR url like ?) AND group_id in (?)", "%#{keyword}%", "%#{keyword}%", current_user.group_ids).pluck(:id).uniq
+
+      merge_ids = (tag_part + note_part + link_part).uniq
+      scope = ContentEntity.find(merge_ids)
+    end
+
     respond_with scope
   end
 

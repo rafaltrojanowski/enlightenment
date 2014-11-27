@@ -360,3 +360,21 @@ textarea {
 .tt-suggestion p {
   margin: 0;
 }
+
+.search-field input[type=text]{
+  border: 1px solid #ccc;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 7px;
+  font-size: 12px;
+  margin-top: 7px;
+  margin-right: 7px;
+  padding: 10px 7px;
+  outline: 0;
+  height: 24px;
+  -webkit-appearance: none; 
+}
+
+.search-field input[type=text]:focus{
+  border-color: #339933;
+}

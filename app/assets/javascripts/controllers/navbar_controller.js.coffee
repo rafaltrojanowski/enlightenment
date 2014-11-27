@@ -1,5 +1,6 @@
 EnlightenmentApp.NavbarController = Ember.Controller.extend
   needs: ['application']
+  keyword: ''
 
   getTitle: (->
     controller = @get('controllers.application.currentPath')
@@ -7,4 +8,9 @@ EnlightenmentApp.NavbarController = Ember.Controller.extend
   ).property("controllers.application.currentPath")
 
   currentUser: Ember.computed.alias('controllers.application.currentUser')
+
+  actions:
+    search: ->
+      @transitionToRoute('search.results', @get('keyword'))
+      keyword = ''
 

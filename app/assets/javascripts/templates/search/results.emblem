@@ -1,2 +1,4 @@
-| RESULTS
-render "content_entities" model
+if this.length
+  render "content_entities" model
+else
+  h1 No Results
