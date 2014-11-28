@@ -22,7 +22,7 @@ gem 'nested_form', '~> 0.3.2'
 gem 'devise', '>= 3.0.0'
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'gravatar_image_tag'
-gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.1"
+gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.1'
 gem 'kaminari'
 gem 'configurable_engine'
 gem 'friendly_id', '>= 5.0.0'
@@ -50,14 +50,18 @@ group :development, :test do
   gem 'guard-minitest', require: false
   gem 'terminal-notifier-guard'
 
+  gem 'konacha'
+  # gem 'capybara'
+  gem 'sinon-rails'
+
   gem 'pry-rails'
   gem 'pry-byebug'
 end
 
 group :test do
   gem 'minitest-rails-capybara', '>= 2.0.0.beta1', require: false
-  gem 'poltergeist', require: false
-  gem 'launchy'
+  # gem 'poltergeist', require: false
+  # gem 'launchy'
   gem 'simplecov', require: false
   gem 'database_cleaner', require: false
   gem 'vcr', require: false

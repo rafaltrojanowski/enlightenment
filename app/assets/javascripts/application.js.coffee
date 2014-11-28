@@ -16,8 +16,7 @@
 
 # for more details see: http://emberjs.com/guides/application/
 window.EnlightenmentApp = Ember.Application.create(
-  LOG_TRANSITIONS: true,
-  rootElement: '#ember-app' # temporary solution for rendering layout
+  LOG_TRANSITIONS: true
 )
 
 window.ENV = window.ENV || {}
